@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 26
+/gotit/!svn/ver/44/2/feeds
+END
+ccpp.atom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/gotit/!svn/ver/47/2/feeds/ccpp.atom.xml
+END
+security.atom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/gotit/!svn/ver/47/2/feeds/security.atom.xml
+END
+all.atom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/gotit/!svn/ver/47/2/feeds/all.atom.xml
+END
+linux.atom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/gotit/!svn/ver/47/2/feeds/linux.atom.xml
+END

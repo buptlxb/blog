@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>BLxG</title>
+    <meta name="description" content="">
+    <meta name="author" content="ictlxb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="../theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="../theme/images/icons/favicon.ico"/>
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">BLxG</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+
+    <div class='article'>
+        <div class="content-title">
+            <a href="../on-runtime-monitoring-tools.html"><h1>On Runtime Monitoring Tools</h1></a>
+Sun 21 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ 
+        </div>
+        
+        <div><div class="highlight"><pre>Runtime monitoring tools make use of runtime information to
+detect bugs that are difficult to detect statically. Existing
+dynamic
+monitoring schemes fall into three categories:
+programming-rule based
+(PRB), invariant-rule-based (IRB), and execution-statistics based
+(ESB).
+</pre></div>
+
+
+<h2>Programming Rule Based (PRB)</h2>
+<p>PRB checks for violations of <strong>programming language specifications</strong>,
+<strong>programming paradigms</strong>, or <strong>software development specifications</strong>.
+For example <code>array index cannot exceed the array bounds''
+and</code>concurrent accesses to a shared variable should be
+synchronized''
+are the kinds of rules PRB checkers use to detect bugs.</p>
+<h2>Invariant Rule Based (IRB)</h2>
+<p>IRB extracts invariant rules (e.g. PC and value invariants) from
+<strong>successful runs</strong> or <strong>multiple periods of a single long-running
+execution</strong>, and then uses these rules to check for violations in a
+later execution or later periods of an execution in a long-running
+job. Valueinvariance maintains, for each variable, a set of values
+that the variable hes held. When a value not in the set is found at
+runtime, it is recorded as an invariant violation. Program Counter
+(PC) invariance maintains for each memory location a set of program
+counter values(i.e. program locations) that access the variable. When
+a datum is accessed by a program location that has not previously
+accessed it, the access is recorded as an anomalous access.</p>
+<h2>Execution Statistics Based (ESB)</h2>
+<p>ESB extracts <strong>statistics that characterize the program's runtime
+behavior</strong>, and uses statistical analysis to detect bugs on the fly.</p></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../basic-concept-on-security.html"><h2>Basic Concept on Security</h2></a>
+        <div class= "well small"> Wed 17 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><h2>Authentication vs. Authorization</h2>
+<h4>Authentication</h4>
+<p>Authentication verifies <strong>who you are</strong>. It is the process of
+ascertaining that somebody really is who he/she claims to be.</p>
+<h4>Authorization</h4>
+<p>Authorization verifies <strong>what you are authorized to do</strong>. It refers
+ot rules that determine who is allowed to do what.</p> <a class="btn btn-info xsmall" href="../basic-concept-on-security.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../web-vulnerability.html"><h2>Web Vulnerability</h2></a>
+        <div class= "well small"> Tue 16 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><h4>Two Main Approaches to Testing Software Application</h4>
+<p>In <strong>white-box</strong> testing, the source code of application is analyzed in an
+attempt to track down defective or vulnerable lines of code. This operation is
+often integrated into the development process by creating add-on tools for
+common deveploment environments.</p>
+<p>In <strong>black-blox</strong> testing, the ...</p> <a class="btn btn-info xsmall" href="../web-vulnerability.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../some-common-weakness-enumeration.html"><h2>Some Common Weakness Enumeration</h2></a>
+        <div class= "well small"> Thu 11 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>Here is a common weakness enumeration. Maybe simple but useful.
+</pre></div>
+
+
+<h2>Insecure Interaction Between Components</h2>
+<div class="highlight"><pre>These weaknesses are related to insecure ways in which data is sent adn
+received between separate components, modules, programs, procesces, threads
+or systems.
+</pre></div>
+
+
+<h4>Improper Neutralization of Special Elements used in an OS Command ('OS</h4>
+<p>Command Injection ...</p> <a class="btn btn-info xsmall" href="../some-common-weakness-enumeration.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../program-optimization-experiments.html"><h2>Program Optimization Experiments</h2></a>
+        <div class= "well small"> Sat 03 May 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><blockquote>
+<p>Program optimization is a very intresting problem. With the different matrix-multiply
+program, I want to find the factors which might have influence on the
+performace of the programs. Several experiments has been conducted on my
+computer. Source code and results will be listed as follow. Also, I will give a ...</p></blockquote> <a class="btn btn-info xsmall" href="../program-optimization-experiments.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="active"><a href="../author/ictlxb.html">1</a></li>
+    <li class=""><a href="../author/ictlxb2.html">2</a></li>
+    <li class=""><a href="../author/ictlxb3.html">3</a></li>
+    <li class=""><a href="../author/ictlxb4.html">4</a></li>
+
+    <li class="next"><a href="../author/ictlxb2.html">Next &rarr;</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/ccpp.html">C/CPP</a></li>
+                <li><a href="../category/linux.html">linux</a></li>
+                <li><a href="../category/security.html">Security</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/buptlxb">Github</a></li>
+                <li><a href="http://weibo.com/ictlxb">Weibo</a></li>
+            </ul>
+            </div>
+
+
+            <div class="tagcloud">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="tagcloud">
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+            </ul>
+            </div>
+
+            </div>
+
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">BLxG</a> &copy; ictlxb 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../theme/bootstrap-collapse.js"></script>
+ 
+</body>
+</html>

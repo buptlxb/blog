@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>BLxG</title>
+    <meta name="description" content="">
+    <meta name="author" content="ictlxb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="./theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="./theme/images/icons/favicon.ico"/>
+    <!-- Le styles -->
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href=".">BLxG</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="./pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Trace Linux Kernel With Bochs(2)</h1>
+Fri 07 March 2014
+
+by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
+ 
+
+
+        </div>
+	
+        <div><div class="highlight"><pre>boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
+</pre></div>
+
+
+<h2>创世者的遗志</h2>
+<h4>志继</h4>
+<p>从<a href="/linux/2014/03/03/trace-linux-kernel-with-bochs1/">上一篇文章</a>中，我们知道了BIOS通过<code>INT 0x19</code>将硬盘(软盘)的<code>0</code>号磁头(head)，<code>0</code>号磁道(track),<code>第一个</code>扇区(sector)读入到<code>0x07c00</code>的内存位置上。这个扇区就称作<code>boot section</code>。BIOS跳转到这里开始执行，boot section的代码。</p>
+<h4>规划</h4>
+<p>boot section的代码 首先将自己从内存<code>0x07c00</code>复制到<code>0x90000</code>，然后将它后续的<code>4</code>个扇区(<code>setup section</code>)读入内存<code>0x90200</code>开始的位置。这个操作是通过<code>INT 0x13</code>完成的。同样的方式，也就可以把剩余的240个扇区读入到内存中<code>0x10000</code>的位置。</p>
+<div class="highlight"><pre>通常，一个扇区是512Bytes，512转换成16进制就是0x200，由此可见，boot section 后续的4个扇区被它放在了内存中与自己紧挨着的位置。
+</pre></div>
+
+
+<p>其它的一些工作就不过多叙述了，有兴趣的读者可以阅读一下<a href="/assets/src/linux-0.11/boot/bootsect.S">bootsect.S源码</a>。最后，boot section通过<code>jmpi 0, 0x9020</code>跳转到setup section的第一条指令处开始执行。</p>
+<div class="highlight"><pre>实模式下的cpu通过两个16Bits的寄存器: 段基址寄存器CS(Code Segment)和段偏移寄存器IP(Instruction Pointer)，来指示执行指令的位置。
+
+早期的8086 cpu字长是16位，地址总线宽度为20，因此其寻址方式采用CS:IP的方式。
+
+这种形式构成的线性地址为(CS&lt;&lt;4) + IP。如CS=0x9020,IP=0x0时，形成的线性地址为0x9020&lt;&lt;4 + 0x0 = 0x90200。
+
+jmpi 0, 0x9020通过将CS置成0x9020，将IP置成0，来执行CS:IP处的代码。
+</pre></div>
+
+
+<h2>Hello OS World!</h2>
+<h4>写源码</h4>
+<p>因为工具的原因，你可能需要了解<a href="http://www.ibm.com/developerworks/cn/linux/l-gas-nasm.html">GAS和NASM的区别</a></p>
+<p>代码如下：</p>
+<div class="highlight"><pre><span class="c">#Filename: boot.S</span>
+
+<span class="na">.code16</span> <span class="c">#use 16bit</span>
+<span class="na">.text</span>   <span class="c">#code segment start</span>
+
+    <span class="nf">movw</span>    <span class="nv">%cs</span><span class="p">,</span> <span class="nv">%ax</span>    <span class="c">#cs:ip was initialized by BOIS instruction &#39;jmpi 0, 0x07c0&#39;</span>
+    <span class="nf">movw</span>    <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span>    <span class="c">#initialize ds, es and ss with cs</span>
+    <span class="nf">movw</span>    <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>
+    <span class="nf">movw</span>    <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ss</span>
+    <span class="nf">movw</span>    <span class="no">$0x7c00</span><span class="p">,</span> <span class="nv">%sp</span>    <span class="c">#allocate stack, get ready for call</span>
+    <span class="nf">call</span> <span class="no">disp_msg</span>   <span class="c">#call the function of display message</span>
+<span class="nl">inf:</span>
+    <span class="nf">jmp</span> <span class="no">inf</span> <span class="c">#infinite loop to see the result</span>
+
+<span class="nl">disp_msg:</span>
+    <span class="nf">movw</span> <span class="no">$msg</span><span class="p">,</span> <span class="nv">%ax</span>  <span class="c">#initialize bp with the msg address</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%bp</span>   
+    <span class="no">movw</span> <span class="no">len</span><span class="p">,</span> <span class="nv">%cx</span>   <span class="c">#prepare the arguments for int 0x10 </span>
+    <span class="nf">movw</span> <span class="no">$0x1301</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">movw</span> <span class="no">$0x00c</span><span class="p">,</span> <span class="nv">%bx</span>
+    <span class="nf">movb</span> <span class="no">$0</span><span class="p">,</span> <span class="nv">%dl</span>
+    <span class="nf">int</span> <span class="no">$0x10</span>
+    <span class="nf">ret</span>
+
+<span class="nl">msg:</span>
+    <span class="na">.ascii</span> <span class="s">&quot;Hello, OS world!&quot;</span>
+<span class="nl">len:</span>
+    <span class="na">.int</span> <span class="p">.</span> <span class="p">-</span> <span class="no">msg</span>
+    <span class="na">.org</span> <span class="mi">510</span>    <span class="c">#fill the blank</span>
+    <span class="na">.word</span> <span class="mi">0xaa55</span>    <span class="c">#maybe a magic number</span>
+</pre></div>
+
+
+<p>注：通过<code>INT 0x10</code>将字符串输出的显示设备上。</p>
+<h4>编写Makefile</h4>
+<p>Makefile是linux下常用的组织工程和自动化编译的方式。</p>
+<div class="highlight"><pre><span class="nv">CC</span> <span class="o">=</span> gcc
+<span class="nv">LD</span> <span class="o">=</span> ld
+<span class="nv">LDFILE</span> <span class="o">=</span> ld_script.ld
+<span class="nv">OBJCOPY</span> <span class="o">=</span> objcopy
+
+<span class="nf">all</span><span class="o">:</span> <span class="n">boot</span>.<span class="n">img</span>
+
+<span class="nf">boot.img</span><span class="o">:</span> <span class="n">boot</span>.<span class="n">bin</span>
+    @dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>empty_floppy.img <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span>2880
+    @dd <span class="k">if</span><span class="o">=</span>boot.bin <span class="nv">of</span><span class="o">=</span>boot.img <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span>1
+    @dd <span class="k">if</span><span class="o">=</span>empty_floppy.img <span class="nv">of</span><span class="o">=</span>boot.img <span class="nv">skip</span><span class="o">=</span><span class="m">1</span> <span class="nv">seek</span><span class="o">=</span><span class="m">1</span> <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span>2879
+
+<span class="nf">boot.bin</span><span class="o">:</span> <span class="n">boot</span>.<span class="n">elf</span>
+    @<span class="k">$(</span>OBJCOPY<span class="k">)</span> -R .pdr -R .comment -R .note -S -O binary boot.elf boot.bin
+
+<span class="nf">boot.elf</span><span class="o">:</span> <span class="n">boot</span>.<span class="n">o</span>
+    <span class="k">$(</span>LD<span class="k">)</span> boot.o -o boot.elf -e c -T<span class="k">$(</span>LDFILE<span class="k">)</span>
+
+<span class="nf">boot.o</span><span class="o">:</span> <span class="n">boot</span>.<span class="n">S</span>
+    <span class="k">$(</span>CC<span class="k">)</span> -c boot.S
+
+<span class="nf">clean</span><span class="o">:</span>
+    @rm -rf boot.o boot.elf boot.bin boot.img
+</pre></div>
+
+
+<p>首先通过gcc(实际上是gcc调用了汇编器<code>as</code>) 将boot.S汇编成boot.o,ELF格式的可重定位文件(ELF Relocatable File)。可重定位文件给了我们足够的自由，毕竟BIOS只会简单的跳转到<code>0x07c00</code>的位置上执行。</p>
+<p>利用ld命令可以方便地将boot.o进行链接(重定位)，进而得到boot.elf,ELF格式的可执行文件(ELF Executable File)。</p>
+<p>但是这里所谓的可执行文件，却无法在没有操作系统的情况下执行，boot.elf的执行需要操作系统提供的ELF Loader才能正常执行。</p>
+<p>因此还需要关键的一步，利用objcopy去掉ELF中多余的东西(如comment 段，note 段，符号表)，进而生成boot.bin，Raw Binary文件。</p>
+<p>最后，利用<code>dd</code>命令生成软盘镜像(实际就是个块文件？)</p>
+<h4>链接脚本</h4>
+<div class="highlight"><pre>SECTIONS
+<span class="o">{</span>
+    . <span class="o">=</span> 0x0<span class="p">;</span>
+    .text :
+    <span class="o">{</span>
+        <span class="nv">_ftext</span> <span class="o">=</span> .<span class="p">;</span>
+    <span class="o">}</span> <span class="o">=</span> 0
+<span class="o">}</span>
+</pre></div>
+
+
+<p>所有的东西都准备好之后，轻轻敲下<code>make</code>，得到下面的结果：</p>
+<p><img alt="make" src="/assets/images/make.png" /></p>
+<h4>编写bochs配置文件</h4>
+<div class="highlight"><pre>megs: 32
+mouse: <span class="nv">enabled</span><span class="o">=</span>0
+
+floppya: <span class="nv">1_44</span><span class="o">=</span>./boot.img, <span class="nv">status</span><span class="o">=</span>inserted
+<span class="c"># ata0-master: type=disk, path=&quot;./c.img&quot;, mode=flat, cylinders=20, heads=16, spt=63</span>
+
+log: bochsout.log
+
+boot:floppy
+
+<span class="c">#display_library: sdl</span>
+</pre></div>
+
+
+<p>运行命令<code>bochs -f bochsrc</code></p>
+<p><img alt="Hello OS World" src="/assets/images/hello_os_world.png" /></p></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blxg'; 
+    var disqus_title = 'Trace Linux Kernel With Bochs(2)';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="./category/ccpp.html">C/CPP</a></li>
+                <li><a href="./category/linux.html">linux</a></li>
+                <li><a href="./category/security.html">Security</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/buptlxb">Github</a></li>
+                <li><a href="http://weibo.com/ictlxb">Weibo</a></li>
+            </ul>
+            </div>
+
+
+            <div class="tagcloud">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="tagcloud">
+                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-1"><a href="./tag/os.html">os</a></li>
+                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
+                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
+            </ul>
+            </div>
+
+            </div>
+
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href=".">BLxG</a> &copy; ictlxb 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="./theme/bootstrap-collapse.js"></script>
+ 
+</body>
+</html>

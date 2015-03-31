@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>BLxG</title>
+    <meta name="description" content="">
+    <meta name="author" content="ictlxb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="../theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="../theme/images/icons/favicon.ico"/>
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">BLxG</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+ 
+
+    <div class='article'>
+        <a href="../trace-linux-kernel-with-bochs2.html"><h2>Trace Linux Kernel With Bochs(2)</h2></a>
+        <div class= "well small"> Fri 07 March 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
+</pre></div>
+
+
+<h2>创世者的遗志</h2>
+<h4>志继</h4>
+<p>从<a href="/linux/2014/03/03/trace-linux-kernel-with-bochs1/">上一篇文章</a>中，我们知道了BIOS通过<code>INT 0x19</code>将硬盘(软盘)的<code>0</code>号磁头(head)，<code>0</code>号磁道(track),<code>第一个</code>扇区(sector)读入到<code>0x07c00</code>的内存位置上。这个扇区就称作<code>boot section</code>。BIOS跳转到这里开始执行，boot section的代码。</p>
+<h4>规划</h4>
+<p>boot section的代码 首先将自己从内存<code>0x07c00</code>复制到<code>0x90000</code>，然后将它后续的<code>4</code>个扇区(<code>setup section</code>)读入内存<code>0x90200</code>开始的位置 ...</p> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs2.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../trace-linux-kernel-with-bochs1.html"><h2>Trace Linux Kernel With Bochs(1)</h2></a>
+        <div class= "well small"> Mon 03 March 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>操作系统是一个神秘的东西，希望我和你都能因为这个博客对它有个一知半解。以下所写均是针对IA32进行的叙述,内核版本为0.11，如有错误，敬请指正。
+</pre></div>
+
+
+<h2>BIOS--创世者的功劳</h2>
+<h4>简单的理解</h4>
+<p>BIOS(<code>Basic Input/Output System</code>) 是大部分人都会说的一个词，说起它的作用，也都像我这样的菜鸟也知道它进行一些硬件的检查然后启动操作系统。</p>
+<p>至于它如何启动操作系统，就不太清楚了。最近总算又比原来多了点一知半解。</p>
+<h4>开机加电后的样子</h4>
+<p>当我们按下电源按键或复位(Reset)按键时，计算机通过硬件的逻辑强行将CS:IP置为<code>0xf000:fff0</code>，</p>
+<p>除些之外，可以想到很多控制寄存器的值也被重置了，比如控制cpu运行在16位实模式下的寄存器位要置位等。</p>
+<p>这时的cpu工作在实模式下，所谓实模式是与保护模式对应的，也就是内存没有进行分页管理，页表、权限一类的东西都不存在。</p>
+<p>此时cpu字长是16，地址总线宽度为20。此时的cpu只能访问有限的1MB空间。</p>
+<p>而BIOS就被映射在这1MB空间的高地址的位置，当CS:IP被重置后，cpu开始执行BIOS中0xffff0位置的指令，这也是cpu执行的内存中的第一条指令。</p>
+<h4>“鸡生蛋，蛋生鸡”的解法</h4>
+<p>一般认为BIOS是一个<code>ROM</code>，当它被映射到地址空间的高处时 ...</p> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs1.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../apt-get-error.html"><h2>apt-get error</h2></a>
+        <div class= "well small"> Sat 01 March 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><p>今天在安装软件时遇到了apt-get发生的一些问题，导致无法安装成功，错误如下：</p>
+<div class="highlight"><pre><span class="n">E</span><span class="o">:</span><span class="n">Encountered</span> <span class="n">a</span> <span class="n">section</span> <span class="k">with</span> <span class="n">no</span> <span class="n">Package</span><span class="o">:</span> <span class="n">header</span> 
+<span class="n">E</span><span class="o">:</span><span class="n">Problem</span> <span class="k">with</span> <span class="n">MergeList</span> <span class="sr">/var/lib/apt/lists/</span><span class="n">cn</span><span class="o">.</span><span class="na">archive</span><span class="o">.</span><span class="na">ubuntu</span><span class="o">.</span><span class="na">com_ubuntu_dists_natty_main_binary</span><span class="o">-</span><span class="n">i386_Packages</span>
+<span class="o">...</span>
+</pre></div>
+
+
+<p>解决方法如下：</p>
+<div class="highlight"><pre>sudo rm /var/lib/apt/lists/* -vf
+sudo apt-get update
+</pre></div>
+
+
+<p>最后耐心等待即可。</p> <a class="btn btn-info xsmall" href="../apt-get-error.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../connect-to-vpn-with-ppp.html"><h2>Connect to vpn with ppp</h2></a>
+        <div class= "well small"> Sat 01 March 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>很多时候，我们都需要用VPN，当然如果你问我：“那是什么，能吃吗？”，如果你喜欢卖萌，那你可以选择继续看下去，如果你是认真的，最后也认真；google一下VPN是什么。
+</pre></div>
+
+
+<h2>图形界面版</h2>
+<p>找到下面的界面，无脑配置即可，方便快捷。
+    <img alt="Network Manager VPN" src="/assets/images/network-manager-vpn.png" /></p>
+<h2>命令行版</h2>
+<p>使用pptp可以在linux下方便地连接到VPN,利用如下命令可以方便地创建VPN连接配置：</p>
+<div class="highlight"><pre>sudo pptpsetup --create VPN_NAME --server SERVER_IP --username NAME --password PASSWD --encrypt
+</pre></div>
+
+
+<p>然后使用命令<code>sudo pon VPN_NAME</code>或<code>sudo poff VPN_NAME</code>来开启或关闭vpn连接</p>
+<p>利用命令<code>plog -f</code>查看vpn连接情况</p>
+<p>vpn连接成功后，并不能直接使用，而是需要调整路由表，具体如下：</p>
+<div class="highlight"><pre>sudo route add -net NET_IP ...</pre></div> <a class="btn btn-info xsmall" href="../connect-to-vpn-with-ppp.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
+<ul>
+    <li class="prev"><a href="../tag/linux.html">&larr; Previous</a></li>
+
+    <li class=""><a href="../tag/linux.html">1</a></li>
+    <li class="active"><a href="../tag/linux2.html">2</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/ccpp.html">C/CPP</a></li>
+                <li><a href="../category/linux.html">linux</a></li>
+                <li><a href="../category/security.html">Security</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/buptlxb">Github</a></li>
+                <li><a href="http://weibo.com/ictlxb">Weibo</a></li>
+            </ul>
+            </div>
+
+
+            <div class="tagcloud">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="tagcloud">
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+            </ul>
+            </div>
+
+            </div>
+
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">BLxG</a> &copy; ictlxb 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../theme/bootstrap-collapse.js"></script>
+ 
+</body>
+</html>

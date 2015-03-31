@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>BLxG</title>
+    <meta name="description" content="">
+    <meta name="author" content="ictlxb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="../theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="../theme/images/icons/favicon.ico"/>
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">BLxG</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="../pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+
+        
+
+ 
+
+    <div class='article'>
+        <a href="../stack-switching-during-os-setup.html"><h2>Stack Switching During OS Setup</h2></a>
+        <div class= "well small"> Mon 14 April 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>Stack switching might be a frustrating problem during OS setup.In linux 0.11,
+It is easy to find that there are more than one stack defined during the time of OS setup.
+Here is a simple experiment, which indicates that the stacks are defined for different purposes.
+</pre></div>
+
+
+<h2>1. Stack ...</h2> <a class="btn btn-info xsmall" href="../stack-switching-during-os-setup.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../several-problems-about-linux-kernel.html"><h2>Several Problems about Linux Kernel</h2></a>
+        <div class= "well small"> Sun 13 April 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>There are several problems, which deserve being thought carefully, about linux kernel(version 0.11).
+I will not give detail answers to the following questions, but give a brief outline for each question.
+I do NOT promise the answers is exactly correct. 
+if you find any mistake, please email liuxuebao ...</pre></div> <a class="btn btn-info xsmall" href="../several-problems-about-linux-kernel.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../trace-linux-kernel-with-bochs5.html"><h2>Trace Linux Kernel With Bochs(5)</h2></a>
+        <div class= "well small"> Sat 29 March 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
+</pre></div>
+
+
+<p>下面，我们一边介绍setup.s的功能，一边重写代码。</p>
+<h2>为内核运行准备数据</h2>
+<p>这些数据的获得大多来自由BIOS提供的中断，在关中断之前，我们必须将这些与机器硬件密切相关的数据保存起来，而保存的位置，就是从<code>0x90000</code>开始的一段内存，如果你看过前面的几篇博文，应该知道这里曾是bootsect.s的位置。</p>
+<h4>获取光标位置</h4>
+<p>我们首先获取光标的位置,将它存储在0x90000开始的２个字节中。</p>
+<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span>     <span class="c"># read cursor pos</span>
+    <span class="nf">xor</span> <span class="nv">%bh</span><span class="p">,</span> <span class="nv">%bh</span>
+    <span class="nf">int</span> <span class="no">$0x10</span>           <span class="c"># save it in known place, con_init fetches</span>
+    <span class="nf">movw</span> <span class="nv">%dx</span><span class="p">,</span> <span class="mi">0 ...</span></pre></div> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs5.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../trace-linux-kernel-with-bochs4.html"><h2>Trace Linux Kernel With Bochs(4)</h2></a>
+        <div class= "well small"> Wed 12 March 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><p><a href="/linux/2014/03/10/trace-linux-kernel-with-bochs3/">上一节</a>中我们使用AT&amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。</p>
+<h2>修改Makefile</h2>
+<p>在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出<code>Hello OS World!</code>。</p>
+<p>代码如下：</p>
+<div class="highlight"><pre><span class="nv">CC</span> <span class="o">=</span> gcc
+<span class="nv">LD</span> <span class="o">=</span> ld
+<span class="nv">LDFILE</span> <span class="o">=</span> ld_script.ld
+<span class="nv">OBJCOPY</span> <span class="o">=</span> objcopy
+<span class="nv">DUMP</span> <span class="o">=</span> objdump
+<span class="nv">DUMP_FLAGS</span> <span class="o">=</span> -D -b binary -mi386 -M addr16 -M data16
+
+<span class="nv">ASM_SRC</span> <span class="o">=</span> <span class="k">$(</span>wildcard *.s ...</pre></div> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs4.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../trace-linux-kernel-with-bochs3.html"><h2>Trace Linux Kernel With Bochs(3)</h2></a>
+        <div class= "well small"> Mon 10 March 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><div class="highlight"><pre>这里我们将重写bootsect.s完成其真正的功能，重写使用AT&amp;T汇编。
+</pre></div>
+
+
+<h2>bootsect.s</h2>
+<h4>内存规划</h4>
+<div class="highlight"><pre><span class="na">.code16</span> <span class="c">#use 16bit</span>
+<span class="na">.text</span> <span class="c">#code segment start</span>
+
+<span class="nf">SYSSIZE</span> <span class="err">=</span> <span class="mi">0x3000</span>
+<span class="nf">SETUPLEN</span> <span class="err">=</span> <span class="mi">4</span>                <span class="c"># nr of setup-sectors</span>
+<span class="nf">BOOTSEG</span>  <span class="err">=</span> <span class="mi">0x07c0</span>           <span class="c"># original address of boot-sector</span>
+<span class="nf">INITSEG</span>  <span class="err">=</span> <span class="mi">0x9000</span>           <span class="c"># we move boot here - out of the way</span>
+<span class="nf">SETUPSEG</span> <span class="err">=</span> <span class="mi">0x9020</span>           <span class="c"># setup starts here</span>
+<span class="nf">SYSSEG</span>   <span class="err">=</span> <span class="mi">0x1000</span>           <span class="c"># system loaded at 0x10000 (65536).</span>
+<span class="nf">ENDSEG ...</span></pre></div> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs3.html">read more</a></div>
+    </div>	
+				
+<div class="pagination">
+<ul>
+    <li class="prev"><a href="../author/ictlxb.html">&larr; Previous</a></li>
+
+    <li class=""><a href="../author/ictlxb.html">1</a></li>
+    <li class="active"><a href="../author/ictlxb2.html">2</a></li>
+    <li class=""><a href="../author/ictlxb3.html">3</a></li>
+    <li class=""><a href="../author/ictlxb4.html">4</a></li>
+
+    <li class="next"><a href="../author/ictlxb3.html">Next &rarr;</a></li>
+
+</ul>
+</div>
+ 
+  
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../archives.html">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+
+
+
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/ccpp.html">C/CPP</a></li>
+                <li><a href="../category/linux.html">linux</a></li>
+                <li><a href="../category/security.html">Security</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/buptlxb">Github</a></li>
+                <li><a href="http://weibo.com/ictlxb">Weibo</a></li>
+            </ul>
+            </div>
+
+
+            <div class="tagcloud">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="tagcloud">
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+            </ul>
+            </div>
+
+            </div>
+
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">BLxG</a> &copy; ictlxb 2014</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../theme/bootstrap-collapse.js"></script>
+ 
+</body>
+</html>
