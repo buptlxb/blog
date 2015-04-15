@@ -21,6 +21,7 @@
     <link href="../theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
 
 </head>
 
@@ -71,12 +72,11 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
         </div>
         
-        <div><div class="highlight"><pre>Stack switching might be a frustrating problem during OS setup.In linux 0.11,
+        <div><blockquote>
+<p>Stack switching might be a frustrating problem during OS setup.In linux 0.11,
 It is easy to find that there are more than one stack defined during the time of OS setup.
-Here is a simple experiment, which indicates that the stacks are defined for different purposes.
-</pre></div>
-
-
+Here is a simple experiment, which indicates that the stacks are defined for different purposes.</p>
+</blockquote>
 <h2>1. Stack Definition</h2>
 <h4>1.1. The Definition of user_stack</h4>
 <p>The <code>user_stack</code> appears at <code>line 23</code> in <code>boot/head.s</code> as follow:</p>
@@ -341,10 +341,9 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
 
 
  </div>
-        <div class="summary"><div class="highlight"><pre>这里我们将重写bootsect.s完成其真正的功能，重写使用AT&amp;T汇编。
-</pre></div>
-
-
+        <div class="summary"><blockquote>
+<p>这里我们将重写bootsect.s完成其真正的功能，重写使用AT&amp;T汇编。</p>
+</blockquote>
 <h2>bootsect.s</h2>
 <h4>内存规划</h4>
 <div class="highlight"><pre><span class="na">.code16</span> <span class="c">#use 16bit</span>
@@ -380,7 +379,7 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
 
 <h2>创世者的遗志</h2>
 <h4>志继</h4>
-<p>从<a href="/linux/2014/03/03/trace-linux-kernel-with-bochs1/">上一篇文章</a>中，我们知道了BIOS通过<code>INT 0x19</code>将硬盘(软盘)的<code>0</code>号磁头(head)，<code>0</code>号磁道(track),<code>第一个</code>扇区(sector)读入到<code>0x07c00</code>的内存位置上。这个扇区就称作<code>boot section</code>。BIOS跳转到这里开始执行，boot section的代码。</p>
+<p>从<a href="../trace-linux-kernel-with-bochs1.html">上一篇文章</a>中，我们知道了BIOS通过<code>INT 0x19</code>将硬盘(软盘)的<code>0</code>号磁头(head)，<code>0</code>号磁道(track),<code>第一个</code>扇区(sector)读入到<code>0x07c00</code>的内存位置上。这个扇区就称作<code>boot section</code>。BIOS跳转到这里开始执行，boot section的代码。</p>
 <h4>规划</h4>
 <p>boot section的代码 首先将自己从内存<code>0x07c00</code>复制到<code>0x90000</code>，然后将它后续的<code>4</code>个扇区(<code>setup section</code>)读入内存<code>0x90200</code>开始的位置 ...</p> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs2.html">read more</a></div>
     </div>	
@@ -413,6 +412,7 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
 
 
 
+                <li><a href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
 
             </ul>
             </div>
@@ -461,18 +461,23 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
                 <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
                 <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-4"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
+                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
             </ul>
             </div>
 

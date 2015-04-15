@@ -1,7 +1,7 @@
 10
 
 dir
-43
+49
 https://svn.sinaapp.com/gotit/1
 https://svn.sinaapp.com/gotit
 
@@ -434,6 +434,9 @@ file
 
 1792
 
+images
+dir
+
 tips_c_macro.html
 file
 
@@ -467,9 +470,6 @@ eca496b2c4fc3c7f6321a38429822af4
 
 
 6329
-
-images
-dir
 
 config.yaml
 file

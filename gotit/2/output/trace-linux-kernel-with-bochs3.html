@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>BLxG</title>
+    <meta name="description" content="">
+    <meta name="author" content="ictlxb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="./theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="./theme/images/icons/favicon.ico"/>
+    <!-- Le styles -->
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href=".">BLxG</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="./pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Trace Linux Kernel With Bochs(3)</h1>
+Mon 10 March 2014
+
+by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
+ 
+
+
+        </div>
+	
+        <div><blockquote>
+<p>这里我们将重写bootsect.s完成其真正的功能，重写使用AT&amp;T汇编。</p>
+</blockquote>
+<h2>bootsect.s</h2>
+<h4>内存规划</h4>
+<div class="highlight"><pre><span class="na">.code16</span> <span class="c">#use 16bit</span>
+<span class="na">.text</span> <span class="c">#code segment start</span>
+
+<span class="nf">SYSSIZE</span> <span class="err">=</span> <span class="mi">0x3000</span>
+<span class="nf">SETUPLEN</span> <span class="err">=</span> <span class="mi">4</span>                <span class="c"># nr of setup-sectors</span>
+<span class="nf">BOOTSEG</span>  <span class="err">=</span> <span class="mi">0x07c0</span>           <span class="c"># original address of boot-sector</span>
+<span class="nf">INITSEG</span>  <span class="err">=</span> <span class="mi">0x9000</span>           <span class="c"># we move boot here - out of the way</span>
+<span class="nf">SETUPSEG</span> <span class="err">=</span> <span class="mi">0x9020</span>           <span class="c"># setup starts here</span>
+<span class="nf">SYSSEG</span>   <span class="err">=</span> <span class="mi">0x1000</span>           <span class="c"># system loaded at 0x10000 (65536).</span>
+<span class="nf">ENDSEG</span>   <span class="err">=</span> <span class="no">SYSSEG</span> <span class="err">+</span> <span class="no">SYSSIZE</span>     <span class="c"># where to stop loading</span>
+
+<span class="c"># ROOT_DEV: 0x000 - same type of floppy as boot.</span>
+<span class="c">#           0x301 - first partition on first drive etc</span>
+<span class="nf">ROOT_DEV</span> <span class="err">=</span> <span class="mi">0x306</span>
+</pre></div>
+
+
+<h4>bootsect将自己复制到0x90000处</h4>
+<div class="highlight"><pre>    <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">,</span> <span class="nv">%ax</span> <span class="c">#cs:ip was initialized by BOIS instruction &#39;jmpi 0, 0x07c0&#39;</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span> <span class="c">#initialize ds, es and ss with cs</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>
+
+    <span class="nf">movw</span> <span class="no">$BOOTSEG</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span>
+    <span class="nf">movw</span> <span class="no">$INITSEG</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>
+    <span class="nf">movw</span> <span class="no">$256</span><span class="p">,</span> <span class="nv">%cx</span>
+    <span class="nf">xor</span> <span class="nv">%si</span><span class="p">,</span> <span class="nv">%si</span>
+    <span class="nf">xor</span> <span class="nv">%di</span><span class="p">,</span> <span class="nv">%di</span>
+    <span class="na">rep</span>
+    <span class="nf">movsw</span>
+</pre></div>
+
+
+<h4>跳到复制后的地方<em>继续</em>执行</h4>
+<div class="highlight"><pre>    <span class="nf">ljmp</span> <span class="no">$INITSEG</span><span class="p">,</span> <span class="no">$go</span>
+<span class="nl">go:</span>
+    <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>
+<span class="c"># put stack at 0x9ff00</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ss</span>
+    <span class="nf">movw</span> <span class="no">$0xFF00</span><span class="p">,</span> <span class="nv">%sp</span>   <span class="c"># arbitrary value &gt;&gt; 512</span>
+</pre></div>
+
+
+<h4>将setup section加载至内存</h4>
+<div class="highlight"><pre><span class="nl">load_setup:</span>
+    <span class="nf">movw</span> <span class="no">$0x0000</span><span class="p">,</span> <span class="nv">%dx</span>   <span class="c"># DL = drive 0, DH = head 0</span>
+    <span class="nf">movw</span> <span class="no">$0x0002</span><span class="p">,</span> <span class="nv">%cx</span>   <span class="c"># CL = sector 2, CH = track 0</span>
+    <span class="nf">movw</span> <span class="no">$0x0200</span><span class="p">,</span> <span class="nv">%bx</span>   <span class="c"># address = 512, in INITSEG</span>
+    <span class="nf">movw</span> <span class="no">$0x0200</span><span class="err">+</span><span class="no">SETUPLEN</span><span class="p">,</span> <span class="nv">%ax</span>  <span class="c"># servie 2, nr of sectors</span>
+    <span class="nf">int</span> <span class="no">$0x13</span>           <span class="c"># read it</span>
+    <span class="nf">jnc</span> <span class="no">ok_load_setup</span>   <span class="c"># ok - continue</span>
+    <span class="nf">movw</span> <span class="no">$0x0000</span><span class="p">,</span> <span class="nv">%dx</span>   
+    <span class="no">movw</span> <span class="no">$0x0000</span><span class="p">,</span> <span class="nv">%ax</span>   <span class="c">#reset the diskette</span>
+    <span class="nf">int</span> <span class="no">$0x13</span>
+    <span class="nf">jmp</span> <span class="no">load_setup</span>
+</pre></div>
+
+
+<h4>获得每磁道的扇区数</h4>
+<div class="highlight"><pre><span class="nl">ok_load_setup:</span>
+
+<span class="c"># Get disk drive parameters, specificlly nr of sectors/track</span>
+
+    <span class="nf">movb</span> <span class="no">$0x00</span><span class="p">,</span> <span class="nv">%dl</span> <span class="c"># DL = drive index</span>
+    <span class="nf">movw</span> <span class="no">$0x0800</span><span class="p">,</span> <span class="nv">%ax</span>   <span class="c"># AH = service number</span>
+    <span class="nf">int</span> <span class="no">$0x13</span>   <span class="c"># return CX[0:5] = nr of sectors per track</span>
+                <span class="c"># CX[6:7][8:15] = nr of cylinders</span>
+                <span class="c"># es has changed</span>
+    <span class="nf">movb</span> <span class="no">$0x00</span><span class="p">,</span> <span class="nv">%ch</span> <span class="c"># clear CH because only nr of sectors per stack</span>
+                    <span class="c"># will be needed. CX[6:7] is zero in floppy.</span>
+    <span class="nf">movw</span> <span class="nv">%cx</span><span class="p">,</span> <span class="nv">%cs</span><span class="p">:</span><span class="no">sectors</span>   <span class="c"># save nr of sectors per stack</span>
+    <span class="nf">movw</span> <span class="no">$INITSEG</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>
+</pre></div>
+
+
+<h4>打印提示信息</h4>
+<div class="highlight"><pre><span class="c"># Print some inane message</span>
+
+    <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span> <span class="c"># read cursor pos (AH = function number)</span>
+    <span class="nf">xor</span> <span class="nv">%bh</span><span class="p">,</span> <span class="nv">%bh</span>    <span class="c"># BH = page number</span>
+    <span class="nf">int</span> <span class="no">$0x10</span>       <span class="c"># return (DH = row, DL = column</span>
+                    <span class="c"># CH = cursor start line CL = cursor bottom line)</span>
+
+    <span class="nf">movw</span> <span class="no">$24</span><span class="p">,</span> <span class="nv">%cx</span>   <span class="c"># number of characters in string</span>
+    <span class="nf">movw</span> <span class="no">$0x0007</span><span class="p">,</span> <span class="nv">%bx</span>   <span class="c"># BH = page number BL = attribute if string </span>
+                        <span class="c"># contains only characters (bit 1 of AL = 0)</span>
+    <span class="nf">movw</span> <span class="no">$msg1</span><span class="p">,</span> <span class="nv">%bp</span> <span class="c"># ES:BP points to string to be printed</span>
+    <span class="nf">movw</span> <span class="no">$0x1301</span><span class="p">,</span> <span class="nv">%ax</span>   <span class="c"># AH = function number</span>
+                        <span class="c"># AL = write mode:</span>
+                        <span class="c"># bit 0:update cursor after writing</span>
+                        <span class="c"># bit 1:string contains attribute</span>
+    <span class="nf">int</span> <span class="no">$0x10</span>
+</pre></div>
+
+
+<h4>将system section加载至内存</h4>
+<div class="highlight"><pre><span class="c"># ok, we have written the message, now</span>
+<span class="c"># we want to load the system (at 0x10000)</span>
+
+    <span class="nf">movw</span> <span class="no">$SYSSEG</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>   <span class="c"># segment of 0x10000</span>
+    <span class="nf">call</span> <span class="no">read_it</span>
+    <span class="nf">call</span> <span class="no">kill_motor</span>
+</pre></div>
+
+
+<h4>检查根设备</h4>
+<div class="highlight"><pre><span class="c"># After that we check which root-device to use. if the device is</span>
+<span class="c"># defined (!= 0), nothing is done and the given device is used.</span>
+<span class="c"># Otherwise, either /dev/PS0 (2,28) or /dev/at0 (2,8), depending</span>
+<span class="c"># on the number of sectors that the BIOS reports currently.</span>
+
+    <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">:</span><span class="no">root_dev</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">cmp</span> <span class="no">$0</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">jne</span> <span class="no">root_defined</span>
+    <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">:</span><span class="no">sectors</span><span class="p">,</span> <span class="nv">%bx</span>
+    <span class="nf">movw</span> <span class="no">$0x0208</span><span class="p">,</span> <span class="nv">%ax</span>   <span class="c"># /dev/ps0 - 1.2Mb</span>
+    <span class="nf">cmp</span> <span class="no">$15</span><span class="p">,</span> <span class="nv">%bx</span>
+    <span class="nf">je</span> <span class="no">root_defined</span>
+    <span class="nf">movw</span> <span class="no">$0x021c</span><span class="p">,</span> <span class="nv">%ax</span>   <span class="c"># /dev/PS0 - 1.44Mb</span>
+    <span class="nf">cmp</span> <span class="no">$18</span><span class="p">,</span> <span class="nv">%bx</span>
+    <span class="nf">je</span> <span class="no">root_defined</span>
+<span class="nl">undef_root:</span>
+    <span class="nf">jmp</span> <span class="no">undef_root</span>
+<span class="nl">root_defined:</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%cs</span><span class="p">:</span><span class="no">root_dev</span>
+</pre></div>
+
+
+<h4>开始执行setup.s</h4>
+<div class="highlight"><pre><span class="c"># after that (everything loaded), we jump to </span>
+<span class="c"># the setup-routine loaded directly after</span>
+<span class="c"># the bootblock:</span>
+
+    <span class="nf">ljmp</span> <span class="no">$SETUPSEG</span><span class="p">,</span> <span class="no">$0x0</span>
+</pre></div>
+
+
+<h4>读取system section子程序</h4>
+<div class="highlight"><pre><span class="c"># This routine loads the system at address 0x10000, making sure</span>
+<span class="c"># no 64kB boundaries are crossed. We try to load it as fast as</span>
+<span class="c"># possible, loading whole tracks whenever we can.</span>
+<span class="c">#</span>
+<span class="c"># in: es - starting address segment (normally 0x1000)</span>
+<span class="c">#</span>
+<span class="nl">sread:</span> <span class="na">.word</span> <span class="mi">1</span><span class="err">+</span><span class="no">SETUPLEN</span> <span class="c"># sectors read of current track</span>
+<span class="nl">head:</span> <span class="na">.word</span> <span class="mi">0</span>   <span class="c"># current head</span>
+<span class="nl">track:</span> <span class="na">.word</span> <span class="mi">0</span>  <span class="c"># current track</span>
+
+<span class="nl">read_it:</span>
+    <span class="nf">movw</span> <span class="nv">%es</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">test</span> <span class="no">$0x0fff</span><span class="p">,</span> <span class="nv">%ax</span>
+<span class="nf">die</span> <span class="p">:</span>
+    <span class="nf">jne</span> <span class="no">die</span> <span class="c"># es must be at 64kB boundary</span>
+
+    <span class="nf">xor</span> <span class="nv">%bx</span><span class="p">,</span> <span class="nv">%bx</span>    <span class="c"># bx is starting addresss within segment</span>
+<span class="nl">rp_read:</span>
+    <span class="nf">movw</span> <span class="nv">%es</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">cmp</span> <span class="no">$ENDSEG</span><span class="p">,</span> <span class="nv">%ax</span>    <span class="c"># have we loaded all yet?</span>
+    <span class="nf">jb</span>  <span class="no">ok1_read</span>
+    <span class="nf">ret</span>
+<span class="nl">ok1_read:</span>
+    <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">:</span><span class="no">sectors</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">subw</span> <span class="no">sread</span><span class="p">,</span> <span class="nv">%ax</span> <span class="c"># nr of sectors in the track have not been read.</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%cx</span>   
+    <span class="no">shlw</span> <span class="no">$9</span><span class="p">,</span> <span class="nv">%cx</span>        <span class="c"># nr of Bytes = nr of sectors * 512</span>
+    <span class="nf">addw</span> <span class="nv">%bx</span><span class="p">,</span> <span class="nv">%cx</span>   <span class="c"># end address</span>
+    <span class="nf">jnc</span> <span class="no">ok2_read</span>    <span class="c"># is out of 64kB boundary</span>
+    <span class="nf">je</span> <span class="no">ok2_read</span>
+    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>    <span class="c"># 0 = 64kB mod 2^16</span>
+    <span class="nf">subw</span> <span class="nv">%bx</span><span class="p">,</span> <span class="nv">%ax</span>   <span class="c"># free memory size in current segment</span>
+    <span class="nf">shrw</span> <span class="no">$9</span><span class="p">,</span> <span class="nv">%ax</span>        <span class="c"># nr of sectors can be read in current segment</span>
+<span class="nl">ok2_read:</span>
+    <span class="nf">call</span> <span class="no">read_track</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%cx</span>
+    <span class="nf">add</span> <span class="no">sread</span><span class="p">,</span> <span class="nv">%ax</span>  <span class="c"># nr of sectors which have been read in the track </span>
+    <span class="nf">cmp</span> <span class="nv">%cs</span><span class="p">:</span><span class="no">sectors</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">jne</span> <span class="no">ok3_read</span>    <span class="c"># have we read all sectors in the track?</span>
+    <span class="nf">movw</span> <span class="no">$1</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">subw</span> <span class="no">head</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">jne</span> <span class="no">ok4_read</span>    <span class="c"># Is current head zero?</span>
+    <span class="nf">incw</span> <span class="no">track</span>      <span class="c"># current head = 1, so increase track</span>
+<span class="nl">ok4_read:</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="no">head</span>  <span class="c"># set current head = 1 if current head = 0</span>
+                    <span class="c"># set current head = 0 if current head = 1 </span>
+    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>    <span class="c"># reset sectors have been read in the track</span>
+<span class="nl">ok3_read:</span>   <span class="c"># continue reading sectors in the track</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="no">sread</span> <span class="c"># update sread after read_track</span>
+    <span class="nf">shlw</span> <span class="no">$9</span><span class="p">,</span> <span class="nv">%cx</span>    
+    <span class="no">addw</span> <span class="nv">%cx</span><span class="p">,</span> <span class="nv">%bx</span>   <span class="c"># update offset(BX) in the segment</span>
+    <span class="nf">jnc</span> <span class="no">rp_read</span>     <span class="c"># is out of 64kB boundary</span>
+    <span class="nf">movw</span> <span class="nv">%es</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">addw</span> <span class="no">$0x1000</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>   <span class="c"># increase segment base address(ES) by 64kB</span>
+    <span class="nf">xor</span> <span class="nv">%bx</span><span class="p">,</span> <span class="nv">%bx</span>    <span class="c"># reset the offset(BX)</span>
+    <span class="nf">jmp</span> <span class="no">rp_read</span>
+
+<span class="nl">read_track:</span>
+    <span class="nf">push</span> <span class="nv">%ax</span>
+    <span class="nf">push</span> <span class="nv">%bx</span>
+    <span class="nf">push</span> <span class="nv">%cx</span>
+    <span class="nf">push</span> <span class="nv">%dx</span>
+    <span class="nf">movw</span> <span class="no">track</span><span class="p">,</span> <span class="nv">%dx</span>
+    <span class="nf">movw</span> <span class="no">sread</span><span class="p">,</span> <span class="nv">%cx</span>
+    <span class="nf">inc</span> <span class="nv">%cx</span>
+    <span class="nf">movb</span> <span class="nv">%dl</span><span class="p">,</span> <span class="nv">%ch</span>   <span class="c"># CH = track, CL = sector</span>
+    <span class="nf">movw</span> <span class="no">head</span><span class="p">,</span> <span class="nv">%dx</span>
+    <span class="nf">movb</span> <span class="nv">%dl</span><span class="p">,</span> <span class="nv">%dh</span>
+    <span class="nf">movb</span> <span class="no">$0</span><span class="p">,</span> <span class="nv">%dl</span>
+    <span class="nf">and</span> <span class="no">$0x0100</span><span class="p">,</span> <span class="nv">%dx</span>    <span class="c"># DH = head, DL = drive</span>
+                        <span class="c"># make sure only drive 0, head 0/1 will be read</span>
+    <span class="nf">movb</span> <span class="no">$2</span><span class="p">,</span> <span class="nv">%ah</span>    <span class="c"># AH = service nr, AL = nr of sectors to be read</span>
+    <span class="nf">int</span> <span class="no">$0x13</span>
+    <span class="nf">jc</span> <span class="no">bad_rt</span>
+    <span class="nf">pop</span> <span class="nv">%dx</span>
+    <span class="nf">pop</span> <span class="nv">%cx</span>
+    <span class="nf">pop</span> <span class="nv">%bx</span>
+    <span class="nf">pop</span> <span class="nv">%ax</span>
+    <span class="nf">ret</span>
+<span class="nl">bad_rt:</span>
+    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>
+    <span class="nf">xor</span> <span class="nv">%dx</span><span class="p">,</span> <span class="nv">%dx</span>
+    <span class="nf">int</span> <span class="no">$0x13</span>
+    <span class="nf">pop</span> <span class="nv">%dx</span>
+    <span class="nf">pop</span> <span class="nv">%cx</span>
+    <span class="nf">pop</span> <span class="nv">%bx</span>
+    <span class="nf">pop</span> <span class="nv">%ax</span>
+    <span class="nf">jmp</span> <span class="no">read_track</span>
+
+<span class="c"># This procedure turns off the floppy drive motor, so</span>
+<span class="c"># that we enter the kernel in a known state, and</span>
+<span class="c"># don not have to worry about it later.</span>
+</pre></div>
+
+
+<h4>关闭马达</h4>
+<div class="highlight"><pre><span class="nl">kill_motor:</span>
+    <span class="nf">push</span> <span class="nv">%dx</span>
+    <span class="nf">movw</span> <span class="no">$0x3f2</span><span class="p">,</span> <span class="nv">%dx</span>
+    <span class="nf">movb</span> <span class="no">$0</span><span class="p">,</span> <span class="nv">%al</span>
+    <span class="nf">outb</span> <span class="nv">%al</span><span class="p">,</span> <span class="nv">%dx</span>
+    <span class="nf">pop</span> <span class="nv">%dx</span>
+    <span class="nf">ret</span>
+</pre></div>
+
+
+<h4>用到的一些变量</h4>
+<div class="highlight"><pre><span class="nl">sectors:</span>
+    <span class="na">.word</span> <span class="mi">0</span>
+
+<span class="nl">msg1:</span>
+    <span class="na">.byte</span> <span class="mi">13</span><span class="p">,</span><span class="mi">10</span>
+    <span class="na">.ascii</span> <span class="s">&quot;Loading system ...&quot;</span>
+    <span class="na">.byte</span> <span class="mi">13</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">10</span>
+
+<span class="na">.org</span> <span class="mi">508</span>
+<span class="nl">root_dev:</span>
+    <span class="na">.word</span> <span class="no">ROOT_DEV</span>
+<span class="nl">boot_flag:</span>
+    <span class="na">.word</span> <span class="mi">0xAA55</span>
+</pre></div>
+
+
+<p>完整的代码可以在<a href="/assets/src/linux-0.11-rewrite/boot.s">这里</a>下载</p>
+<h2>存在的问题</h2>
+<ol>
+<li>这里在读取完setup section(4个sectors)，并不是像很多书上说的读240个扇区，而是读了0x30000个字节，也就是384个扇区？</li>
+</ol></div>
+	
+        <hr>
+
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blxg'; 
+    var disqus_title = 'Trace Linux Kernel With Bochs(3)';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
+
+
+
+                <li><a href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="./category/ccpp.html">C/CPP</a></li>
+                <li><a href="./category/cpp.html">Cpp</a></li>
+                <li><a href="./category/linux.html">linux</a></li>
+                <li><a href="./category/security.html">Security</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/buptlxb">Github</a></li>
+                <li><a href="http://weibo.com/ictlxb">Weibo</a></li>
+            </ul>
+            </div>
+
+
+            <div class="tagcloud">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="tagcloud">
+                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
+                <li class="tag-1"><a href="./tag/os.html">os</a></li>
+                <li class="tag-4"><a href="./tag/cpp.html">cpp</a></li>
+                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
+                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
+                <li class="tag-4"><a href="./tag/array.html">array</a></li>
+                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+            </ul>
+            </div>
+
+            </div>
+
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href=".">BLxG</a> &copy; ictlxb 2015</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="./theme/bootstrap-collapse.js"></script>
+ 
+</body>
+</html>

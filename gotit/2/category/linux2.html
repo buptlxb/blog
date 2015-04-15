@@ -101,7 +101,7 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
 
 <h2>创世者的遗志</h2>
 <h4>志继</h4>
-<p>从<a href="/linux/2014/03/03/trace-linux-kernel-with-bochs1/">上一篇文章</a>中，我们知道了BIOS通过<code>INT 0x19</code>将硬盘(软盘)的<code>0</code>号磁头(head)，<code>0</code>号磁道(track),<code>第一个</code>扇区(sector)读入到<code>0x07c00</code>的内存位置上。这个扇区就称作<code>boot section</code>。BIOS跳转到这里开始执行，boot section的代码。</p>
+<p>从<a href="../trace-linux-kernel-with-bochs1.html">上一篇文章</a>中，我们知道了BIOS通过<code>INT 0x19</code>将硬盘(软盘)的<code>0</code>号磁头(head)，<code>0</code>号磁道(track),<code>第一个</code>扇区(sector)读入到<code>0x07c00</code>的内存位置上。这个扇区就称作<code>boot section</code>。BIOS跳转到这里开始执行，boot section的代码。</p>
 <h4>规划</h4>
 <p>boot section的代码 首先将自己从内存<code>0x07c00</code>复制到<code>0x90000</code>，然后将它后续的<code>4</code>个扇区(<code>setup section</code>)读入内存<code>0x90200</code>开始的位置 ...</p> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs2.html">read more</a></div>
     </div>	
@@ -281,18 +281,23 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-4"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
+                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
                 <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
                 <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
                 <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
             </ul>
             </div>
 

@@ -2,31 +2,28 @@ title: Some Common Weakness Enumeration
 category: Security
 tags: Security
 
-	Here is a common weakness enumeration. Maybe simple but useful.
+>Here is a common weakness enumeration. Maybe simple but useful.
 
 ## Insecure Interaction Between Components
 
-    These weaknesses are related to insecure ways in which data is sent adn
-    received between separate components, modules, programs, procesces, threads
-    or systems.
+>These weaknesses are related to insecure ways in which data is sent adn
+received between separate components, modules, programs, procesces, threads
+or systems.
 
-#### Improper Neutralization of Special Elements used in an OS Command ('OS
-Command Injection')
+#### Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')
 
 The software constructs all or part of an OS command using
 externally-influenced input from an upstream component, but it does not
 neutralize or incorrectly neutralizes special elements that could modify
 the intended OS command when it is sent to a downstream component.
 
-#### Improper Neutralization of Input During Web Page Generation ('Cross-size
-Scripting')
+#### Improper Neutralization of Input During Web Page Generation ('Cross-size Scripting')
 
 The software does not neutralize or incorrectly neutralizes user-controllable
 input before it is placed in output that is used as a web page that is served
 to other users.
 
-#### Improper Neutralization of Special Elements used in an SQL Command('SQL
-Injection')
+#### Improper Neutralization of Special Elements used in an SQL Command('SQL Injection')
 
 The software constructs all or part of an SQL command using
 externally-influenced input form an upstream component, but it does not
@@ -55,8 +52,7 @@ site, and use that link in a Redirect. This simpilifies phishing attacks.
     manage the creation, usage, transfer, or destruction of important system
     resources.
 
-#### Imporper Limitation of Pathname to a Restricted Directory ('Path
-Tranversal')
+#### Imporper Limitation of Pathname to a Restricted Directory ('Path Tranversal')
 
 The software uses external input to construct a pathname that is intended to
 identify a file or directory that is located underneath a restricted parent

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.sinaapp.com/feeds/linux.atom.xml" rel="self"></link><id>www.gotit.sinaapp.com/</id><updated>2014-04-14T00:00:00+08:00</updated><entry><title>Stack Switching During OS Setup</title><link href="www.gotit.sinaapp.com/stack-switching-during-os-setup.html" rel="alternate"></link><updated>2014-04-14T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-04-14:www.gotit.sinaapp.com/stack-switching-during-os-setup.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;Stack switching might be a frustrating problem during OS setup.In linux 0.11,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.sinaapp.com/feeds/linux.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2014-04-14T00:00:00+08:00</updated><entry><title>Stack Switching During OS Setup</title><link href="http://www.gotit.sinaapp.com/stack-switching-during-os-setup.html" rel="alternate"></link><updated>2014-04-14T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-04-14:stack-switching-during-os-setup.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Stack switching might be a frustrating problem during OS setup.In linux 0.11,
 It is easy to find that there are more than one stack defined during the time of OS setup.
-Here is a simple experiment, which indicates that the stacks are defined for different purposes.
-&lt;/pre&gt;&lt;/div&gt;
-
-
+Here is a simple experiment, which indicates that the stacks are defined for different purposes.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2&gt;1. Stack Definition&lt;/h2&gt;
 &lt;h4&gt;1.1. The Definition of user_stack&lt;/h4&gt;
 &lt;p&gt;The &lt;code&gt;user_stack&lt;/code&gt; appears at &lt;code&gt;line 23&lt;/code&gt; in &lt;code&gt;boot/head.s&lt;/code&gt; as follow:&lt;/p&gt;
@@ -191,15 +190,14 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 &lt;li&gt;
 &lt;p&gt;The Process 0 and Process 1 share the &lt;code&gt;user_stack&lt;/code&gt; as their &lt;code&gt;user stack&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</summary><category term="linxu"></category><category term="os"></category><category term="bochs"></category></entry><entry><title>Several Problems about Linux Kernel</title><link href="www.gotit.sinaapp.com/several-problems-about-linux-kernel.html" rel="alternate"></link><updated>2014-04-13T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-04-13:www.gotit.sinaapp.com/several-problems-about-linux-kernel.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;There are several problems, which deserve being thought carefully, about linux kernel(version 0.11).
+&lt;/ol&gt;</summary><category term="linxu"></category><category term="os"></category><category term="bochs"></category></entry><entry><title>Several Problems about Linux Kernel</title><link href="http://www.gotit.sinaapp.com/several-problems-about-linux-kernel.html" rel="alternate"></link><updated>2014-04-13T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-04-13:several-problems-about-linux-kernel.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;There are several problems, which deserve being thought carefully, about linux kernel(version 0.11).
 I will not give detail answers to the following questions, but give a brief outline for each question.
 I do NOT promise the answers is exactly correct. 
 if you find any mistake, please email liuxuebao AT ict.ac.cn. Thank you!
 Have fun!
-Good luck!
-&lt;/pre&gt;&lt;/div&gt;
-
-
+Good luck!&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h4&gt;1. Why BIOS is executed in the beginning after computer setup? Why not the Operating System?&lt;/h4&gt;
 &lt;p&gt;The root cause might be the &lt;code&gt;von Neumann architecture&lt;/code&gt;.(CPU can only execute the code residing in the main memory.)&lt;/p&gt;
 &lt;p&gt;The main memory is usually made of RAM in current computers.(RAM will lose all datas without power.)&lt;/p&gt;
@@ -741,7 +739,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;p&gt;[1] The Art of Linux Kernel Design, Second Edition.&lt;/p&gt;
 &lt;p&gt;[2] &lt;a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html?iid=tech_vt_tech+64-32_manuals"&gt;IA-32 Architectures Software Developer vol-3a-part-1 Manual&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[3] &lt;a href="https://www.wikipedia.org/"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;[4] &lt;a href="http://docs.oracle.com/cd/E19455-01/806-3773/instructionset-73/index.html"&gt;IA-32 Assembly Language Reference Manual&lt;/a&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(5)</title><link href="www.gotit.sinaapp.com/trace-linux-kernel-with-bochs5.html" rel="alternate"></link><updated>2014-03-29T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-29:www.gotit.sinaapp.com/trace-linux-kernel-with-bochs5.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
+&lt;p&gt;[4] &lt;a href="http://docs.oracle.com/cd/E19455-01/806-3773/instructionset-73/index.html"&gt;IA-32 Assembly Language Reference Manual&lt;/a&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(5)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs5.html" rel="alternate"></link><updated>2014-03-29T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-29:trace-linux-kernel-with-bochs5.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -968,7 +966,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
     &lt;span class="na"&gt;.word&lt;/span&gt;   &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="err"&gt;+&lt;/span&gt;&lt;span class="no"&gt;gdt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0x9&lt;/span&gt; &lt;span class="c"&gt;# gdt base = 0X9xxxx&lt;/span&gt;
 
 &lt;span class="na"&gt;.org&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(4)</title><link href="www.gotit.sinaapp.com/trace-linux-kernel-with-bochs4.html" rel="alternate"></link><updated>2014-03-12T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-12:www.gotit.sinaapp.com/trace-linux-kernel-with-bochs4.html</id><summary type="html">&lt;p&gt;&lt;a href="/linux/2014/03/10/trace-linux-kernel-with-bochs3/"&gt;上一节&lt;/a&gt;中我们使用AT&amp;amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(4)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs4.html" rel="alternate"></link><updated>2014-03-12T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-12:trace-linux-kernel-with-bochs4.html</id><summary type="html">&lt;p&gt;&lt;a href="/linux/2014/03/10/trace-linux-kernel-with-bochs3/"&gt;上一节&lt;/a&gt;中我们使用AT&amp;amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。&lt;/p&gt;
 &lt;h2&gt;修改Makefile&lt;/h2&gt;
 &lt;p&gt;在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出&lt;code&gt;Hello OS World!&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;代码如下：&lt;/p&gt;
@@ -1044,10 +1042,9 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;p&gt;&lt;img alt="bochs-root-dev" src="/assets/images/bochs-root-dev.png" /&gt;&lt;/p&gt;
 &lt;h4&gt;11.执行hellosect&lt;/h4&gt;
 &lt;p&gt;&lt;img alt="bochs-hello-world" src="/assets/images/bochs-hello-world.png" /&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;/h4&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(3)</title><link href="www.gotit.sinaapp.com/trace-linux-kernel-with-bochs3.html" rel="alternate"></link><updated>2014-03-10T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-10:www.gotit.sinaapp.com/trace-linux-kernel-with-bochs3.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;这里我们将重写bootsect.s完成其真正的功能，重写使用AT&amp;amp;T汇编。
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;h4&gt;&lt;/h4&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(3)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs3.html" rel="alternate"></link><updated>2014-03-10T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-10:trace-linux-kernel-with-bochs3.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这里我们将重写bootsect.s完成其真正的功能，重写使用AT&amp;amp;T汇编。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2&gt;bootsect.s&lt;/h2&gt;
 &lt;h4&gt;内存规划&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="na"&gt;.code16&lt;/span&gt; &lt;span class="c"&gt;#use 16bit&lt;/span&gt;
@@ -1321,20 +1318,20 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;h2&gt;存在的问题&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;这里在读取完setup section(4个sectors)，并不是像很多书上说的读240个扇区，而是读了0x30000个字节，也就是384个扇区？&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Ubuntu 12.04 Ethernet Controller Problem</title><link href="www.gotit.sinaapp.com/ubuntu-1204-ethernet-controller-problem.html" rel="alternate"></link><updated>2014-03-09T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-09:www.gotit.sinaapp.com/ubuntu-1204-ethernet-controller-problem.html</id><summary type="html">&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;/ol&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Ubuntu 12.04 Ethernet Controller Problem</title><link href="http://www.gotit.sinaapp.com/ubuntu-1204-ethernet-controller-problem.html" rel="alternate"></link><updated>2014-03-09T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-09:ubuntu-1204-ethernet-controller-problem.html</id><summary type="html">&lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Ethernet controller can not detect the cable.&lt;/p&gt;
 &lt;h2&gt;Solution&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;wget http://r8168.googlecode.com/files/r8168-8.037.00.tar.bz2
 tar xjf r8168-8.037.00.tar.bz2
 &lt;span class="nb"&gt;cd &lt;/span&gt;r8168-8.037.00
 ./autorun.sh
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Network"></category><category term="Ubuntu"></category></entry><entry><title>Trace Linux Kernel With Bochs(2)</title><link href="www.gotit.sinaapp.com/trace-linux-kernel-with-bochs2.html" rel="alternate"></link><updated>2014-03-07T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-07:www.gotit.sinaapp.com/trace-linux-kernel-with-bochs2.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Network"></category><category term="Ubuntu"></category></entry><entry><title>Trace Linux Kernel With Bochs(2)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs2.html" rel="alternate"></link><updated>2014-03-07T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-07:trace-linux-kernel-with-bochs2.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;创世者的遗志&lt;/h2&gt;
 &lt;h4&gt;志继&lt;/h4&gt;
-&lt;p&gt;从&lt;a href="/linux/2014/03/03/trace-linux-kernel-with-bochs1/"&gt;上一篇文章&lt;/a&gt;中，我们知道了BIOS通过&lt;code&gt;INT 0x19&lt;/code&gt;将硬盘(软盘)的&lt;code&gt;0&lt;/code&gt;号磁头(head)，&lt;code&gt;0&lt;/code&gt;号磁道(track),&lt;code&gt;第一个&lt;/code&gt;扇区(sector)读入到&lt;code&gt;0x07c00&lt;/code&gt;的内存位置上。这个扇区就称作&lt;code&gt;boot section&lt;/code&gt;。BIOS跳转到这里开始执行，boot section的代码。&lt;/p&gt;
+&lt;p&gt;从&lt;a href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs1.html"&gt;上一篇文章&lt;/a&gt;中，我们知道了BIOS通过&lt;code&gt;INT 0x19&lt;/code&gt;将硬盘(软盘)的&lt;code&gt;0&lt;/code&gt;号磁头(head)，&lt;code&gt;0&lt;/code&gt;号磁道(track),&lt;code&gt;第一个&lt;/code&gt;扇区(sector)读入到&lt;code&gt;0x07c00&lt;/code&gt;的内存位置上。这个扇区就称作&lt;code&gt;boot section&lt;/code&gt;。BIOS跳转到这里开始执行，boot section的代码。&lt;/p&gt;
 &lt;h4&gt;规划&lt;/h4&gt;
 &lt;p&gt;boot section的代码 首先将自己从内存&lt;code&gt;0x07c00&lt;/code&gt;复制到&lt;code&gt;0x90000&lt;/code&gt;，然后将它后续的&lt;code&gt;4&lt;/code&gt;个扇区(&lt;code&gt;setup section&lt;/code&gt;)读入内存&lt;code&gt;0x90200&lt;/code&gt;开始的位置。这个操作是通过&lt;code&gt;INT 0x13&lt;/code&gt;完成的。同样的方式，也就可以把剩余的240个扇区读入到内存中&lt;code&gt;0x10000&lt;/code&gt;的位置。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;通常，一个扇区是512Bytes，512转换成16进制就是0x200，由此可见，boot section 后续的4个扇区被它放在了内存中与自己紧挨着的位置。
@@ -1453,7 +1450,7 @@ boot:floppy
 
 
 &lt;p&gt;运行命令&lt;code&gt;bochs -f bochsrc&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Hello OS World" src="/assets/images/hello_os_world.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(1)</title><link href="www.gotit.sinaapp.com/trace-linux-kernel-with-bochs1.html" rel="alternate"></link><updated>2014-03-03T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-03:www.gotit.sinaapp.com/trace-linux-kernel-with-bochs1.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;操作系统是一个神秘的东西，希望我和你都能因为这个博客对它有个一知半解。以下所写均是针对IA32进行的叙述,内核版本为0.11，如有错误，敬请指正。
+&lt;p&gt;&lt;img alt="Hello OS World" src="/assets/images/hello_os_world.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(1)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs1.html" rel="alternate"></link><updated>2014-03-03T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-03:trace-linux-kernel-with-bochs1.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;操作系统是一个神秘的东西，希望我和你都能因为这个博客对它有个一知半解。以下所写均是针对IA32进行的叙述,内核版本为0.11，如有错误，敬请指正。
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1501,7 +1498,7 @@ boot:floppy
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;若出现如下内容说明安装成功：
-    &lt;img alt="bochs运行" src="/assets/images/bochs-test.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>apt-get error</title><link href="www.gotit.sinaapp.com/apt-get-error.html" rel="alternate"></link><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-01:www.gotit.sinaapp.com/apt-get-error.html</id><summary type="html">&lt;p&gt;今天在安装软件时遇到了apt-get发生的一些问题，导致无法安装成功，错误如下：&lt;/p&gt;
+    &lt;img alt="bochs运行" src="/assets/images/bochs-test.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>apt-get error</title><link href="http://www.gotit.sinaapp.com/apt-get-error.html" rel="alternate"></link><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-01:apt-get-error.html</id><summary type="html">&lt;p&gt;今天在安装软件时遇到了apt-get发生的一些问题，导致无法安装成功，错误如下：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Encountered&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;section&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt; 
 &lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Problem&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;MergeList&lt;/span&gt; &lt;span class="sr"&gt;/var/lib/apt/lists/&lt;/span&gt;&lt;span class="n"&gt;cn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;archive&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;com_ubuntu_dists_natty_main_binary&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i386_Packages&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
@@ -1514,7 +1511,7 @@ sudo apt-get update
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;最后耐心等待即可。&lt;/p&gt;</summary><category term="ubuntu"></category><category term="linux"></category></entry><entry><title>Connect to vpn with ppp</title><link href="www.gotit.sinaapp.com/connect-to-vpn-with-ppp.html" rel="alternate"></link><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:,2014-03-01:www.gotit.sinaapp.com/connect-to-vpn-with-ppp.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;很多时候，我们都需要用VPN，当然如果你问我：“那是什么，能吃吗？”，如果你喜欢卖萌，那你可以选择继续看下去，如果你是认真的，最后也认真；google一下VPN是什么。
+&lt;p&gt;最后耐心等待即可。&lt;/p&gt;</summary><category term="ubuntu"></category><category term="linux"></category></entry><entry><title>Connect to vpn with ppp</title><link href="http://www.gotit.sinaapp.com/connect-to-vpn-with-ppp.html" rel="alternate"></link><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-01:connect-to-vpn-with-ppp.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;很多时候，我们都需要用VPN，当然如果你问我：“那是什么，能吃吗？”，如果你喜欢卖萌，那你可以选择继续看下去，如果你是认真的，最后也认真；google一下VPN是什么。
 &lt;/pre&gt;&lt;/div&gt;
 
 

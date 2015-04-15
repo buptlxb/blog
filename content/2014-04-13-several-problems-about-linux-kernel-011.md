@@ -2,12 +2,12 @@ title: Several Problems about Linux Kernel
 category: Linux
 tags: linux, os
 
-	There are several problems, which deserve being thought carefully, about linux kernel(version 0.11).
-	I will not give detail answers to the following questions, but give a brief outline for each question.
-	I do NOT promise the answers is exactly correct. 
-	if you find any mistake, please email liuxuebao AT ict.ac.cn. Thank you!
-	Have fun!
-	Good luck!
+>There are several problems, which deserve being thought carefully, about linux kernel(version 0.11).
+>I will not give detail answers to the following questions, but give a brief outline for each question.
+>I do NOT promise the answers is exactly correct. 
+>if you find any mistake, please email liuxuebao AT ict.ac.cn. Thank you!
+>Have fun!
+>Good luck!
 
 #### 1. Why BIOS is executed in the beginning after computer setup? Why not the Operating System?
 

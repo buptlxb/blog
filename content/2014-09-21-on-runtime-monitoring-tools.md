@@ -3,13 +3,10 @@ category: Security
 tags: Security
 
 
-    Runtime monitoring tools make use of runtime information to
-    detect bugs that are difficult to detect statically. Existing
-    dynamic
-    monitoring schemes fall into three categories:
-    programming-rule based
-    (PRB), invariant-rule-based (IRB), and execution-statistics based
-    (ESB).
+>Runtime monitoring tools make use of runtime information to
+>detect bugs that are difficult to detect statically. Existing
+>dynamic monitoring schemes fall into three categories: programming-rule based
+>(PRB), invariant-rule-based (IRB), and execution-statistics based (ESB).
 
 ## Programming Rule Based (PRB)
 

@@ -4,7 +4,7 @@ tags: linux, bochs, os
 tabline: "rewrite the bootsect.s"
 
 
-	这里我们将重写bootsect.s完成其真正的功能，重写使用AT&T汇编。
+>这里我们将重写bootsect.s完成其真正的功能，重写使用AT&T汇编。
 
 ## bootsect.s
 

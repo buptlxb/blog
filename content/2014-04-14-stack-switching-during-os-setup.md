@@ -2,9 +2,9 @@ title: Stack Switching During OS Setup
 category: Linux
 tags: linxu, os, bochs
 
-	Stack switching might be a frustrating problem during OS setup.In linux 0.11,
-	It is easy to find that there are more than one stack defined during the time of OS setup.
-	Here is a simple experiment, which indicates that the stacks are defined for different purposes.
+>Stack switching might be a frustrating problem during OS setup.In linux 0.11,
+>It is easy to find that there are more than one stack defined during the time of OS setup.
+>Here is a simple experiment, which indicates that the stacks are defined for different purposes.
 
 ## 1. Stack Definition
 

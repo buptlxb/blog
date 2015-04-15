@@ -66,16 +66,12 @@ by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
 
         </div>
 	
-        <div><div class="highlight"><pre>Runtime monitoring tools make use of runtime information to
+        <div><blockquote>
+<p>Runtime monitoring tools make use of runtime information to
 detect bugs that are difficult to detect statically. Existing
-dynamic
-monitoring schemes fall into three categories:
-programming-rule based
-(PRB), invariant-rule-based (IRB), and execution-statistics based
-(ESB).
-</pre></div>
-
-
+dynamic monitoring schemes fall into three categories: programming-rule based
+(PRB), invariant-rule-based (IRB), and execution-statistics based (ESB).</p>
+</blockquote>
 <h2>Programming Rule Based (PRB)</h2>
 <p>PRB checks for violations of <strong>programming language specifications</strong>,
 <strong>programming paradigms</strong>, or <strong>software development specifications</strong>.
@@ -179,18 +175,23 @@ behavior</strong>, and uses statistical analysis to detect bugs on the fly.</p><
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
+                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
+                <li class="tag-4"><a href="./tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="./tag/array.html">array</a></li>
+                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="./tag/cpp.html">cpp</a></li>
+                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
                 <li class="tag-1"><a href="./tag/os.html">os</a></li>
+                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
                 <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
                 <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
             </ul>
             </div>
 
@@ -201,7 +202,7 @@ behavior</strong>, and uses statistical analysis to detect bugs on the fly.</p><
     </div>     </div> 
 <footer>
 <br />
-<p><a href=".">BLxG</a> &copy; ictlxb 2014</p>
+<p><a href=".">BLxG</a> &copy; ictlxb 2015</p>
 </footer>
 
 </div> <!-- /container -->
