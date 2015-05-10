@@ -1,0 +1,639 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>再学vim </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta name="keywords" content="vim入门" />
+<!-- blog ico 
+<link type="image/x-icon" rel="icon" href="images/ruchee.ico" />
+<link type="image/x-icon" rel="shortcut icon" href="images/ruchee.ico" />
+-->
+</head>
+<body>
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="index.html">首页</a>
+		</li>
+		<li>
+			<a href="tips.html">榆桑拾遗</a>
+		</li>
+		<li>
+			<a href="diary.html">日记</a>
+		</li>
+	</ul>
+</div>
+
+<div id="cse"></div>
+
+
+<div class="toc">
+<ul>
+<li><a href="#toc_1">再学vim</a>
+<ul>
+<li><a href="#toc_1.1">写在前面</a>
+<li><a href="#toc_1.2">第一级</a>
+<li><a href="#toc_1.3">第二级</a>
+<ul>
+<li><a href="#toc_1.3.1">各种插入模式</a>
+<li><a href="#toc_1.3.2">简单的移动光标</a>
+<li><a href="#toc_1.3.3">拷贝/粘贴</a>
+<li><a href="#toc_1.3.4">Undo/Redo</a>
+<li><a href="#toc_1.3.5">打开/保存/退出</a>
+</ul>
+<li><a href="#toc_1.4">第三级</a>
+<ul>
+<li><a href="#toc_1.4.1">更好</a>
+<li><a href="#toc_1.4.2">更强</a>
+<li><a href="#toc_1.4.3">更快</a>
+</ul>
+<li><a href="#toc_1.5">第四级</a>
+<ul>
+<li><a href="#toc_1.5.1">在当前行上移动光标:</a>
+<li><a href="#toc_1.5.2">区域选择</a>
+<li><a href="#toc_1.5.3">块操作：</a>
+<li><a href="#toc_1.5.4">自动提示:</a>
+<li><a href="#toc_1.5.5">宏录制：</a>
+<li><a href="#toc_1.5.6">可视化选择</a>
+<li><a href="#toc_1.5.7">分屏</a>
+</ul>
+<li><a href="#toc_1.6">写在最后</a>
+</ul>
+</ul>
+</div>
+
+<h1 id="toc_1" class="justcenter">再学vim</h1>
+
+<h2 id="toc_1.1">写在前面</h2>
+
+<p>
+一直都想学习<code>vim</code>，但是一直都没有成功，不想做一件事情不需要10000个理由，一个借口，就可以让自己全身而退。都说<code>vim</code>的学习曲线相当的大（参看<a href="http://coolshell.cn/articles/3125.html">各种编辑器的学习曲线</a>），已经不知道是第几次学习<code>vim</code>了
+</p>
+
+<hr />
+
+<p>
+学习<code>vim</code>并且其会成为你最后一个使用的文本编辑器。没有比这个更好的文本编辑器了，非常地难学，但是却不可思议地好用。
+</p>
+
+<p>
+看了网上的<a href="http://shenbai.iteye.com/blog/1778835">简明vim练级攻略</a>，开始我的练级之路。
+</p>
+
+<h2 id="toc_1.2">第一级</h2>
+
+<ul>
+<li>
+启动<code>vim</code>后，<code>vim</code>在<code>Normal</code>模式下。
+
+<li>
+请按下键i，进入<code>Insert</code>模式。
+
+<li>
+此时，可以输入文件，就像用记事本一样。
+
+<li>
+如果想返回<code>Insert</code>模式，请按<code>ESC</code>键。
+
+</ul>
+<p>
+现在，知道如何在<code>Insert</code>和<code>Normal</code>模式下切换了。下面是一些命令，可以让你在<code>Normal</code>模式下幸存下来：
+</p>
+<ul>
+<li>
+<code>i</code> ---&gt; Insert模式，按<code>ESC</code>回到<code>Normal</code>模式
+
+<li>
+<code>x</code> ---&gt; 删除当前光标所在的一个字符
+
+<li>
+<code>:wq</code> ---&gt; 存盘 + 退出（:w存盘，:q退出）
+
+<li>
+<code>dd</code> ---&gt; 删除当前行，并把删除的行存到剪贴板里
+
+<li>
+<code>p</code> ---&gt; 粘贴剪贴板
+
+<li>
+<code>hjkl</code> ---&gt; 上下左右
+
+</ul>
+
+<p>
+会用这上述这几个命令，你就可以编辑文本了，幸存下来，可以进入第二级了。
+</p>
+
+<h2 id="toc_1.3">第二级</h2>
+<p>
+	<red>注意：</red>下面的文字中，如果是<code>Ctrl-X</code>会写成<code>&lt;C-X&gt;</code>;
+以:开始的命令需要输入<code>&lt;enter&gt;</code>回车，如<code>:q</code>也就是输入时要输入<code>:q&lt;enter&gt;</code>
+</p>
+
+<h3 id="toc_1.3.1">各种插入模式</h3>
+<ul>
+<li>
+<code>a</code> ---&gt; 在光标后插入
+
+<li>
+<code>o</code> ---&gt; 在当前行后插入一个新行
+
+<li>
+<code>O</code> ---&gt; 在当前行前插入一个新行
+
+<li>
+<code>cw</code> ---&gt; 替换从光标所在位置后到一个单词结尾的字符
+
+</ul>
+<h3 id="toc_1.3.2">简单的移动光标</h3>
+<ul>
+<li>
+<code>0</code> ---&gt; 数字零，到行首
+
+<li>
+<code>^</code> ---&gt; 到本行第一个不是<code>blank</code>字符的位置（所谓<code>blank</code>字符就是空格，tab，换行，回车等）
+
+<li>
+<code>$</code> ---&gt; 到本行行尾
+
+<li>
+<code>g_</code> ---&gt; 到本行最后一个不是<code>blank</code>字符的位置。
+
+<li>
+<code>/pattern</code> ---&gt; 搜索pattern的字符串
+
+</ul>
+<h3 id="toc_1.3.3">拷贝/粘贴</h3>
+<ul>
+<li>
+<code>p</code> ---&gt; 粘贴，在当前位置之后
+
+<li>
+<code>P</code> ---&gt; 粘贴，在当前位置之前
+
+<li>
+<code>yy</code> ---&gt; 拷贝当前行，相当于ddP
+
+</ul>
+<h3 id="toc_1.3.4">Undo/Redo</h3>
+<ul>
+<li>
+<code>u</code> ---&gt; undo
+
+<li>
+<code>&lt;C-r&gt;</code> ---&gt; redo
+
+</ul>
+<h3 id="toc_1.3.5">打开/保存/退出</h3>
+<ul>
+<li>
+<code>:e &lt;path/to/file&gt;</code> ---&gt;打开一个文件
+
+<li>
+<code>:w</code> ---&gt; 存盘
+
+<li>
+<code>:saveas &lt;path/to/file&gt;</code> ---&gt; 另存为&lt;path/to/fiole&gt;
+
+<li>
+<code>:x</code>, <code>ZZ</code> 或 <code>:wq</code> ---&gt; 保存并退出（:x表示仅在需要时保存，ZZ不需要输入冒号并回车）
+
+<li>
+<code>:q!</code> ---&gt; 退出不保存，<code>:qa!</code>强行退出所有的正在编辑的文件，就算别的文件有更改。
+
+<li>
+<code>:bn</code>和<code>:bp</code> ---&gt; 你可以同时打开很多文件，使用这两个命令来切换下一个或上一个文件。
+
+</ul>
+
+<h2 id="toc_1.4">第三级</h2>
+<p>
+在第三级，可以开始做一些更为有趣的事情，我们只谈那些和vi可以兼容的命令。
+</p>
+
+<h3 id="toc_1.4.1">更好</h3>
+<ul>
+<li>
+<code>.</code>（小数点） ---&gt; 可以重复上一次的命令
+
+<li>
+<code>N&lt;command&gt;</code> ---&gt; 重复某个命令N次
+
+</ul>
+<p>
+打开一个文件试试下面的命令：
+<blockquote>
+</p>
+<ul>
+<li>
+<code>2dd</code> ---&gt; 删除2行
+
+<li>
+<code>3p</code> ---&gt; 粘贴文本3次
+
+<li>
+<code>100idesu [ESC]</code> ---&gt; 会写下"desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu "
+
+<li>
+<code>.</code> ---&gt; 重复上一个命令---100"desu "
+
+<li>
+<code>3.</code> ---&gt; 重复3次"desu "
+
+</ul>
+<p>
+</blockquote>
+</p>
+<h3 id="toc_1.4.2">更强</h3>
+<p>
+要让你的光标移动更有效率，你一定要了解下面的这些命令，<red>千万别跳过</red>
+</p>
+<ul>
+<li>
+<code>NG</code> ---&gt; 到第N行
+
+<li>
+<code>gg</code> ---&gt; 到第一行，相当于1G
+
+<li>
+<code>G</code> ---&gt; 到最后一行
+
+</ul>
+<p>
+按单词移动：
+</p>
+<ul>
+<li>
+<code>w</code> ---&gt; 到下一个单词的开头
+
+<li>
+<code>e</code> ---&gt; 到下一个单词的结尾
+
+</ul>
+	
+<p>
+		<red>注意：</red>
+</p>
+
+<p>
+		&gt;如果你认为单词是由默认方式，那么就用小写的<code>e</code>和<code>w</code>。默认来说一个单词由字母、数字和下划线组成（如，程序变量）
+</p>
+
+<p>
+		&gt;如果你认为单词是由<code>blank</code>字符分隔而成，那么你需要使用大写的<code>E</code>和<code>W</code>。（如，程序语句）
+</p>
+		
+<p>
+		<img src="../images/tips/vim/word_moves.jpg" />
+</p>
+
+<p>
+下面，是最强的光标移动：
+</p>
+<ul>
+<li>
+<code>%</code>: 匹配括号移动，包括<code>(</code>,<code>{</code>,<code>[</code>。
+
+<li>
+<code>*</code>和<code>#</code>: 匹配光标当前所在的单词，移动光标到下一个（或上一个）匹配单词。
+
+</ul>
+<p>
+上面这三个命令对程序员来说是相当强大的。
+</p>
+
+<h3 id="toc_1.4.3">更快</h3>
+<p>
+你一定要记住光标的移动，因为很多命令都可以和这些移动光标的命令连动。很多命令都可以如下来干：
+</p>
+
+<p>
+<code>&lt;start position&gt;&lt;command&gt;&lt;end position&gt;</code>
+</p>
+
+<p>
+例如：<code>0y$</code>命令意味着：
+</p>
+<ul>
+<li>
+<code>0</code> ---&gt; 等到行头
+
+<li>
+<code>y</code> ---&gt; 从这里开始拷贝
+
+<li>
+<code>$</code> ---&gt; 拷贝到本行最后一个字符
+
+</ul>
+<p>
+你也可以输入<code>ye</code>，从当前位置拷贝到本单词的最后一个字符。
+</p>
+
+<p>
+你也可以输入<code>y2/foo</code>来拷贝2个"foo"之间的字符串。
+</p>
+
+<p>
+还有很多时间并不一定你就一定要按<code>y</code>才会拷贝，下面的命令也会被拷贝：
+</p>
+<ul>
+<li>
+<code>d</code> ---&gt; 删除
+
+<li>
+<code>v</code> ---&gt; 可视化的选择
+
+<li>
+<code>gU</code> ---&gt; 变大写
+
+<li>
+<code>gu</code> ---&gt; 变小写
+
+<li>
+等等
+
+</ul>
+
+<h2 id="toc_1.5">第四级</h2>
+
+<p>
+你只需要掌握前面的命令，你就可以很舒服地使用<code>vim</code>了。但是，现在，我们向你介绍的是<code>vim</code>杀手级的功能。下面这些功能是我只用vim的原因。
+</p>
+
+
+<h3 id="toc_1.5.1">在当前行上移动光标:</h3>
+
+<ul>
+<li>
+<code>0</code> ---&gt; 到行首
+
+<li>
+<code>^</code> ---&gt; 到本行的第一个非<code>blank</code>字符
+
+<li>
+<code>$</code> ---&gt; 到行尾
+
+<li>
+<code>g_</code> ---&gt; 到本行最后一个不是<code>blank</code>字符的位置
+
+<li>
+<code>fa</code> ---&gt; 到下一个为a的字符处，你也可以<code>fs</code>到下一个为s的字符
+
+<li>
+<code>t,</code> ---&gt; 到逗号前的第一个字符（逗号可以变成其它字符）
+
+<li>
+<code>3fa</code> ---&gt; 在当前行查找第三个出现的a
+
+<li>
+<code>F</code>和<code>T</code> ---&gt; 和<code>f</code>和<code>t</code>一样，只不过是相反方向。
+
+</ul>
+
+<p>
+<img src="../images/tips/vim/line_moves.jpg" />
+</p>
+
+<p>
+还有一个很有用的命令是<code>dt</code> ---&gt; 删除所有的内容，直到遇到双引号（")
+</p>
+
+<h3 id="toc_1.5.2">区域选择</h3>
+
+<p>
+在visual模式下，这些命令很强大，其命令格式为
+</p>
+
+<p>
+<code>&lt;action&gt;a&lt;object&gt;</code>和<code>&lt;action&gt;i&lt;object&gt;</code>
+</p>
+
+<ul>
+<li>
+<code>action</code>可以是任何的命令，如<code>d</code>（删除），<code>y</code>（拷贝），<code>v</code>（可视模式选择）
+
+<li>
+<code>object</code>可能是：<code>w</code>一个单词，<code>W</code>一个以空格为分隔的单词，s一个句字，p一个段落。也可以是一个特别的字符：<code>"</code>,<code>'</code>,<code>)</code>,<code>}</code>,<code>]</code>。
+
+</ul>
+
+<p>
+假设你有一个字符串<code>(map(+)("foo"))</code>。而光标键在第一个o的位置。
+</p>
+
+<ul>
+<li>
+<code>vi"</code> ---&gt; 会选择foo
+
+<li>
+<code>va"</code> ---&gt; 会选择"foo"
+
+<li>
+<code>vi)</code> ---&gt; 会选择"foo"
+
+<li>
+<code>va)</code> ---&gt; 会选择("f00")
+
+<li>
+<code>v2i)</code> ---&gt; 会选择map(+)("foo")
+
+<li>
+<code>v2a)</code> ---&gt; 会选择(map(+)("foo"))
+
+</ul>
+
+<p>
+<img src="../images/tips/vim/textobjects.png" />
+</p>
+
+<h3 id="toc_1.5.3">块操作：</h3>
+
+<p>
+块操作，典型的操作：`0 &lt;C-v&gt; &lt;C-d&gt; I -- [ESC]
+</p>
+	
+<ul>
+<li>
+<code>^</code> ---&gt; 到行首
+
+<li>
+<code>&lt;C-v&gt;</code> ---&gt; 开始块操作
+
+<li>
+<code>&lt;C-d&gt;</code> ---&gt; 向下移动（你也可以使用<code>hjkl</code>来移动光标，或是使用<code>%</code>,或是别的）
+
+<li>
+<code>I-- [ESC]</code> ---&gt; I是插入，插入"--"，按<code>ESC</code>键来为每一行生效。
+
+</ul>
+
+<p>
+<img src="../images/tips/vim/rectangular.gif" />
+</p>
+
+<p>
+在Windows下的vim，你需要使用<code>&lt;C-q&gt;</code>而不是<code>&lt;C-v&gt;</code>,<code>&lt;C-v&gt;</code>是拷贝剪贴板。
+</p>
+
+<h3 id="toc_1.5.4">自动提示:</h3>
+
+<p>
+在Insert模式下，你可以输入一个词的开头，然后按<code>&lt;C-p&gt;</code>或是<code>&lt;C-n&gt;</code>，自动补齐功能出现了...
+</p>
+
+<p>
+<img src="../images/tips/vim/completion.gif" />
+</p>
+
+<h3 id="toc_1.5.5">宏录制：</h3>
+
+<ul>
+<li>
+<code>qa</code>把你的操作记录在寄存器a
+
+<li>
+于是<code>@a</code>会replay被录制的宏
+
+<li>
+<code>@@是</code>一个快捷键用来replay最新录制的宏
+
+</ul>
+
+<p>
+&lt;blackquote&gt;
+示例：
+</p>
+
+<p>
+在一个只有一行且这一行只有“1”的文本中，键入如下命令：
+</p>
+<ol>
+<li>
+<code>qaY&lt;C-a&gt;q</code> ---&gt;
+
+<ul>
+<li>
+<code>qa</code>开始录制
+
+<li>
+<code>Yp</code>复制行
+
+<li>
+<code>&lt;C-a&gt;</code>增加1
+
+<li>
+<code>q</code>停止录制
+
+</ul>
+<li>
+<code>@a</code> ---&gt; 在1下面写下2
+
+<li>
+<code>@@</code> ---&gt; 在2下面写下3
+
+<li>
+现在做<code>100@@</code>会创建新的100行，并把数据增加到103
+
+</ol>
+
+<p>
+<img src="../images/tips/vim/macros.gif" />
+</p>
+
+<h3 id="toc_1.5.6">可视化选择</h3>
+
+<p>
+前面，我们看到了&lt;C-v&gt;的示例（在Windows下应该是&lt;C-p&gt;)，我们可以使用v和V。一旦被选好了，你可以做下面的事：
+</p>
+
+<ul>
+<li>
+<code>J</code> ---&gt; 把所有的行连接起来（变成一行）
+
+<li>
+<code>&lt;</code>或<code>&gt;</code> ---&gt; 左右缩进
+
+<li>
+<code>=</code> ---&gt; 自动缩进
+
+</ul>
+
+<p>
+<img src="../images/tips/vim/autoindent.gif" />
+</p>
+
+<p>
+在所有被选择的行后加上点东西：
+</p>
+
+<ul>
+<li>
+<code>&lt;C-v&gt;</code>
+
+<li>
+选中相关的行（可使用<code>j</code>或<code>&lt;C-d&gt;</code>或是<code>/pattern</code>或是<code>%</code>等…）
+
+<li>
+<code>$</code>到行最后
+
+<li>
+<code>A</code>,输入字符串，按<code>ESC</code>
+
+</ul>
+
+<p>
+<img src="../images/tips/vim/append_to_many_lines.gif" />
+</p>
+
+<h3 id="toc_1.5.7">分屏</h3>
+
+<p>
+下面是主要的命令，你可以使用vim的帮助<code>:help split</code>,日后再详细学习分屏的一些技巧
+</p>
+
+<ul>
+<li>
+<code>:split</code> ---&gt; 创建分屏(<code>:vsplit</code>创建垂直分屏)
+
+<li>
+<code>&lt;C-w&gt;&lt;dir&gt;</code> ---&gt; dir就是方向，可以是<code>hjkl</code>或是上下左右中的一个，其用来切换分屏
+
+<li>
+<code>&lt;C-w&gt;_</code>(或<code>&lt;C-w&gt;|</code>) ---&gt; 最大化尺寸(<code>&lt;C-w&gt;|</code>垂直分屏)
+
+<li>
+<code>&lt;C-w&gt;-</code>(或`&lt;C-w&gt;-) ---&gt; 增加(或减小)尺寸
+
+</ul>
+
+<p>
+<img src="../images/tips/vim/split.gif" />
+</p>
+
+<hr />
+<h2 id="toc_1.6">写在最后</h2>
+
+<p>
+学习vim没有捷径，经常使用才是珍贵的，如果你认真的读到这里，那么你是幸运的。
+</p>
+
+<hr />
+<p>
+<red>date:</red> 2013-02-08 2013-02-10
+<hr />
+</p>
+
+
+<div id="goTopBtn"></div>
+
+<center  style="font-family: 微软雅黑; font-size: small; font-weight: normal; color: #009933">
+Ranen&nbsp;&copy;&nbsp;2012-2013&nbsp;www.gotit.sina.com
+<br>
+Generated by <a href="http://www.vim.org" target="_blank">Vim</a> &amp; <a href="http://code.google.com/p/vimwiki/" target="_blank">Vimwiki</a>
+</center>
+
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="vimwiki.js"></script>
+</body>
+</html>

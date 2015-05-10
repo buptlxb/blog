@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>汇编与C语言</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta name="keywords" content="asm,c,linux" />
+<!-- blog ico 
+<link type="image/x-icon" rel="icon" href="images/ruchee.ico" />
+<link type="image/x-icon" rel="shortcut icon" href="images/ruchee.ico" />
+-->
+</head>
+<body>
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="index.html">首页</a>
+		</li>
+		<li>
+			<a href="tips.html">榆桑拾遗</a>
+		</li>
+		<li>
+			<a href="diary.html">日记</a>
+		</li>
+	</ul>
+</div>
+
+<div id="cse"></div>
+
+
+<div class="toc">
+<ul>
+<li><a href="#toc_1">汇编与C语言</a>
+<ul>
+<li><a href="#toc_1.1">写在前面</a>
+<li><a href="#toc_1.2">x86汇编程序基础</a>
+<ul>
+<li><a href="#toc_1.2.1">最简单的汇编程序</a>
+<li><a href="#toc_1.2.2">x86的寄存器</a>
+<li><a href="#toc_1.2.3">x86寻址方式（Address Mode）</a>
+</ul>
+<li><a href="#toc_1.3">ELF文件</a>
+<ul>
+<li><a href="#toc_1.3.1">目标文件</a>
+<li><a href="#toc_1.3.2">可执行文件</a>
+<li><a href="#toc_1.3.3">共享库</a>
+</ul>
+<li><a href="#toc_1.4">main函数和启动例程</a>
+</ul>
+</ul>
+</div>
+
+<h1 id="toc_1" class="justcenter">汇编与C语言</h1>
+
+<h2 id="toc_1.1">写在前面</h2>
+
+<p>
+在本科期间也学过一点C语言和汇编语言，却很少有时间停下来想想二者的关系，这次在x86/linux/gcc下再学一学，以求有些许进步
+</p>
+
+<hr />
+
+<h2 id="toc_1.2">x86汇编程序基础</h2>
+
+<h3 id="toc_1.2.1">最简单的汇编程序</h3>
+
+<pre class="brush:text">
+
+#PURPOSE: Simple program that exits and returns a status code back to
+#		  Linux kernel
+#
+#INPUT: none
+#
+#OUTPUT: returns a status code.This can be viewed by typing
+#
+#
+#		echo $?
+#
+#		after running the program
+#
+#VARIABLES:
+#		%eax holds the system call number
+#		%ebx holds the return status
+#
+.section .data
+
+.section .text
+
+.globl _start
+_start:
+movl $1, %eax # this is the linux kernel command
+  			  # number (system call) for exiting
+			  # a program
+movl $4, %ebx # this is the status number we will
+			  # return to the operating system
+			  # Change this around and it will
+			  # return different things to
+			  # echo $?
+
+int $0x80	  # this wakes up the kernel to run
+			  # the exit command
+</pre>
+
+<p>
+把这个程序保存成文件hello.s（汇编程序通常以.s作为文件名后缀），用汇编器（Assembler）<code>as</code>把汇编程序中的助记符翻译成机器指令，生成目标文件hello.o：
+</p>
+
+<pre class="brush:text">
+$ as hello.s -o hello.o
+</pre>
+
+<p>
+然后用链接器（Linker，或Link Editor）<code>ld</code>把目标文件hello.o链接成可执行文件hello：
+</p>
+
+<pre class="brush:text">
+$ ld hello.o -o hello
+</pre>
+
+<p>
+为什么用汇编器翻译成机器指令了还不行，还要有一个链接的步骤呢？链接主要有两个作用，一是修改目标文件中的信息，对地址做重定位，在后面的可执行文件部分。二是把多个目标文件合并成一个可执行文件，在后面的main函数和启动例程中详细研究。这个例子界虽然只有一个目标文件，但也需要经过链接才能成为可执行文件。
+</p>
+
+<p>
+现在执行这个程序，它只做了一件事就是退出，退出状态是4，在Shell中可以用特殊变量<code>$?</code>得到上一条命令的退出状态：
+</p>
+
+<pre class="brush:text">
+$ ./hello
+$ echo $?
+4
+</pre>
+
+<p>
+下面逐行分析这人汇编程序。首先，#号表示单行注释，类似于C语言的//注释。
+</p>
+
+<pre class="brush:text">
+.section .data
+</pre>
+
+<p>
+汇编程序中以<code>.</code>开头的名称并不是指令的助记符，不会被 翻译成机器指令，而是给汇编器一些特殊指示，称为汇编指示（Assembler Directive）或伪操作（Pseudo-operation），由于它不是真正的指令所以加个“伪”字。<code>.section</code>指示把代码划分若干个节（Section），程序被操作系统加载执行时，每个节被加载到不同的地址，操作系统对不同的页面设置不同的读、写、执行权限。<code>.data</code>节保存程序的数据，是可读可写的，相当于C程序的全局变量。这个例子中没有定义数据，所以<code>.data</code>节是空的。
+</p>
+
+<pre class="brush:text">
+.section .text
+</pre>
+
+<p>
+<code>.text</code>节保存代码，是只读和可执行的，后面那些指令都属于<code>.text</code>节的。
+</p>
+
+<pre class="brush:text">
+.globl _start
+</pre>
+
+<p>
+<code>_start</code>是一个符号（Symbol），符号在汇编程序中代表一个地址，可以用在指令中，汇编程序经过汇编器的处理之后，所有的符号都被替换成它所代表的地址值。
+</p>
+
+
+<p>
+<code>.globl</code>指示告诉汇编器，<code>_start</code>这个符号要被链接器用到，所以要在目标文件的符号表中标记它是一个全局符号。<code>_start</code>就像C程序的main函数一样特殊，是整个程序的入口，链接器在链接时会查找目标文件中的<code>_start</code>符号代表的地址，把它设置为整个程序的入口地址，所以每个汇编程序都要提供一个<code>_start</code>符号并且用<code>.globl</code>声明。如果一个符号没有用<code>.globl</code>声明，就表示这个符号不会被链接器用到。
+</p>
+
+<pre class="brush:text">
+_start:
+</pre>
+
+<p>
+这里定义了<code>_start</code>符号，汇编器在翻译汇编程序时会计算每个数据对象和每条指令的地址，当看到这样一个符号定义时，就把它后面一条指令的地址作为这个符号所代表的地址。而<code>_start</code>这个符号又比较特殊，它所代表的地址是整个程序的入口地址，所以下一条命令就成了程序中第一条被传递的命令。
+</p>
+
+<pre class="brush:text">
+movl $1, %eax
+</pre>
+
+<p>
+这是一条数据传送指令，这条指令要求CPU内部产生一个数字1并保存到<code>eax</code>寄存器中。<code>mov</code>的后缀<code>l</code>表示<code>long</code>，说明是32位的传送指令。这条指令不要求CPU读内存，1这个数是在CPU内部产生的，称为立即数（Immediate）。汇编程序中，立即数前面要加<code>$</code>，寄存器名前面要加<code>%</code>，以便跟符号名区分开。<code>mov</code>指令还有另外几种形式，但数据传送方向都是一样的，第一个操作数总是源操作数，第二个操作数总是目标操作数。
+</p>
+
+<pre class="brush:text">
+movl $4, %ebx
+</pre>
+
+<p>
+和上一条指令类似，d生成一个立即数4并保存到<code>ebx</code>寄存器中。
+</p>
+
+<pre class="brush:text">
+int $0x80
+</pre>
+
+<p>
+前两条指令都是为这条指令做准备的，执行这条指令时发生以下动作：
+</p>
+
+<ol>
+<li>
+<code>int</code>指令称为软中断指令，可以用这条指令故意产生一个异常，使用CPU从用户模式切换到特权模式，然后跳转到内核代码中执行异常处理程序。
+
+<li>
+<code>int</code>指令中的立即数0x80是一个参数，在异常处理程序中要根据这个参数决定如何处理，在Linux内核中<code>int \(0x80</code>这种异常称为<code>系统调用</code>（System Call）。内核提供了很多系统服务供用户程序使用，但这些系统服务不能像库函数(比如<code>printf</code>）那样调用，因为在执行用户程序时CPU处于用户模式，不能直接调用内核函数，所以需要通过系统调用切换CPU模式，经由异常处理程序进入内核，用户程序只能通过寄存器传几个参数，之后就要按内核设计好的代码路线走，而不能由用户程序随心所欲，想调哪个内核函数就调哪个内核函数，这样可以保证系统服务被安全地调用。在调用结束之后，CPU再切换回用户模式，继续执行<code>int \)0x80</code>的下一条指令，在用户程序看来就像函数调用和返回一样。
+
+<li>
+<code>eax</code>和<code>ebx</code>的值是传递给系统调用的两个参数。<code>eax</code>的值是系统调用号，Linux的各种系统调用都是由<code>int $0x80</code>指令引发的，内核需要通过<code>eax</code>判断用户要调哪个系统调用，_<code>exit</code>的系统调用号是1。<code>ebx</code>的值是传给<code>_exit</code>的参数，表示退出状态。大多数系统调用完成之后会返回用户空间继续执行后面的指令，而<code>_exit</code>系统调用比较特殊，它会终止掉当前进程，而不是返回用户空间继续执行。
+
+</ol>
+
+
+<p>
+<red>x86汇编的两种语法：Intel语法和AT&amp;T语法</red>
+</p>
+
+
+<p>
+  <em>x86汇编一直存在两种不同的语法，在intel的官方文档中使用intel语法，Windows也使用intel语法，而UNIX平台的汇编器一直使用AT&amp;T语法，所以本文章使用AT&amp;T语法。</em><code>movl %edx,%eax</code><em>这条指令如果用intel语法来写，就是</em><code>mov eax,edx</code><em>，寄存器名不加</em><code>%</code><em>号，源操作数和目标操作数的位置互换，字长也不是用指令的后缀</em><code>l</code><em>表示而是用另外的方式表示</em> 
+</p>
+ 
+<h3 id="toc_1.2.2">x86的寄存器</h3>
+
+<ol>
+<li>
+x86的通用寄存器有<code>eax</code>,<code>ebx</code>,<code>ecx</code>,<code>edx</code>,<code>edi</code>,<code>esi</code>
+
+</ol>
+
+<ol>
+<li>
+x86的特殊寄存器有<code>ebp</code>,<code>esp</code>,<code>eip</code>,<code>eflags</code>。
+
+<ul>
+<li>
+<code>eip</code> :: 程序计数器（Program Counter）
+
+<li>
+<code>eflags</code> :: 计算过程中产生的标志位（Current Program Status Register）
+
+<li>
+<code>ebp</code> :: 栈底指针
+
+<li>
+<code>esp</code> :: 栈顶指针
+
+</ul>
+</ol>
+
+<h3 id="toc_1.2.3">x86寻址方式（Address Mode）</h3>
+
+<p>
+通用格式：<code>ADDRESS_OR_OFFSET(%BASE_OR_OFFSET，%INDEX，MULTIPLER)</code>
+</p>
+
+<p>
+计算方式：<code>FINALL_ADDRESS = ADDRESS_OR_OFFSET + BASE_OR_OFFSET + INDEX * MULTIPLER</code>
+</p>
+
+<p>
+<red>注意：</red> ADDRESS_OR_OFFSET 必须是常数，MULTIPLER必须是1,2,4,8 ，BASE_OR_OFFSET 和 INDEX必须是寄存器。省略不写相当于0。
+</p>
+
+<p>
+举例如下：
+</p>
+<ul>
+<li>
+直接寻址(Direct Address Mode) :: ADDRESS_OR_OFFSET
+
+<li>
+变址寻址(Indexed Address Mode) :: ADDRESS_OR_OFFSET(,%INDEX,MULTIPLER)
+
+<li>
+间接寻址(Indirect Address Mode) :: (%BASE_OR_OFFSET)
+
+<li>
+基址寻址(Base Pointer Address Mode) :: ADDRESS_OR_OFFSET(%BASE_OR_OFFSET)
+
+</ul>
+
+<h2 id="toc_1.3">ELF文件</h2>
+
+<p>
+ELF（Executable and Linkable Format）文件格式是一个开放标准，大部分UNIX系统的可执行文件都采用ELF格式，它有三种类型：
+</p>
+
+<ul>
+<li>
+可重定位的目标文件（Relocatable File，或者Object File）
+
+<li>
+可执行文件（Executable File）
+
+<li>
+共享库（Shared Object或者Shared Library）
+
+</ul>
+
+<p>
+<img src="images/tips/c/elfoverview.png" />
+</p>
+
+<p>
+不论是哪种类型的ELF文件，开头都是ELF Header，其中描述了体系结构和操作系统等基本信息，并指出Section Header Table和Program Header Table在文件中的Offset，对于链接器来说，只关注Section Header Table，因此Object File中很可能没有Program Header Table。而Section Header Table中保存了所有Section的描述信。而Program Header Table中保存了所有Segment的描述信息，加载过程中只关注Segment的信息，因此在Executable File中可能没有Section Header Table。事实上，Segment是由一个或多个Section组成的，而且有些Section并不会组成Segment，其中只是保存了一些链接时用到的信息。
+</p>
+
+<h3 id="toc_1.3.1">目标文件</h3>
+
+<p>
+利用<code>readelf</code>工具可以读出目标文件的信息。
+</p>
+
+<p>
+从Section Header中读出各Section的描述信息，其中.text是存放程序的Section，而.data是存放了一些程序中用到的数据。此时所有的Section的加载地址（虚拟地址）还不确定，用0表示。
+</p>
+
+<p>
+可以利用<code>hexdump</code>工具把目标文字的字节全部打印出来。
+</p>
+
+<p>
+利用<code>objdump</code>工具可以把程序中的机器指令反汇编（Disassemble）。
+</p>
+
+<h3 id="toc_1.3.2">可执行文件</h3>
+
+<p>
+分析方法与目标文件类似，经过链接器后，目标文件中的符号被改成了虚拟地址，一些要加载的Section也组成了相应的Segment。程序运行时，不同的Segment被加载到不同的物理页中，从而由MMU完成相应的权限保护机制，如程序段为可读可执行权限，而数据段为可读可写权限。
+</p>
+
+<h3 id="toc_1.3.3">共享库</h3>
+
+
+<h2 id="toc_1.4">main函数和启动例程</h2>
+
+<p>
+经过前面的学习，我们已经把汇编变成了可执行文件，这期间分析了目标文件和可执行文件的格式，然后在上文的汇编程序中可以看到其程序入口为_start而C语言程序入口则为main函数，这一段分析一下main函数如何被调用。
+</p>
+
+
+<hr />
+<p>
+<red><strong>参考文献：</strong> </red> <a href="http://learn.akae.cn/media/ch18s01.html">http://learn.akae.cn/media/ch18s01.html</a>
+<hr />
+<red>date:</red> 2013-02-28
+<hr />
+</p>
+
+
+<div id="goTopBtn"></div>
+
+<center  style="font-family: 微软雅黑; font-size: small; font-weight: normal; color: #009933">
+Ranen&nbsp;&copy;&nbsp;2012-2013&nbsp;www.gotit.sina.com
+<br>
+Generated by <a href="http://www.vim.org" target="_blank">Vim</a> &amp; <a href="http://code.google.com/p/vimwiki/" target="_blank">Vimwiki</a>
+</center>
+
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="vimwiki.js"></script>
+</body>
+</html>

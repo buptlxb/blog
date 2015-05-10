@@ -1,10 +1,10 @@
-title: Derived Class Constructor Initialization List
+title: Derived Class Constructor Initializer List
 date: 2015-04-15 20:35
 category: C/CPP
 tags: constructor, inheritance
 
 **Encapsulation**, **Inheritance** and **Polymorphism** are three key concepts in Object-Oriented Programing.
-Here is something intresting about derived class constructor initialization list.
+Here is something intresting about derived class constructor initializer list.
 
     :::cpp
     #include <stdio.h>
