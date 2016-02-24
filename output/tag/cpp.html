@@ -21,7 +21,7 @@
     <link href="../theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
-        <link href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
+        <link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
 
 </head>
 
@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../on-object-array.html"><h1>On Object Array</h1></a>
-Sat 11 April 2015
+            <a href="../type-conversions.html"><h1>Type Conversions</h1></a>
+Wed 24 February 2016
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -73,6 +73,51 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
         </div>
         
         <div><blockquote>
+<p>Type conversions are very complicated in C++ language. Maybe you do not agree with me. But it really makes me crazy!
+Type conversions contain many and many topics, such as integer promotion, array degrading to pointers, type castings 
+and so on. Some kinds of type conversions are easy to understand, however, it is quiet hard to know the other kinds of type conversions well.
+Even worse, all of them are easily forgotten.</p>
+</blockquote>
+<h2>Integer Promotion</h2>
+<p>It is relatively easy to understand Integer Promotion. In a word, integer promotion simplily converts integer from low
+precision to high one and from signed to unsigned, such as from <code>char</code> to <code>short</code>, from <code>short</code> to <code>unsigned short</code>.</p>
+<h2>Array degrading to pointers</h2>
+<p>Array is a special type in C/C++. You can easily define a array with <code>Type []</code>. But you can never pass an array to a
+function. When you try to do this, the array degrades to pointer implicitly. It is why we all declare a function like
+<code>Return-type function-name (Type [], Size_t)</code>.</p>
+<h2>Type castings</h2>
+<p>Type castings usually mean explicit type conversions. There are four type casting operators <code>static_cast</code>,
+<code>dynamic_cast</code>, <code>const_cast</code>, <code>reinterpret_cast</code>.</p>
+<h2>Type conversions with class</h2>
+<p>When type conversions meet class, things go worse. <code>single-argument constructors</code>, <code>assignment operator</code>,
+<code>type-cast operator</code> are all relative with implicit type conversions. These three member functions can be
+controlled by user to define their own type conversions.</p>
+<h2>Rules of Type Conversions</h2>
+<ul>
+<li>
+<p>There must not be two or more user defined type conversions in any sequence of conversions.</p>
+<p>There are more rules of type conversions in C++. I will add them here when I come across to them.</p>
+</li>
+</ul></div>
+        <hr />
+    </div>
+		
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../on-object-array.html"><h2>On Object Array</h2></a>
+        <div class= "well small"> Sat 11 April 2015
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+
+ </div>
+        <div class="summary"><blockquote>
 <p>Whereever an object array is defined in an cpp program, the array is always initialized. If no initializer is given,
 the default constructor is invoked. The following simple program speaks louder than words.</p>
 </blockquote>
@@ -83,41 +128,9 @@ the default constructor is invoked. The following simple program speaks louder t
 
 <span class="k">class</span> <span class="nc">Test</span> <span class="p">{</span>
     <span class="k">public</span><span class="o">:</span>
-        <span class="n">Test</span> <span class="p">()</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Test constructor invoked &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">counter</span><span class="o">++</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">private</span><span class="o">:</span>
-        <span class="k">static</span> <span class="kt">int</span> <span class="n">counter</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="kt">int</span> <span class="n">Test</span><span class="o">::</span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">Test</span> <span class="n">test_array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Test</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">test_array</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>The Result is as follow:</p>
-<div class="highlight"><pre>Test constructor invoked 0
-Test constructor invoked 1
-Test constructor invoked 2
-Test constructor invoked 3
-Test constructor invoked 4
-Test constructor invoked 5
-Test constructor invoked 6
-Test constructor invoked 7
-Test constructor invoked 8
-Test constructor invoked 9
-1 10
-</pre></div>
-
-
-<p>One some thing you may notice is that a class without any instance variables has a size of 1 byte.</p></div>
-        <hr />
-    </div>
-		
+        <span class="n">Test</span> <span class="p">()</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Test constructor invoked &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">counter ...</span></pre></div> <a class="btn btn-info xsmall" href="../on-object-array.html">read more</a></div>
+    </div>	
+				
 <div class="pagination">
 <ul>
     <li class="prev disabled"><a href="#">&larr; Previous</a></li>
@@ -145,7 +158,7 @@ Test constructor invoked 9
 
 
 
-                <li><a href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+                <li><a href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
 
             </ul>
             </div>
@@ -158,7 +171,8 @@ Test constructor invoked 9
                 </li>
                 
                 <li><a href="../category/ccpp.html">C/CPP</a></li>
-                <li><a href="../category/linux.html">linux</a></li>
+                <li><a href="../category/english.html">English</a></li>
+                <li><a href="../category/linux.html">Linux</a></li>
                 <li><a href="../category/security.html">Security</a></li>
                    
             </ul>
@@ -194,23 +208,27 @@ Test constructor invoked 9
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
                 <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
                 <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
                 <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
                 <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-3"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="../tag/python.html">python</a></li>
+                <li class="tag-4"><a href="../tag/type.html">type</a></li>
+                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
             </ul>
             </div>
 
@@ -221,7 +239,7 @@ Test constructor invoked 9
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">BLxG</a> &copy; ictlxb 2015</p>
+<p><a href="..">BLxG</a> &copy; ictlxb 2016</p>
 </footer>
 
 </div> <!-- /container -->

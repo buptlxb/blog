@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-SITEURL = u'http://gotit.sinaapp.com'
+SITEURL = u'http://gotit.applinzi.com'
 AUTHOR = u'ictlxb'
 SITENAME = u'BLxG'
 THEME = 'tuxlite_tbs'

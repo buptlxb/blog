@@ -21,7 +21,7 @@
     <link href="../theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
-        <link href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
+        <link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
 
 </head>
 
@@ -62,8 +62,8 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="../derived-class-constructor-initializer-list.html"><h1>Derived Class Constructor Initializer List</h1></a>
-Wed 15 April 2015
+            <a href="../type-conversions.html"><h1>Type Conversions</h1></a>
+Wed 24 February 2016
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -72,50 +72,33 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
         </div>
         
-        <div><p><strong>Encapsulation</strong>, <strong>Inheritance</strong> and <strong>Polymorphism</strong> are three key concepts in Object-Oriented Programing.
-Here is something intresting about derived class constructor initializer list.</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-
-<span class="k">struct</span> <span class="n">X</span> <span class="p">{</span>
-    <span class="n">X</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">)</span><span class="o">:</span> <span class="n">_m</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">{}</span>
-    <span class="n">X</span> <span class="p">()</span> <span class="o">:</span> <span class="n">_m</span><span class="p">(</span><span class="mi">20150304</span><span class="p">)</span> <span class="p">{}</span>
-    <span class="k">protected</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">_m</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nl">A</span> <span class="p">:</span> <span class="k">public</span> <span class="n">X</span> <span class="p">{</span>
-    <span class="n">A</span> <span class="p">(</span><span class="kt">short</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span> <span class="n">_m</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nl">B</span> <span class="p">:</span> <span class="k">public</span> <span class="n">X</span> <span class="p">{</span>
-    <span class="n">B</span> <span class="p">()</span> <span class="p">{}</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nl">C</span> <span class="p">:</span> <span class="k">public</span> <span class="n">X</span> <span class="p">{</span>
-    <span class="n">C</span> <span class="p">(</span><span class="kt">short</span> <span class="n">m</span><span class="p">)</span><span class="o">:</span><span class="n">X</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">{}</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nl">D</span> <span class="p">:</span> <span class="k">public</span> <span class="n">X</span> <span class="p">{</span>
-    <span class="n">D</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="o">:</span>  <span class="n">_m</span><span class="p">(</span><span class="n">m</span><span class="p">){}</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nl">E</span> <span class="p">:</span> <span class="k">public</span> <span class="n">X</span> <span class="p">{</span>
-    <span class="n">E</span> <span class="p">(</span><span class="kt">short</span> <span class="n">m</span><span class="p">)</span> <span class="o">:</span><span class="n">X</span><span class="p">(</span><span class="n">_m</span><span class="o">*</span><span class="n">m</span><span class="p">)</span> <span class="p">{}</span>
-<span class="p">};</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>One of the derived class is incorrect. If you can figure out which one is incorrect, it is not necessary for you to read
-the <a href="http://www.learncpp.com/cpp-tutorial/114-constructors-and-initialization-of-derived-classes/">post</a>.</p>
-<hr />
-<p>The answer is D. Initializing variable of base class in initialization list of constructor of derived class is
-forbidden. The rational behind this rule may relate to the difference between <strong>initialization</strong> and <strong>assignment</strong>.</p></div>
+        <div><blockquote>
+<p>Type conversions are very complicated in C++ language. Maybe you do not agree with me. But it really makes me crazy!
+Type conversions contain many and many topics, such as integer promotion, array degrading to pointers, type castings 
+and so on. Some kinds of type conversions are easy to understand, however, it is quiet hard to know the other kinds of type conversions well.
+Even worse, all of them are easily forgotten.</p>
+</blockquote>
+<h2>Integer Promotion</h2>
+<p>It is relatively easy to understand Integer Promotion. In a word, integer promotion simplily converts integer from low
+precision to high one and from signed to unsigned, such as from <code>char</code> to <code>short</code>, from <code>short</code> to <code>unsigned short</code>.</p>
+<h2>Array degrading to pointers</h2>
+<p>Array is a special type in C/C++. You can easily define a array with <code>Type []</code>. But you can never pass an array to a
+function. When you try to do this, the array degrades to pointer implicitly. It is why we all declare a function like
+<code>Return-type function-name (Type [], Size_t)</code>.</p>
+<h2>Type castings</h2>
+<p>Type castings usually mean explicit type conversions. There are four type casting operators <code>static_cast</code>,
+<code>dynamic_cast</code>, <code>const_cast</code>, <code>reinterpret_cast</code>.</p>
+<h2>Type conversions with class</h2>
+<p>When type conversions meet class, things go worse. <code>single-argument constructors</code>, <code>assignment operator</code>,
+<code>type-cast operator</code> are all relative with implicit type conversions. These three member functions can be
+controlled by user to define their own type conversions.</p>
+<h2>Rules of Type Conversions</h2>
+<ul>
+<li>
+<p>There must not be two or more user defined type conversions in any sequence of conversions.</p>
+<p>There are more rules of type conversions in C++. I will add them here when I come across to them.</p>
+</li>
+</ul></div>
         <hr />
     </div>
 		
@@ -126,8 +109,8 @@ forbidden. The rational behind this rule may relate to the difference between <s
  
 
     <div class='article'>
-        <a href="../on-object-array.html"><h2>On Object Array</h2></a>
-        <div class= "well small"> Sat 11 April 2015
+        <a href="../uniform-initialization.html"><h2>Uniform Initialization</h2></a>
+        <div class= "well small"> Thu 03 December 2015
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -135,17 +118,12 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
 
  </div>
         <div class="summary"><blockquote>
-<p>Whereever an object array is defined in an cpp program, the array is always initialized. If no initializer is given,
-the default constructor is invoked. The following simple program speaks louder than words.</p>
+<p>If you use <a href="http://www.cplusplus.com/reference/stl/">STL</a> containers, the redundant initialization is really boring.
+But, the initialization for the build-in array and struct in C language is quiet easy.
+Uniform Initializatin introduced in C++11 is an exciting feature for this.</p>
 </blockquote>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="k">class</span> <span class="nc">Test</span> <span class="p">{</span>
-    <span class="k">public</span><span class="o">:</span>
-        <span class="n">Test</span> <span class="p">()</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Test constructor invoked &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">counter ...</span></pre></div> <a class="btn btn-info xsmall" href="../on-object-array.html">read more</a></div>
+<h3>What's it and why should I care?</h3>
+<p>C++ offers several ways ...</p> <a class="btn btn-info xsmall" href="../uniform-initialization.html">read more</a></div>
     </div>	
 				
 
@@ -155,23 +133,18 @@ the default constructor is invoked. The following simple program speaks louder t
  
 
     <div class='article'>
-        <a href="../on-runtime-monitoring-tools.html"><h2>On Runtime Monitoring Tools</h2></a>
-        <div class= "well small"> Sun 21 September 2014
+        <a href="../words-and-their-stroies-number-one.html"><h2>Words and Their Stroies: Number One</h2></a>
+        <div class= "well small"> Sun 07 June 2015
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
 
 
  </div>
-        <div class="summary"><blockquote>
-<p>Runtime monitoring tools make use of runtime information to
-detect bugs that are difficult to detect statically. Existing
-dynamic monitoring schemes fall into three categories: programming-rule based
-(PRB), invariant-rule-based (IRB), and execution-statistics based (ESB).</p>
-</blockquote>
-<h2>Programming Rule Based (PRB)</h2>
-<p>PRB checks for violations of <strong>programming language specifications</strong>,
-<strong>programming paradigms</strong>, or <strong>software ...</strong></p> <a class="btn btn-info xsmall" href="../on-runtime-monitoring-tools.html">read more</a></div>
+        <div class="summary"><p>Now, the VOA Special English program -- words and their stories.</p>
+<p>Today, I will tell about expressions using numbers. Let us start with the number one.</p>
+<p>Numbers can be tricky. <strong>one the one hand</strong>, they are simply numbers. On the other hand, they have meanings.
+I <strong>for one</strong> using these expressions ...</p> <a class="btn btn-info xsmall" href="../words-and-their-stroies-number-one.html">read more</a></div>
     </div>	
 				
 
@@ -181,21 +154,34 @@ dynamic monitoring schemes fall into three categories: programming-rule based
  
 
     <div class='article'>
-        <a href="../basic-concept-on-security.html"><h2>Basic Concept on Security</h2></a>
-        <div class= "well small"> Wed 17 September 2014
+        <a href="../worlds-2015-05-19.html"><h2>Worlds 2015-05-19</h2></a>
+        <div class= "well small"> Tue 19 May 2015
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
 
 
  </div>
-        <div class="summary"><h2>Authentication vs. Authorization</h2>
-<h4>Authentication</h4>
-<p>Authentication verifies <strong>who you are</strong>. It is the process of
-ascertaining that somebody really is who he/she claims to be.</p>
-<h4>Authorization</h4>
-<p>Authorization verifies <strong>what you are authorized to do</strong>. It refers
-ot rules that determine who is allowed to do what.</p> <a class="btn btn-info xsmall" href="../basic-concept-on-security.html">read more</a></div>
+        <div class="summary"><h2>oust</h2>
+<ol>
+<li>Ousted Thai PM Shinawatra banned from travelling aboard at the start of trial</li>
+</ol>
+<h2>jury</h2>
+<ol>
+<li>The jury found him not guilty.</li>
+</ol>
+<h2>trial</h2>
+<ol>
+<li>
+<p>The trial is due to start next week.</p>
+</li>
+<li>
+<p>a new drug that is undergoing clinical trials</p>
+</li>
+<li>
+<p>The security system will be reviewed after a three-month trial period.</p>
+</li>
+</ol> <a class="btn btn-info xsmall" href="../worlds-2015-05-19.html">read more</a></div>
     </div>	
 				
 
@@ -205,20 +191,33 @@ ot rules that determine who is allowed to do what.</p> <a class="btn btn-info xs
  
 
     <div class='article'>
-        <a href="../web-vulnerability.html"><h2>Web Vulnerability</h2></a>
-        <div class= "well small"> Tue 16 September 2014
+        <a href="../words-2015-05-12.html"><h2>Words 2015-05-12</h2></a>
+        <div class= "well small"> Tue 12 May 2015
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
 
 
  </div>
-        <div class="summary"><h4>Two Main Approaches to Testing Software Application</h4>
-<p>In <strong>white-box</strong> testing, the source code of application is analyzed in an
-attempt to track down defective or vulnerable lines of code. This operation is
-often integrated into the development process by creating add-on tools for
-common deveploment environments.</p>
-<p>In <strong>black-blox</strong> testing, the ...</p> <a class="btn btn-info xsmall" href="../web-vulnerability.html">read more</a></div>
+        <div class="summary"><h2>mercy</h2>
+<ol>
+<li>
+<p>He showed no mercy to his enemies.</p>
+</li>
+<li>
+<p>After the boat's motor failed, they were at the mercy of the weather.</p>
+</li>
+<li>
+<p>She was completely at his mercy</p>
+</li>
+</ol>
+<h2>surrogate</h2>
+<ol>
+<li>
+<p>Surrogate pairs may be present in the Unicode object, and will be reported as two separate items.</p>
+</li>
+<li>
+<p>William was acting as ...</p></li></ol> <a class="btn btn-info xsmall" href="../words-2015-05-12.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -229,6 +228,7 @@ common deveploment environments.</p>
     <li class=""><a href="../author/ictlxb2.html">2</a></li>
     <li class=""><a href="../author/ictlxb3.html">3</a></li>
     <li class=""><a href="../author/ictlxb4.html">4</a></li>
+    <li class=""><a href="../author/ictlxb5.html">5</a></li>
 
     <li class="next"><a href="../author/ictlxb2.html">Next &rarr;</a></li>
 
@@ -251,7 +251,7 @@ common deveploment environments.</p>
 
 
 
-                <li><a href="http://gotit.sinaapp.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+                <li><a href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
 
             </ul>
             </div>
@@ -264,7 +264,8 @@ common deveploment environments.</p>
                 </li>
                 
                 <li><a href="../category/ccpp.html">C/CPP</a></li>
-                <li><a href="../category/linux.html">linux</a></li>
+                <li><a href="../category/english.html">English</a></li>
+                <li><a href="../category/linux.html">Linux</a></li>
                 <li><a href="../category/security.html">Security</a></li>
                    
             </ul>
@@ -300,23 +301,27 @@ common deveploment environments.</p>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
                 <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
                 <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
                 <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
                 <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-3"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="../tag/python.html">python</a></li>
+                <li class="tag-4"><a href="../tag/type.html">type</a></li>
+                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
             </ul>
             </div>
 
@@ -327,7 +332,7 @@ common deveploment environments.</p>
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">BLxG</a> &copy; ictlxb 2015</p>
+<p><a href="..">BLxG</a> &copy; ictlxb 2016</p>
 </footer>
 
 </div> <!-- /container -->

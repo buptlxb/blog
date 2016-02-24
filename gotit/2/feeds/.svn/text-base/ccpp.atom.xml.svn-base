@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.sinaapp.com/feeds/ccpp.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2015-04-15T20:35:00+08:00</updated><entry><title>Derived Class Constructor Initializer List</title><link href="http://www.gotit.sinaapp.com/derived-class-constructor-initializer-list.html" rel="alternate"></link><updated>2015-04-15T20:35:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2015-04-15:derived-class-constructor-initializer-list.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Encapsulation&lt;/strong&gt;, &lt;strong&gt;Inheritance&lt;/strong&gt; and &lt;strong&gt;Polymorphism&lt;/strong&gt; are three key concepts in Object-Oriented Programing.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.applinzi.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/ccpp.atom.xml" rel="self"></link><id>http://www.gotit.applinzi.com/</id><updated>2016-02-24T16:01:41+08:00</updated><entry><title>Type Conversions</title><link href="http://www.gotit.applinzi.com/type-conversions.html" rel="alternate"></link><updated>2016-02-24T16:01:41+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2016-02-24:type-conversions.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Type conversions are very complicated in C++ language. Maybe you do not agree with me. But it really makes me crazy!
+Type conversions contain many and many topics, such as integer promotion, array degrading to pointers, type castings 
+and so on. Some kinds of type conversions are easy to understand, however, it is quiet hard to know the other kinds of type conversions well.
+Even worse, all of them are easily forgotten.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Integer Promotion&lt;/h2&gt;
+&lt;p&gt;It is relatively easy to understand Integer Promotion. In a word, integer promotion simplily converts integer from low
+precision to high one and from signed to unsigned, such as from &lt;code&gt;char&lt;/code&gt; to &lt;code&gt;short&lt;/code&gt;, from &lt;code&gt;short&lt;/code&gt; to &lt;code&gt;unsigned short&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Array degrading to pointers&lt;/h2&gt;
+&lt;p&gt;Array is a special type in C/C++. You can easily define a array with &lt;code&gt;Type []&lt;/code&gt;. But you can never pass an array to a
+function. When you try to do this, the array degrades to pointer implicitly. It is why we all declare a function like
+&lt;code&gt;Return-type function-name (Type [], Size_t)&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Type castings&lt;/h2&gt;
+&lt;p&gt;Type castings usually mean explicit type conversions. There are four type casting operators &lt;code&gt;static_cast&lt;/code&gt;,
+&lt;code&gt;dynamic_cast&lt;/code&gt;, &lt;code&gt;const_cast&lt;/code&gt;, &lt;code&gt;reinterpret_cast&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Type conversions with class&lt;/h2&gt;
+&lt;p&gt;When type conversions meet class, things go worse. &lt;code&gt;single-argument constructors&lt;/code&gt;, &lt;code&gt;assignment operator&lt;/code&gt;,
+&lt;code&gt;type-cast operator&lt;/code&gt; are all relative with implicit type conversions. These three member functions can be
+controlled by user to define their own type conversions.&lt;/p&gt;
+&lt;h2&gt;Rules of Type Conversions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;There must not be two or more user defined type conversions in any sequence of conversions.&lt;/p&gt;
+&lt;p&gt;There are more rules of type conversions in C++. I will add them here when I come across to them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="cpp"></category><category term="type"></category><category term="constructor"></category></entry><entry><title>Uniform Initialization</title><link href="http://www.gotit.applinzi.com/uniform-initialization.html" rel="alternate"></link><updated>2015-12-03T14:05:42+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2015-12-03:uniform-initialization.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;If you use &lt;a href="http://www.cplusplus.com/reference/stl/"&gt;STL&lt;/a&gt; containers, the redundant initialization is really boring.
+But, the initialization for the build-in array and struct in C language is quiet easy.
+Uniform Initializatin introduced in C++11 is an exciting feature for this.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;What's it and why should I care?&lt;/h3&gt;
+&lt;p&gt;C++ offers several ways of initializing an object depending on its type and the initialization context.
+When misused, the error can be surprising and the error messages obscure.&lt;/p&gt;
+&lt;p&gt;It can be hard to remember the rules for initialization and to choose the best way.
+The C++11 solution is to allow &lt;strong&gt;{}&lt;/strong&gt;-initializer lists for all initialization.
+Importantly, &lt;strong&gt;X{a}&lt;/strong&gt; constructs the same value in every context, so that &lt;strong&gt;{}&lt;/strong&gt;-initialization gives the same result in all places where it is legal.&lt;/p&gt;
+&lt;h3&gt;What should I do about it?&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vec&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;p&gt;[1] &lt;a href="http://stackoverflow.com/questions/4178175/what-are-aggregates-and-pods-and-how-why-are-they-special"&gt;http://stackoverflow.com/questions/4178175/what-are-aggregates-and-pods-and-how-why-are-they-special&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] &lt;a href="http://www.stroustrup.com/C++11FAQ.html#uniform-init"&gt;http://www.stroustrup.com/C++11FAQ.html#uniform-init&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>Derived Class Constructor Initializer List</title><link href="http://www.gotit.applinzi.com/derived-class-constructor-initializer-list.html" rel="alternate"></link><updated>2015-04-15T20:35:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2015-04-15:derived-class-constructor-initializer-list.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Encapsulation&lt;/strong&gt;, &lt;strong&gt;Inheritance&lt;/strong&gt; and &lt;strong&gt;Polymorphism&lt;/strong&gt; are three key concepts in Object-Oriented Programing.
 Here is something intresting about derived class constructor initializer list.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
 
@@ -42,7 +89,7 @@ Here is something intresting about derived class constructor initializer list.&l
 the &lt;a href="http://www.learncpp.com/cpp-tutorial/114-constructors-and-initialization-of-derived-classes/"&gt;post&lt;/a&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;The answer is D. Initializing variable of base class in initialization list of constructor of derived class is
-forbidden. The rational behind this rule may relate to the difference between &lt;strong&gt;initialization&lt;/strong&gt; and &lt;strong&gt;assignment&lt;/strong&gt;.&lt;/p&gt;</summary><category term="constructor"></category><category term="inheritance"></category></entry><entry><title>On Object Array</title><link href="http://www.gotit.sinaapp.com/on-object-array.html" rel="alternate"></link><updated>2015-04-11T23:54:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2015-04-11:on-object-array.html</id><summary type="html">&lt;blockquote&gt;
+forbidden. The rational behind this rule may relate to the difference between &lt;strong&gt;initialization&lt;/strong&gt; and &lt;strong&gt;assignment&lt;/strong&gt;.&lt;/p&gt;</summary><category term="constructor"></category><category term="inheritance"></category></entry><entry><title>On Object Array</title><link href="http://www.gotit.applinzi.com/on-object-array.html" rel="alternate"></link><updated>2015-04-11T23:54:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2015-04-11:on-object-array.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Whereever an object array is defined in an cpp program, the array is always initialized. If no initializer is given,
 the default constructor is invoked. The following simple program speaks louder than words.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -84,7 +131,7 @@ Test constructor invoked 9
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;One some thing you may notice is that a class without any instance variables has a size of 1 byte.&lt;/p&gt;</summary><category term="cpp"></category><category term="array"></category><category term="contructor"></category></entry><entry><title>Program Optimization Experiments</title><link href="http://www.gotit.sinaapp.com/program-optimization-experiments.html" rel="alternate"></link><updated>2014-05-03T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-05-03:program-optimization-experiments.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;One some thing you may notice is that a class without any instance variables has a size of 1 byte.&lt;/p&gt;</summary><category term="cpp"></category><category term="array"></category><category term="contructor"></category></entry><entry><title>Program Optimization Experiments</title><link href="http://www.gotit.applinzi.com/program-optimization-experiments.html" rel="alternate"></link><updated>2014-05-03T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2014-05-03:program-optimization-experiments.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Program optimization is a very intresting problem. With the different matrix-multiply
 program, I want to find the factors which might have influence on the
 performace of the programs. Several experiments has been conducted on my
@@ -618,7 +665,7 @@ With the number of workers increasing, the performance did not decrease as
 expected, I guess thread switch might be optimized so well that the cost could
 be ignored.&lt;/p&gt;
 &lt;h3&gt;7 Optimization With BLAS (optional)&lt;/h3&gt;
-&lt;p&gt;(To be continued)&lt;/p&gt;</summary><category term="optimization"></category><category term="cache miss"></category><category term="row-major"></category></entry><entry><title>Hello World</title><link href="http://www.gotit.sinaapp.com/hello-world.html" rel="alternate"></link><updated>2014-01-20T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-01-20:hello-world.html</id><summary type="html">&lt;p&gt;Test without jekyll installed &lt;/p&gt;
+&lt;p&gt;(To be continued)&lt;/p&gt;</summary><category term="optimization"></category><category term="cache miss"></category><category term="row-major"></category></entry><entry><title>Hello World</title><link href="http://www.gotit.applinzi.com/hello-world.html" rel="alternate"></link><updated>2014-01-20T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2014-01-20:hello-world.html</id><summary type="html">&lt;p&gt;Test without jekyll installed &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;

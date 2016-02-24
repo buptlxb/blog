@@ -1,5 +1,5 @@
 title: apt-get error
-category: linux
+category: Linux
 tags: ubuntu, linux
 
 
