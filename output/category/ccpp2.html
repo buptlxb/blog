@@ -3,9 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>BLxG</title>
-    <meta name="description" content="">
     <meta name="author" content="ictlxb">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="wb:webmaster" content="35e06a32947da88a" />
+
+    <meta name="description" content="Programming and Life -- http://www.gotit.sinaapp.com">
+    <meta name="keywords" content="算法,软件开发,Algorithm,C++,Coding,Debug,Google,Linux,,OS,,Programmer,programming,language,Python,Ubuntu,Unix,vim">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -62,14 +66,132 @@
  
 
     <div class='article'>
+        <a href="../uniform-initialization.html"><h2>Uniform Initialization</h2></a>
+        <div class= "well small"> Thu 03 December 2015
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/ccpp.html">C/CPP</a>
+
+ </div>
+        <div class="summary"><blockquote>
+<p>If you use <a href="http://www.cplusplus.com/reference/stl/">STL</a> containers, the redundant initialization is really boring.
+But, the initialization for the build-in array and struct in C language is quiet easy.
+Uniform Initializatin introduced in C++11 is an exciting feature for this.</p>
+</blockquote>
+<h3>What's it and why should I care?</h3>
+<p>C++ offers several ways ...</p> <a class="btn btn-info xsmall" href="../uniform-initialization.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../derived-class-constructor-initializer-list.html"><h2>Derived Class Constructor Initializer List</h2></a>
+        <div class= "well small"> Wed 15 April 2015
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/ccpp.html">C/CPP</a>
+
+ 
+    Tags <a href="../tag/constructor.html">constructor</a> <a href="../tag/inheritance.html">inheritance</a>  </div>
+        <div class="summary"><p><strong>Encapsulation</strong>, <strong>Inheritance</strong> and <strong>Polymorphism</strong> are three key concepts in Object-Oriented Programing.
+Here is something intresting about derived class constructor initializer list.</p>
+<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="k">struct</span> <span class="n">X</span> <span class="p">{</span>
+    <span class="n">X</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">)</span><span class="o">:</span> <span class="n">_m</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">X</span> <span class="p">()</span> <span class="o">:</span> <span class="n">_m</span><span class="p">(</span><span class="mi">20150304</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">protected</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">_m</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nl">A</span> <span class="p">:</span> <span class="k">public</span> <span class="n">X</span> <span class="p">{</span>
+    <span class="n">A</span> <span class="p">(</span><span class="kt">short</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span> <span class="n">_m</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nl">B</span> <span class="p">:</span> <span class="k">public</span> <span class="n">X ...</span></pre></div> <a class="btn btn-info xsmall" href="../derived-class-constructor-initializer-list.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../on-object-array.html"><h2>On Object Array</h2></a>
+        <div class= "well small"> Sat 11 April 2015
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/ccpp.html">C/CPP</a>
+
+ 
+    Tags <a href="../tag/cpp.html">cpp</a> <a href="../tag/array.html">array</a> <a href="../tag/contructor.html">contructor</a>  </div>
+        <div class="summary"><blockquote>
+<p>Whereever an object array is defined in an cpp program, the array is always initialized. If no initializer is given,
+the default constructor is invoked. The following simple program speaks louder than words.</p>
+</blockquote>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Test</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Test</span> <span class="p">()</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Test constructor invoked &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">counter ...</span></pre></div> <a class="btn btn-info xsmall" href="../on-object-array.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../program-optimization-experiments.html"><h2>Program Optimization Experiments</h2></a>
+        <div class= "well small"> Sat 03 May 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/ccpp.html">C/CPP</a>
+
+ 
+    Tags <a href="../tag/optimization.html">optimization</a> <a href="../tag/cache-miss.html">cache miss</a> <a href="../tag/row-major.html">row-major</a>  </div>
+        <div class="summary"><blockquote>
+<p>Program optimization is a very intresting problem. With the different matrix-multiply
+program, I want to find the factors which might have influence on the
+performace of the programs. Several experiments has been conducted on my
+computer. Source code and results will be listed as follow. Also, I will give a ...</p></blockquote> <a class="btn btn-info xsmall" href="../program-optimization-experiments.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../hello-world.html"><h2>Hello World</h2></a>
         <div class= "well small"> Mon 20 January 2014
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
 
+Filed under <a href="../category/ccpp.html">C/CPP</a>
 
- </div>
+ 
+    Tags <a href="../tag/ccpp.html">C/CPP</a>  </div>
         <div class="summary"><p>Test without jekyll installed </p>
 <div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
 
@@ -159,27 +281,29 @@ by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-3"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
                 <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/python.html">python</a></li>
                 <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
                 <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
+                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
+                <li class="tag-2"><a href="../tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
                 <li class="tag-4"><a href="../tag/array.html">array</a></li>
+                <li class="tag-2"><a href="../tag/algorithm.html">algorithm</a></li>
+                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-4"><a href="../tag/type.html">type</a></li>
             </ul>
             </div>
 

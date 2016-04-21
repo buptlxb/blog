@@ -7,143 +7,161 @@ cache-miss.html
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/gotit/!svn/ver/62/2/tag/cache-miss.html
+/gotit/!svn/ver/69/2/tag/cache-miss.html
 END
 row-major.html
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/gotit/!svn/ver/62/2/tag/row-major.html
+/gotit/!svn/ver/69/2/tag/row-major.html
 END
 array.html
 K 25
 svn:wc:ra_dav:version-url
 V 35
-/gotit/!svn/ver/62/2/tag/array.html
+/gotit/!svn/ver/69/2/tag/array.html
 END
 bochs2.html
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/gotit/!svn/ver/62/2/tag/bochs2.html
-END
-os.html
-K 25
-svn:wc:ra_dav:version-url
-V 32
-/gotit/!svn/ver/62/2/tag/os.html
-END
-linux2.html
-K 25
-svn:wc:ra_dav:version-url
-V 36
-/gotit/!svn/ver/62/2/tag/linux2.html
-END
-python.html
-K 25
-svn:wc:ra_dav:version-url
-V 36
-/gotit/!svn/ver/62/2/tag/python.html
+/gotit/!svn/ver/69/2/tag/bochs2.html
 END
 type.html
 K 25
 svn:wc:ra_dav:version-url
 V 34
-/gotit/!svn/ver/62/2/tag/type.html
+/gotit/!svn/ver/69/2/tag/type.html
 END
-cpp.html
+python.html
 K 25
 svn:wc:ra_dav:version-url
-V 33
-/gotit/!svn/ver/62/2/tag/cpp.html
+V 36
+/gotit/!svn/ver/69/2/tag/python.html
+END
+linux2.html
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/gotit/!svn/ver/69/2/tag/linux2.html
+END
+os.html
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/gotit/!svn/ver/69/2/tag/os.html
 END
 ubuntu.html
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/gotit/!svn/ver/62/2/tag/ubuntu.html
+/gotit/!svn/ver/69/2/tag/ubuntu.html
 END
-constructor.html
+cpp.html
 K 25
 svn:wc:ra_dav:version-url
-V 41
-/gotit/!svn/ver/62/2/tag/constructor.html
+V 33
+/gotit/!svn/ver/69/2/tag/cpp.html
 END
 ccpp.html
 K 25
 svn:wc:ra_dav:version-url
 V 34
-/gotit/!svn/ver/62/2/tag/ccpp.html
+/gotit/!svn/ver/69/2/tag/ccpp.html
+END
+constructor.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/gotit/!svn/ver/69/2/tag/constructor.html
 END
 optimization.html
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/gotit/!svn/ver/62/2/tag/optimization.html
+/gotit/!svn/ver/69/2/tag/optimization.html
 END
-network.html
+algorithm.html
 K 25
 svn:wc:ra_dav:version-url
-V 37
-/gotit/!svn/ver/62/2/tag/network.html
+V 39
+/gotit/!svn/ver/69/2/tag/algorithm.html
 END
 inheritance.html
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/gotit/!svn/ver/62/2/tag/inheritance.html
+/gotit/!svn/ver/69/2/tag/inheritance.html
+END
+network.html
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/gotit/!svn/ver/69/2/tag/network.html
 END
 voa-special-english.html
 K 25
 svn:wc:ra_dav:version-url
 V 49
-/gotit/!svn/ver/62/2/tag/voa-special-english.html
+/gotit/!svn/ver/69/2/tag/voa-special-english.html
 END
 bochs.html
 K 25
 svn:wc:ra_dav:version-url
 V 35
-/gotit/!svn/ver/62/2/tag/bochs.html
+/gotit/!svn/ver/69/2/tag/bochs.html
 END
 linxu.html
 K 25
 svn:wc:ra_dav:version-url
 V 35
-/gotit/!svn/ver/62/2/tag/linxu.html
+/gotit/!svn/ver/69/2/tag/linxu.html
 END
 linux.html
 K 25
 svn:wc:ra_dav:version-url
 V 35
-/gotit/!svn/ver/62/2/tag/linux.html
+/gotit/!svn/ver/69/2/tag/linux.html
 END
 contructor.html
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/gotit/!svn/ver/62/2/tag/contructor.html
+/gotit/!svn/ver/69/2/tag/contructor.html
 END
 os2.html
 K 25
 svn:wc:ra_dav:version-url
 V 33
-/gotit/!svn/ver/62/2/tag/os2.html
+/gotit/!svn/ver/69/2/tag/os2.html
 END
 vpn.html
 K 25
 svn:wc:ra_dav:version-url
 V 33
-/gotit/!svn/ver/62/2/tag/vpn.html
+/gotit/!svn/ver/69/2/tag/vpn.html
+END
+hihocoder.html
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/gotit/!svn/ver/69/2/tag/hihocoder.html
+END
+cpp2.html
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/gotit/!svn/ver/69/2/tag/cpp2.html
 END
 security.html
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/gotit/!svn/ver/62/2/tag/security.html
+/gotit/!svn/ver/69/2/tag/security.html
 END
 vocabulary.html
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/gotit/!svn/ver/62/2/tag/vocabulary.html
+/gotit/!svn/ver/69/2/tag/vocabulary.html
 END

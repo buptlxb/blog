@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>BLxG</title>
+    <meta name="author" content="ictlxb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="wb:webmaster" content="35e06a32947da88a" />
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="./theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="./theme/images/icons/favicon.ico"/>
+    <!-- Le styles -->
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href=".">BLxG</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="./pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>微软2016校园招聘4月在线笔试题解(一)</h1>
+Sat 09 April 2016
+
+by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="./category/ccpp.html">C/CPP</a>
+
+ 
+    Tags <a href="./tag/cpp.html">cpp</a> <a href="./tag/algorithm.html">algorithm</a> <a href="./tag/hihocoder.html">hihocoder</a>         </div>
+
+        <div><blockquote>
+<p>If all you have is a hammer, everything looks like a nail.  ---Maslow</p>
+</blockquote>
+<h2>A. Font Size</h2>
+<h3>Problem</h3>
+<p>时间限制:10000ms
+单点时限:1000ms
+内存限制:256MB</p>
+<h4>描述</h4>
+<p>Steven loves reading book on his phone. The book he reads now consists of N paragraphs and the i-th paragraph contains ai characters.</p>
+<p>Steven wants to make the characters easier to read, so he decides to increase the font size of characters. But the size of Steven's phone screen is limited. Its width is W and height is H. As a result, if the font size of characters is S then it can only show ⌊W / S⌋ characters in a line and ⌊H / S⌋ lines in a page. (⌊x⌋ is the largest integer no more than x)  </p>
+<p>So here's the question, if Steven wants to control the number of pages no more than P, what's the maximum font size he can set? Note that paragraphs must start in a new line and there is no empty line between paragraphs.</p>
+<h4>输入</h4>
+<p>Input may contain multiple test cases.</p>
+<p>The first line is an integer TASKS, representing the number of test cases.</p>
+<p>For each test case, the first line contains four integers N, P, W and H, as described above.</p>
+<p>The second line contains N integers a1, a2, ... aN, indicating the number of characters in each paragraph.</p>
+<p>For all test cases,</p>
+<p>1 &lt;= N &lt;= 103,</p>
+<p>1 &lt;= W, H, ai &lt;= 103,</p>
+<p>1 &lt;= P &lt;= 106,</p>
+<p>There is always a way to control the number of pages no more than P.</p>
+<h4>输出</h4>
+<p>样例输入</p>
+<div class="highlight"><pre>2
+1 10 4 3
+10
+2 10 4 3
+10 10
+</pre></div>
+
+
+<p>样例输出</p>
+<div class="highlight"><pre>3
+2
+</pre></div>
+
+
+<h3>Analysis</h3>
+<p>本题相比简单，只是要注意一点，<strong>每段要重新开始一行</strong>，另注意到输入的范围也没有超过int32_t表示的范围。分析后容易得到以下结论：</p>
+<ol>
+<li>字母是方的，即宽高一样。</li>
+<li>每页至少要显示一个字母，才能有解。即字母大小<code>size = min(W, H)</code>。</li>
+<li>每行至多可以显示<code>row = W / size</code>个字母，注意下取整。</li>
+<li>一个段包含<code>p</code>个字母的段，至少需要占用<code>require = (p + row - 1) / row</code>行。 </li>
+</ol>
+<p>有了这些结论，代码比较容易写出来了。</p>
+<h3>Solution</h3>
+<p>下面是C++实现的完整代码：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;vector&gt;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">paragraphs</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span> <span class="n">i</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="n">i</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">i</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">require</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">p</span> <span class="p">:</span> <span class="n">paragraphs</span><span class="p">)</span>
+            <span class="n">require</span> <span class="o">+=</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">row</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">require</span> <span class="o">&lt;=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">col</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>   
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tasks</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">tasks</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">tasks</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">p</span> <span class="o">&gt;&gt;</span> <span class="n">w</span> <span class="o">&gt;&gt;</span> <span class="n">h</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">paragraphs</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">paragraphs</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">paragraphs</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>   
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Complexity</h3>
+<ul>
+<li>时间复杂度：O(n*min(w, h))</li>
+<li>空间复杂度：O(1) (不计算存储每段字母数量的空间)</li>
+</ul>
+<p>（全文完）</p>
+<p>（转载本站文章请注明作者和出处，请勿用于任何商业用途）</p></div>
+	
+        <hr>
+
+    <wb:share-button xmlns:wb="http://open.weibo.com/wb" appkey="2571843260" addition="full" type="button" ralateUid="2421104062"
+    default_text="微软2016校园招聘4月在线笔试题解(一)"></wb:share-button>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blxg'; 
+    var disqus_title = '微软2016校园招聘4月在线笔试题解(一)';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
+
+
+
+                <li><a href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="./category/ccpp.html">C/CPP</a></li>
+                <li><a href="./category/english.html">English</a></li>
+                <li><a href="./category/linux.html">Linux</a></li>
+                <li><a href="./category/security.html">Security</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/buptlxb">Github</a></li>
+                <li><a href="http://weibo.com/ictlxb">Weibo</a></li>
+            </ul>
+            </div>
+
+
+            <div class="tagcloud">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="tagcloud">
+                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="./tag/python.html">python</a></li>
+                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
+                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
+                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
+                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
+                <li class="tag-2"><a href="./tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
+                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
+                <li class="tag-4"><a href="./tag/array.html">array</a></li>
+                <li class="tag-2"><a href="./tag/algorithm.html">algorithm</a></li>
+                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
+                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-1"><a href="./tag/os.html">os</a></li>
+                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
+                <li class="tag-4"><a href="./tag/type.html">type</a></li>
+            </ul>
+            </div>
+
+            </div>
+
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href=".">BLxG</a> &copy; ictlxb 2016</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="./theme/bootstrap-collapse.js"></script>
+ 
+</body>
+</html>

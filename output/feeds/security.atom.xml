@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.applinzi.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/security.atom.xml" rel="self"></link><id>http://www.gotit.applinzi.com/</id><updated>2014-09-21T00:00:00+08:00</updated><entry><title>On Runtime Monitoring Tools</title><link href="http://www.gotit.applinzi.com/on-runtime-monitoring-tools.html" rel="alternate"></link><updated>2014-09-21T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2014-09-21:on-runtime-monitoring-tools.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/security.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2014-09-21T00:00:00+08:00</updated><entry><title>On Runtime Monitoring Tools</title><link href="http://www.gotit.sinaapp.com/on-runtime-monitoring-tools.html" rel="alternate"></link><updated>2014-09-21T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-09-21:on-runtime-monitoring-tools.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Runtime monitoring tools make use of runtime information to
 detect bugs that are difficult to detect statically. Existing
 dynamic monitoring schemes fall into three categories: programming-rule based
@@ -26,13 +26,13 @@ a datum is accessed by a program location that has not previously
 accessed it, the access is recorded as an anomalous access.&lt;/p&gt;
 &lt;h2&gt;Execution Statistics Based (ESB)&lt;/h2&gt;
 &lt;p&gt;ESB extracts &lt;strong&gt;statistics that characterize the program's runtime
-behavior&lt;/strong&gt;, and uses statistical analysis to detect bugs on the fly.&lt;/p&gt;</summary><category term="Security"></category></entry><entry><title>Basic Concept on Security</title><link href="http://www.gotit.applinzi.com/basic-concept-on-security.html" rel="alternate"></link><updated>2014-09-17T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2014-09-17:basic-concept-on-security.html</id><summary type="html">&lt;h2&gt;Authentication vs. Authorization&lt;/h2&gt;
+behavior&lt;/strong&gt;, and uses statistical analysis to detect bugs on the fly.&lt;/p&gt;</summary><category term="Security"></category></entry><entry><title>Basic Concept on Security</title><link href="http://www.gotit.sinaapp.com/basic-concept-on-security.html" rel="alternate"></link><updated>2014-09-17T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-09-17:basic-concept-on-security.html</id><summary type="html">&lt;h2&gt;Authentication vs. Authorization&lt;/h2&gt;
 &lt;h4&gt;Authentication&lt;/h4&gt;
 &lt;p&gt;Authentication verifies &lt;strong&gt;who you are&lt;/strong&gt;. It is the process of
 ascertaining that somebody really is who he/she claims to be.&lt;/p&gt;
 &lt;h4&gt;Authorization&lt;/h4&gt;
 &lt;p&gt;Authorization verifies &lt;strong&gt;what you are authorized to do&lt;/strong&gt;. It refers
-ot rules that determine who is allowed to do what.&lt;/p&gt;</summary><category term="Security"></category></entry><entry><title>Web Vulnerability</title><link href="http://www.gotit.applinzi.com/web-vulnerability.html" rel="alternate"></link><updated>2014-09-16T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2014-09-16:web-vulnerability.html</id><summary type="html">&lt;h4&gt;Two Main Approaches to Testing Software Application&lt;/h4&gt;
+ot rules that determine who is allowed to do what.&lt;/p&gt;</summary><category term="Security"></category></entry><entry><title>Web Vulnerability</title><link href="http://www.gotit.sinaapp.com/web-vulnerability.html" rel="alternate"></link><updated>2014-09-16T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-09-16:web-vulnerability.html</id><summary type="html">&lt;h4&gt;Two Main Approaches to Testing Software Application&lt;/h4&gt;
 &lt;p&gt;In &lt;strong&gt;white-box&lt;/strong&gt; testing, the source code of application is analyzed in an
 attempt to track down defective or vulnerable lines of code. This operation is
 often integrated into the development process by creating add-on tools for
@@ -40,7 +40,7 @@ common deveploment environments.&lt;/p&gt;
 &lt;p&gt;In &lt;strong&gt;black-blox&lt;/strong&gt; testing, the source code is not examined directly. Instead,
 special input test cases are generated and sent to the application. Then, the
 results returned by the application are analyzed for unexpected behavior that
-indicate errors or vulnerabilities.&lt;/p&gt;</summary><category term="Security"></category></entry><entry><title>Some Common Weakness Enumeration</title><link href="http://www.gotit.applinzi.com/some-common-weakness-enumeration.html" rel="alternate"></link><updated>2014-09-11T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.applinzi.com,2014-09-11:some-common-weakness-enumeration.html</id><summary type="html">&lt;blockquote&gt;
+indicate errors or vulnerabilities.&lt;/p&gt;</summary><category term="Security"></category></entry><entry><title>Some Common Weakness Enumeration</title><link href="http://www.gotit.sinaapp.com/some-common-weakness-enumeration.html" rel="alternate"></link><updated>2014-09-11T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-09-11:some-common-weakness-enumeration.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Here is a common weakness enumeration. Maybe simple but useful.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Insecure Interaction Between Components&lt;/h2&gt;

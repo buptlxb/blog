@@ -5,7 +5,11 @@ from __future__ import unicode_literals
 SITEURL = u'http://gotit.applinzi.com'
 AUTHOR = u'ictlxb'
 SITENAME = u'BLxG'
-THEME = 'tuxlite_tbs'
+DESCRIPTION = u'Programming and Life -- http://www.gotit.sinaapp.com'
+KEYWORDS = u'算法,软件开发,Algorithm,C++,Coding,Debug,Google,Linux,,OS,,Programmer,programming,language,Python,Ubuntu,Unix,vim'
+# THEME = 'tuxlite_tbs'
+THEME = '/home/lxb/workspace/python/blog/themes/tuxlite_tbs'
+
 
 PATH = 'content'
 STATIC_PATHS = ['assets']
@@ -44,7 +48,7 @@ DISQUS_SITENAME = 'blxg'
 RELATIVE_URLS = True
 
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['sitemap']
+PLUGINS = ['sitemap', 'global_license']
 SITEMAP = {
     "format": "xml",
     "priorities": {
@@ -58,3 +62,5 @@ SITEMAP = {
         "pages": "monthly",
     }
 }
+
+LICENSE = u'（转载本站文章请注明作者和出处，请勿用于任何商业用途）'

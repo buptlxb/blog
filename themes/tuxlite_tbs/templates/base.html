@@ -3,9 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>{% block windowtitle %}{{ SITENAME }}{% endblock %}</title>
-    <meta name="description" content="">
     <meta name="author" content="{{ AUTHOR }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="wb:webmaster" content="35e06a32947da88a" />
+
+    {% if article %}
+    <meta name="description" content="{{ article.desription }}">
+    <meta name="keywords" content="{{ article.keywords }}">
+    {% else %}
+    <meta name="description" content="{{ DESCRIPTION }}">
+    <meta name="keywords" content="{{ KEYWORDS }}">
+    {% endif %}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>

@@ -1,0 +1,5 @@
+{% if WEIBO_SHARE %}
+    <wb:share-button xmlns:wb="http://open.weibo.com/wb" appkey="2571843260" addition="full" type="button" ralateUid="2421104062"
+    default_text="{{ article.title }}"></wb:share-button>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+{% endif %}
