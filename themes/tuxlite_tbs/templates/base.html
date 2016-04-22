@@ -9,7 +9,7 @@
     <meta property="wb:webmaster" content="35e06a32947da88a" />
 
     {% if article %}
-    <meta name="description" content="{{ article.desription }}">
+    <meta name="description" content="{{ article.description }}">
     <meta name="keywords" content="{{ article.keywords }}">
     {% else %}
     <meta name="description" content="{{ DESCRIPTION }}">
@@ -20,7 +20,6 @@
     <!--[if lt IE 9]>
     <script src="{{ SITEURL }}/theme/html5.js"></script>
     <![endif]-->
-
     <link rel="shortcut icon" href="{{ SITEURL }}/theme/images/icons/favicon.ico"/>
     <link rel="bookmark" href="{{ SITEURL }}/theme/images/icons/favicon.ico"/>
     <!-- Le styles -->
@@ -193,6 +192,12 @@
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="{{ SITEURL }}/theme/bootstrap-collapse.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".article table").addClass("table table-striped table-bordered");
+    });
+</script>
+
 {% include "analytics.html" %}
 {% include "github.html" %} 
 </body>

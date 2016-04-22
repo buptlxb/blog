@@ -15,7 +15,6 @@
     <!--[if lt IE 9]>
     <script src="../theme/html5.js"></script>
     <![endif]-->
-
     <link rel="shortcut icon" href="../theme/images/icons/favicon.ico"/>
     <link rel="bookmark" href="../theme/images/icons/favicon.ico"/>
     <!-- Le styles -->
@@ -61,6 +60,35 @@
         <div class="span9">
         
 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../some-common-weakness-enumeration.html"><h2>Some Common Weakness Enumeration</h2></a>
+        <div class= "well small"> Thu 11 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/security.html">Security</a>
+
+ 
+    Tags <a href="../tag/security.html">Security</a>  </div>
+        <div class="summary"><blockquote>
+<p>Here is a common weakness enumeration. Maybe simple but useful.</p>
+</blockquote>
+<h2>Insecure Interaction Between Components</h2>
+<blockquote>
+<p>These weaknesses are related to insecure ways in which data is sent adn
+received between separate components, modules, programs, procesces, threads
+or systems.</p>
+</blockquote>
+<h4>Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection ...</h4> <a class="btn btn-info xsmall" href="../some-common-weakness-enumeration.html">read more</a></div>
+    </div>	
+				
+
+ 
         
 
  
@@ -164,37 +192,6 @@ Filed under <a href="../category/linux.html">Linux</a>
     <span class="nf">movw</span> <span class="nv">%dx</span><span class="p">,</span> <span class="mi">0 ...</span></pre></div> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs5.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../trace-linux-kernel-with-bochs4.html"><h2>Trace Linux Kernel With Bochs(4)</h2></a>
-        <div class= "well small"> Wed 12 March 2014
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/linux.html">Linux</a>
-
- 
-    Tags <a href="../tag/linux.html">linux</a> <a href="../tag/bochs.html">bochs</a> <a href="../tag/os.html">os</a>  </div>
-        <div class="summary"><p><a href="/linux/2014/03/10/trace-linux-kernel-with-bochs3/">上一节</a>中我们使用AT&amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。</p>
-<h2>修改Makefile</h2>
-<p>在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出<code>Hello OS World!</code>。</p>
-<p>代码如下：</p>
-<div class="highlight"><pre><span class="nv">CC</span> <span class="o">=</span> gcc
-<span class="nv">LD</span> <span class="o">=</span> ld
-<span class="nv">LDFILE</span> <span class="o">=</span> ld_script.ld
-<span class="nv">OBJCOPY</span> <span class="o">=</span> objcopy
-<span class="nv">DUMP</span> <span class="o">=</span> objdump
-<span class="nv">DUMP_FLAGS</span> <span class="o">=</span> -D -b binary -mi386 -M addr16 -M data16
-
-<span class="nv">ASM_SRC</span> <span class="o">=</span> <span class="k">$(</span>wildcard *.s ...</pre></div> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs4.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev"><a href="../author/ictlxb3.html">&larr; Previous</a></li>
@@ -277,29 +274,29 @@ Filed under <a href="../category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
                 <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
                 <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
                 <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
                 <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-2"><a href="../tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/python.html">python</a></li>
+                <li class="tag-4"><a href="../tag/type.html">type</a></li>
+                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
                 <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
+                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
                 <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
                 <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-2"><a href="../tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
             </ul>
             </div>
 
@@ -316,6 +313,12 @@ Filed under <a href="../category/linux.html">Linux</a>
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../theme/bootstrap-collapse.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".article table").addClass("table table-striped table-bordered");
+    });
+</script>
+
  
 </body>
 </html>

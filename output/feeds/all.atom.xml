@@ -1,5 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2016-04-09T14:58:38+08:00</updated><entry><title>微软2016校园招聘4月在线笔试题解(四)</title><link href="http://www.gotit.sinaapp.com/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html" rel="alternate"></link><updated>2016-04-09T14:58:38+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-04-09:wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2016-04-22T14:57:28+08:00</updated><entry><title>程序员的模运算</title><link href="http://www.gotit.sinaapp.com/cheng-xu-yuan-de-mo-yun-suan.html" rel="alternate"></link><updated>2016-04-22T14:57:28+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-04-22:cheng-xu-yuan-de-mo-yun-suan.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;One thing I know is that I know nothing.  ---Socrates&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;What is that?&lt;/h2&gt;
+&lt;p&gt;求模运算是程序员的常用操作，C/CPP中使用&lt;code&gt;%&lt;/code&gt;进行运算。程序员的描述通常是对于整数&lt;code&gt;a&lt;/code&gt;和&lt;code&gt;b&lt;/code&gt;，&lt;code&gt;a %
+b&lt;/code&gt;表示a除以b后，除不尽的那部分。（好吧，不是程序员，这是我的常用描述，小学水平。。。）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;3 % 2 = 1&lt;/code&gt;, &lt;code&gt;6 % 10 = 6&lt;/code&gt;这东西很难吗？&lt;/p&gt;
+&lt;h2&gt;Why should I care?&lt;/h2&gt;
+&lt;p&gt;有些时候还是有点麻烦的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;span id='p1'&gt; &lt;code&gt;-1 % 2 = ???&lt;/code&gt; &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span id='p2'&gt; &lt;code&gt;2 % -1 = ???&lt;/code&gt; &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span id='p3'&gt; &lt;code&gt;(a * b) % c =? (a%c) * (b%c)&lt;/code&gt; &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span id='p4'&gt; &lt;code&gt;(a + b) % c =? a%c + b%c&lt;/code&gt; &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;程序员要关心这些?那看这个：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;is_odd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这个实现对吗？奇数就是除以2余1的正数，也就是&lt;code&gt;x % 2&lt;/code&gt;结果是1，则x为奇数？我原来是这么想的，也是这么做的。&lt;/p&gt;
+&lt;p&gt;但是这个实现并不对，如果你有疑问那还是看完吧。&lt;/p&gt;
+&lt;h2&gt;What should I do about it&lt;/h2&gt;
+&lt;h3&gt;Dividend / Divisor sign problem&lt;/h3&gt;
+&lt;p&gt;对于&lt;a href="#p1"&gt;问题1&lt;/a&gt;和&lt;a href="#p2"&gt;问题2&lt;/a&gt;，请看下表：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Language&lt;/th&gt;
+&lt;th&gt;Operator&lt;/th&gt;
+&lt;th&gt;result has the same sign as&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;AWK&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Bash&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C (ISO 1990)&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Implementation-defined&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C (ISO 1990)&lt;/td&gt;
+&lt;td&gt;div&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C (ISO 1995)&lt;/td&gt;
+&lt;td&gt;%, div&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C++ (ISO 1998)&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Implementation-defined&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C++ (ISO 1998)&lt;/td&gt;
+&lt;td&gt;div&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C++ (ISO 2011)&lt;/td&gt;
+&lt;td&gt;%, div&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Java&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Java&lt;/td&gt;
+&lt;td&gt;Math.floorMod&lt;/td&gt;
+&lt;td&gt;Divisor&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JavaScript&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Python&lt;/td&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;Divisor&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Java&lt;/td&gt;
+&lt;td&gt;math.fmod&lt;/td&gt;
+&lt;td&gt;Dividend&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Modulo Arithmetic&lt;/h3&gt;
+&lt;h4&gt;Multiplication&lt;/h4&gt;
+&lt;p&gt;对于&lt;a href="#p3"&gt;问题3&lt;/a&gt;，显然不对，&lt;code&gt;(2 * 2) % 3 != (2 % 3) * (2 % 3)&lt;/code&gt;，然而：&lt;/p&gt;
+&lt;p&gt;有下面的等式&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;(a * b) % c == ((a % c) * (b % c)) % c
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;令&lt;code&gt;a%c == x&lt;/code&gt;, &lt;code&gt;b%c == y&lt;/code&gt;，则&lt;code&gt;a == n*c + x&lt;/code&gt;, &lt;code&gt;b == m*c + y&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;易知:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;(a * b) % c
+= ((n*c + x) * (m*c + y)) % c 
+= (x*y + (x*m + n*y + n*m*c)*c) % c
+= (x * y) % c
+= ((a%c) * (b%c)) % c
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;证毕。&lt;/p&gt;
+&lt;h4&gt;Addition&lt;/h4&gt;
+&lt;p&gt;对于&lt;a href="#p4"&gt;问题4&lt;/a&gt;，显然不对，&lt;code&gt;(1 + 1) % 2 != 1 % 2 + 1 % 2&lt;/code&gt;，然而：&lt;/p&gt;
+&lt;p&gt;有下面的等式&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;(a + b) % c == (a%c + b%c) % c
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;令&lt;code&gt;a%c == x&lt;/code&gt;, &lt;code&gt;b%c == y&lt;/code&gt;，则&lt;code&gt;a == n*c + x&lt;/code&gt;, &lt;code&gt;b == m*c + y&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;易知:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;(a + b) % c
+= (n*c + x + m*c + y) % c 
+= (x + y) % c 
+= (a%c + b%c) % c
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;证毕。&lt;/p&gt;
+&lt;h2&gt;Useful Implementation&lt;/h2&gt;
+&lt;p&gt;一些常见的应用：&lt;/p&gt;
+&lt;h3&gt;正确的奇偶实现：&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;is_odd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;大数的乘模运算：&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kr"&gt;inline&lt;/span&gt; &lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="nf"&gt;mul_mod&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;   
+    &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;%=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;%=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;uint64_t&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;[1] &lt;a href="https://en.wikipedia.org/wiki/Modulo_operation#cite_note-C99-2"&gt;"Modulo operation"&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] &lt;a href="https://en.wikipedia.org/wiki/Modular_arithmetic"&gt;"Modular arithmetic"&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[3] &lt;a href="https://nrich.maths.org/4350"&gt;"An Introduction to Modular Arithmetic"&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;（全文完）&lt;/p&gt;
+&lt;p&gt;（转载本站文章请注明作者和出处，请勿用于任何商业用途）&lt;/p&gt;</summary><category term="cpp"></category><category term="algorithm"></category><category term="hihocoder"></category></entry><entry><title>微软2016校园招聘4月在线笔试题解(四)</title><link href="http://www.gotit.sinaapp.com/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html" rel="alternate"></link><updated>2016-04-09T14:58:38+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-04-09:wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;If all you have is a hammer, everything looks like a nail.  ---Maslow&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;D. Buiding in Sandbox&lt;/h2&gt;

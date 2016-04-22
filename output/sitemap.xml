@@ -5,37 +5,44 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/</loc>
-<lastmod>2016-04-21T15:40:36-00:00</lastmod>
+<lastmod>2016-04-22T21:03:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/archives.html</loc>
-<lastmod>2016-04-21T15:40:36-00:00</lastmod>
+<lastmod>2016-04-22T21:03:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/tags.html</loc>
-<lastmod>2016-04-21T15:40:36-00:00</lastmod>
+<lastmod>2016-04-22T21:03:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/categories.html</loc>
-<lastmod>2016-04-21T15:40:36-00:00</lastmod>
+<lastmod>2016-04-22T21:03:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/pages/about.html</loc>
-<lastmod>2016-04-21T15:40:36-00:00</lastmod>
+<lastmod>2016-04-22T21:03:44-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>http://www.gotit.sinaapp.com/cheng-xu-yuan-de-mo-yun-suan.html</loc>
+<lastmod>2016-04-22T14:57:28+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -229,7 +236,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/category/ccpp.html</loc>
-<lastmod>2016-04-09T14:58:38+08:06</lastmod>
+<lastmod>2016-04-22T14:57:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -334,7 +341,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/tag/hihocoder.html</loc>
-<lastmod>2016-04-09T14:58:38+08:06</lastmod>
+<lastmod>2016-04-22T14:57:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -362,7 +369,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/tag/algorithm.html</loc>
-<lastmod>2016-04-09T14:58:38+08:06</lastmod>
+<lastmod>2016-04-22T14:57:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -390,7 +397,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/tag/cpp.html</loc>
-<lastmod>2016-04-09T14:58:38+08:06</lastmod>
+<lastmod>2016-04-22T14:57:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -418,7 +425,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/author/ictlxb.html</loc>
-<lastmod>2016-04-09T14:58:38+08:06</lastmod>
+<lastmod>2016-04-22T14:57:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
