@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>BLxG</title>
+    <meta name="author" content="ictlxb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="wb:webmaster" content="35e06a32947da88a" />
+
+    <meta name="description" content="hihoCoder太阁最新面经算法竞赛4题解">
+    <meta name="keywords" content="algorithm, hihocoder, bittiger, 太阁最新面经算法竞赛">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="./theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="./theme/images/icons/favicon.ico"/>
+    <!-- Le styles -->
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+    <!-- So Firefox can bookmark->"abo this site" -->
+        <link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href=".">BLxG</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+            <li><a href="./pages/about.html">About</a></li>
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>hihoCoder太阁最新面经算法竞赛4</h1>
+Wed 15 June 2016
+
+by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="./category/ccpp.html">C/CPP</a>
+
+ 
+    Tags <a href="./tag/cpp.html">cpp</a> <a href="./tag/algorithm.html">algorithm</a> <a href="./tag/hihocoder.html">hihocoder</a>         </div>
+
+        <div><blockquote>
+<p>If all you have is a hammer, everything looks like a nail.  ---Maslow</p>
+</blockquote>
+<h2>树结构判定</h2>
+<h3>问题</h3>
+<p>时间限制:10000ms
+单点时限:1000ms
+内存限制:256MB</p>
+<h4>描述</h4>
+<p>给定一个包含 N 个顶点 M 条边的无向图 G ，判断 G 是不是一棵树。</p>
+<h4>输入</h4>
+<p>第一个是一个整数 T ，代表测试数据的组数。 (1 ≤ T ≤ 10)</p>
+<p>每组测试数据第一行包含两个整数 N 和 M 。(2 ≤ N ≤ 500, 1 ≤ M ≤ 100000)</p>
+<p>以下 M 行每行包含两个整数 a 和 b ，表示顶点 a 和顶点 b 之间有一条边。(1 ≤ a, b ≤ N)</p>
+<h4>输出</h4>
+<p>对于每组数据，输出YES或者NO表示 G 是否是一棵树。</p>
+<p>样例输入</p>
+<div class="highlight"><pre>2
+3 2
+3 1
+3 2
+5 5
+3 1
+3 2
+4 5
+1 2
+4 1
+</pre></div>
+
+
+<p>样例输出</p>
+<div class="highlight"><pre>YES
+NO
+</pre></div>
+
+
+<h3>分析</h3>
+<p>感觉这应该是一类经典问题，但是对于我这种算法菜鸟来说每个问题是新的。</p>
+<p>给定一个包含 N 个顶点 M 条边的无向图 G ，判断 G
+是不是一棵树。题意很清楚，根据我并不扎实的基础知识，可以得到下列判定条件：</p>
+<ol>
+<li>图G需要是连通的。</li>
+<li>图G无环。</li>
+</ol>
+<p>对于一个有N个顶点的树，容易知道其有N-1条边（因为将N个顶点连接起来，至少需要N-1条边，若存在更多的边，则会形成环）</p>
+<p>因此，简单的，我们可以利用图的拓扑排序:
+1. 若M不等于N-1，显然不是树；
+2. 否则，若图中存在度为0的结点，说明图不是连通的，显然也不是树。
+3. 将图中度为1的点去掉，更新这些结点连接的结点的度，并将度为1的结点放入队列。
+4. 重复3，直到队列为空，比较去掉的结点数是否为N。</p>
+<h3>AC程序</h3>
+<p>下面是C++实现的完整代码：</p>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;vector&gt;</span>
+<span class="cp">#include &lt;set&gt;</span>
+<span class="cp">#include &lt;queue&gt;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">solve</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">graph</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">degree</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">size_type</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">iend</span> <span class="o">=</span> <span class="n">degree</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">iend</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">degree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">degree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">p</span> <span class="p">:</span> <span class="n">graph</span><span class="p">[</span><span class="n">cur</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">degree</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">cnt</span> <span class="o">==</span> <span class="n">degree</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">t</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">t</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">graph</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">degree</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+            <span class="o">++</span><span class="n">degree</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+            <span class="o">++</span><span class="n">degree</span><span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">solve</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">degree</span><span class="p">))</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;YES&quot;</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;NO&quot;</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>此外，还可以使用并查集来解决这一问题。</p>
+<hr />
+<h2>回文字符串</h2>
+<h3>问题</h3>
+<p>时间限制:10000ms
+单点时限:1000ms
+内存限制:256MB</p>
+<h4>描述</h4>
+<p>给定一个字符串 S ，最少需要几次增删改操作可以把 S 变成一个回文字符串？</p>
+<p>一次操作可以在任意位置插入一个字符，或者删除任意一个字符，或者把任意一个字符修改成任意其他字符。</p>
+<h4>输入</h4>
+<p>字符串 S。S 的长度不超过100, 只包含'A'-'Z'。</p>
+<h4>输出</h4>
+<p>最少的修改次数。</p>
+<p>样例输入</p>
+<div class="highlight"><pre>ABAD
+</pre></div>
+
+
+<p>样例输出</p>
+<div class="highlight"><pre>1
+</pre></div>
+
+
+<h3>分析</h3>
+<ol>
+<li>长度为0或1的字符串必然是回文字符串s，故需要的编辑次数f(s)=0</li>
+<li>长度为n(n &gt; 1) 的字符串s:<ol>
+<li>若<code>s[0] == s[n-1]</code>，则 f(s) = f(s[1:n-1]);</li>
+<li>否则，f(s) = min(f(s[1:n-1]), f(s[1:n]), f(s[0:n-1]))+1
+   ，其中f(s[1:n-1])相当于将s[0]替换成s[n-1]；f(s[1:n])相当于删除s[0]; f(s[0:n-1])相当于删除s[n-1]。</li>
+</ol>
+</li>
+</ol>
+<p>有了这些就可以写程序了。</p>
+<h3>AC程序</h3>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;vector&gt;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">palindromic_edit_distance</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">string</span><span class="o">::</span><span class="n">size_type</span> <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">dp</span><span class="p">(</span><span class="n">len</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">len</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">string</span><span class="o">::</span><span class="n">size_type</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">string</span><span class="o">::</span><span class="n">size_type</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">string</span><span class="o">::</span><span class="n">size_type</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+            <span class="k">else</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">palindromic_edit_distance</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<hr />
+<h2>希尔伯特曲线</h2>
+<h3>问题</h3>
+<p>时间限制:10000ms
+单点时限:1000ms
+内存限制:256MB</p>
+<h4>描述</h4>
+<p>希尔伯特曲线是以下一系列分形曲线 Hn 的极限。我们可以把 Hn 看作一条覆盖 2n × 2n 方格矩阵的曲线，曲线上一共有 2n × 2n
+个顶点(包括左下角起点和右下角终点)，恰好覆盖每个方格一次。</p>
+<p><img alt="hilbert curve" src="/assets/images/hilbert-curve.png" /></p>
+<p>Hn(n &gt; 1)可以通过如下方法构造：</p>
+<ol>
+<li>
+<p>将 Hn-1 顺时针旋转90度放在左下角</p>
+</li>
+<li>
+<p>将 Hn-1 逆时针旋转90度放在右下角</p>
+</li>
+<li>
+<p>将2个 Hn-1 分别放在左上角和右上角</p>
+</li>
+<li>
+<p>用3条单位线段把4部分连接起来</p>
+</li>
+</ol>
+<p>对于 Hn 上每一个顶点 p ，我们定义 p 的坐标是它覆盖的小方格在矩阵中的坐标，定义 p
+的序号是它在曲线上从起点开始数第几个顶点。给定 p 的坐标，你能算出 p 的序号吗？ </p>
+<h4>输入</h4>
+<p>输入包含3个整数 n , x , y 。 n 是分形曲线的阶数，(x, y)是 p 的坐标。</p>
+<p>1 ≤ n ≤ 30</p>
+<p>1 ≤ x, y ≤ 2n</p>
+<h4>输出</h4>
+<p>p 的序号。</p>
+<p>样例输入</p>
+<div class="highlight"><pre>3 6 1
+</pre></div>
+
+
+<p>样例输出</p>
+<div class="highlight"><pre>60
+</pre></div>
+
+
+<h3>分析</h3>
+<p>根据题意的描述，可以看出希尔伯特曲线的构造是个递归的过程，而一阶的希尔伯特曲线，我们很容易根据给出的坐标，算出它的序号。
+在进行递归时，只要小心计算坐标映射关系就好。</p>
+<p>Hn(n &gt; 1)可以通过如下方法构造(其中b表示n-1阶时正方形的边长)：</p>
+<ol>
+<li>
+<p>将 Hn-1 顺时针旋转90度放在左下角: (x, y) =&gt; (y, x)</p>
+</li>
+<li>
+<p>将 Hn-1 逆时针旋转90度放在右下角: (x, y) =&gt; (b-y+1, 2b-x+1)</p>
+</li>
+<li>
+<p>将 Hn-1 放在左上角 : (x, y) =&gt; (x, y-b)</p>
+</li>
+<li>
+<p>将 Hn-1 放在右上角 : (x, y) =&gt; (x-b, y-b)</p>
+</li>
+</ol>
+<p>最后，需要注意的是要使用unsigned long long，因为30阶的希尔伯特曲线顶点数为2^60，使用64bit的数据类型刚好可以表示。</p>
+<h3>AC程序</h3>
+<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;vector&gt;</span>
+<span class="cp">#include &lt;cassert&gt;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="nf">hilbert</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1ull</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1ull</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hilbert</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">c</span> <span class="o">+</span> <span class="n">hilbert</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="n">b</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">hilbert</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="n">b</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">hilbert</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">-</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">hilbert</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>更多AC程序欢迎follow我的<a href="https://github.com/buptlxb/hihoCoder">github</a></p>
+<p>（全文完）</p>
+<p>（转载本站文章请注明作者和出处，请勿用于任何商业用途）</p></div>
+	
+        <hr>
+
+    <wb:share-button xmlns:wb="http://open.weibo.com/wb" appkey="2571843260" addition="full" type="button" ralateUid="2421104062"
+    default_text="hihoCoder太阁最新面经算法竞赛4"></wb:share-button>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blxg'; 
+    var disqus_title = 'hihoCoder太阁最新面经算法竞赛4';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
+
+
+
+                <li><a href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="./category/ccpp.html">C/CPP</a></li>
+                <li><a href="./category/english.html">English</a></li>
+                <li><a href="./category/linux.html">Linux</a></li>
+                <li><a href="./category/security.html">Security</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://getpelican.com/">Pelican</a></li>
+                <li><a href="http://python.org/">Python.org</a></li>
+                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="https://github.com/buptlxb">Github</a></li>
+                <li><a href="http://weibo.com/ictlxb">Weibo</a></li>
+            </ul>
+            </div>
+
+
+            <div class="tagcloud">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="tagcloud">
+                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
+                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="./tag/type.html">type</a></li>
+                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="./tag/python.html">python</a></li>
+                <li class="tag-4"><a href="./tag/array.html">array</a></li>
+                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
+                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
+                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
+                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
+                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
+                <li class="tag-1"><a href="./tag/os.html">os</a></li>
+                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
+                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
+            </ul>
+            </div>
+
+            </div>
+
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href=".">BLxG</a> &copy; ictlxb 2016</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="./theme/bootstrap-collapse.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".article table").addClass("table table-striped table-bordered");
+    });
+</script>
+
+ 
+</body>
+</html>

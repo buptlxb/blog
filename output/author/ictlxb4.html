@@ -65,6 +65,57 @@
  
 
     <div class='article'>
+        <a href="../basic-concept-on-security.html"><h2>Basic Concept on Security</h2></a>
+        <div class= "well small"> Wed 17 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/security.html">Security</a>
+
+ 
+    Tags <a href="../tag/security.html">Security</a>  </div>
+        <div class="summary"><h2>Authentication vs. Authorization</h2>
+<h4>Authentication</h4>
+<p>Authentication verifies <strong>who you are</strong>. It is the process of
+ascertaining that somebody really is who he/she claims to be.</p>
+<h4>Authorization</h4>
+<p>Authorization verifies <strong>what you are authorized to do</strong>. It refers
+ot rules that determine who is allowed to do what.</p> <a class="btn btn-info xsmall" href="../basic-concept-on-security.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
+        <a href="../web-vulnerability.html"><h2>Web Vulnerability</h2></a>
+        <div class= "well small"> Tue 16 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/security.html">Security</a>
+
+ 
+    Tags <a href="../tag/security.html">Security</a>  </div>
+        <div class="summary"><h4>Two Main Approaches to Testing Software Application</h4>
+<p>In <strong>white-box</strong> testing, the source code of application is analyzed in an
+attempt to track down defective or vulnerable lines of code. This operation is
+often integrated into the development process by creating add-on tools for
+common deveploment environments.</p>
+<p>In <strong>black-blox</strong> testing, the ...</p> <a class="btn btn-info xsmall" href="../web-vulnerability.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../some-common-weakness-enumeration.html"><h2>Some Common Weakness Enumeration</h2></a>
         <div class= "well small"> Thu 11 September 2014
 
@@ -134,62 +185,6 @@ It is easy to find that there are more than one stack defined during the time of
 Here is a simple experiment, which indicates that the stacks are defined for different purposes.</p>
 </blockquote>
 <h2>1. Stack ...</h2> <a class="btn btn-info xsmall" href="../stack-switching-during-os-setup.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../several-problems-about-linux-kernel.html"><h2>Several Problems about Linux Kernel</h2></a>
-        <div class= "well small"> Sun 13 April 2014
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/linux.html">Linux</a>
-
- 
-    Tags <a href="../tag/linux.html">linux</a> <a href="../tag/os.html">os</a>  </div>
-        <div class="summary"><blockquote>
-<p>There are several problems, which deserve being thought carefully, about linux kernel(version 0.11).
-I will not give detail answers to the following questions, but give a brief outline for each question.
-I do NOT promise the answers is exactly correct. 
-if you find any mistake, please email liuxuebao ...</p></blockquote> <a class="btn btn-info xsmall" href="../several-problems-about-linux-kernel.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../trace-linux-kernel-with-bochs5.html"><h2>Trace Linux Kernel With Bochs(5)</h2></a>
-        <div class= "well small"> Sat 29 March 2014
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/linux.html">Linux</a>
-
- 
-    Tags <a href="../tag/linux.html">linux</a> <a href="../tag/bochs.html">bochs</a> <a href="../tag/os.html">os</a>  </div>
-        <div class="summary"><div class="highlight"><pre>当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
-</pre></div>
-
-
-<p>下面，我们一边介绍setup.s的功能，一边重写代码。</p>
-<h2>为内核运行准备数据</h2>
-<p>这些数据的获得大多来自由BIOS提供的中断，在关中断之前，我们必须将这些与机器硬件密切相关的数据保存起来，而保存的位置，就是从<code>0x90000</code>开始的一段内存，如果你看过前面的几篇博文，应该知道这里曾是bootsect.s的位置。</p>
-<h4>获取光标位置</h4>
-<p>我们首先获取光标的位置,将它存储在0x90000开始的２个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span>     <span class="c"># read cursor pos</span>
-    <span class="nf">xor</span> <span class="nv">%bh</span><span class="p">,</span> <span class="nv">%bh</span>
-    <span class="nf">int</span> <span class="no">$0x10</span>           <span class="c"># save it in known place, con_init fetches</span>
-    <span class="nf">movw</span> <span class="nv">%dx</span><span class="p">,</span> <span class="mi">0 ...</span></pre></div> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs5.html">read more</a></div>
     </div>	
 				
 <div class="pagination">
@@ -274,29 +269,30 @@ Filed under <a href="../category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
-                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
                 <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
                 <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="../tag/type.html">type</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-4"><a href="../tag/python.html">python</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
+                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
+                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
+                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
+                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
             </ul>
             </div>
 
