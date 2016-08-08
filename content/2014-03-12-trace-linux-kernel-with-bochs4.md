@@ -3,7 +3,7 @@ category: Linux
 tags: linux, bochs, os
 
 
-[上一节](/linux/2014/03/10/trace-linux-kernel-with-bochs3/)中我们使用AT&T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。
+[上一节](/trace-linux-kernel-with-bochs3.html)中我们使用AT&T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。
 
 ## 修改Makefile
 

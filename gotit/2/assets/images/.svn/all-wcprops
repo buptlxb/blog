@@ -111,6 +111,12 @@ svn:wc:ra_dav:version-url
 V 54
 /gotit/!svn/ver/48/2/assets/images/jekyll-ri-error.png
 END
+perf.png
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/gotit/!svn/ver/73/2/assets/images/perf.png
+END
 bochs-load-system.png
 K 25
 svn:wc:ra_dav:version-url
@@ -206,6 +212,12 @@ K 25
 svn:wc:ra_dav:version-url
 V 52
 /gotit/!svn/ver/48/2/assets/images/apt-get-error.png
+END
+drown.png
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/gotit/!svn/ver/76/2/assets/images/drown.png
 END
 bochs-root-dev.png
 K 25

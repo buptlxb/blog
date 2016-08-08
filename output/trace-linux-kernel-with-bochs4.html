@@ -71,7 +71,7 @@ Filed under <a href="./category/linux.html">Linux</a>
  
     Tags <a href="./tag/linux.html">linux</a> <a href="./tag/bochs.html">bochs</a> <a href="./tag/os.html">os</a>         </div>
 
-        <div><p><a href="/linux/2014/03/10/trace-linux-kernel-with-bochs3/">上一节</a>中我们使用AT&amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。</p>
+        <div><p><a href="/trace-linux-kernel-with-bochs3.html">上一节</a>中我们使用AT&amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。</p>
 <h2>修改Makefile</h2>
 <p>在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出<code>Hello OS World!</code>。</p>
 <p>代码如下：</p>
@@ -233,30 +233,31 @@ Filed under <a href="./category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
                 <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
                 <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="./tag/array.html">array</a></li>
+                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
+                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
+                <li class="tag-1"><a href="./tag/os.html">os</a></li>
+                <li class="tag-4"><a href="./tag/python.html">python</a></li>
+                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
+                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
+                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
                 <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
+                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/type.html">type</a></li>
             </ul>
             </div>
 

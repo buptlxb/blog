@@ -65,6 +65,35 @@
  
 
     <div class='article'>
+        <a href="../wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-san.html"><h2>微软2016校园招聘4月在线笔试题解(三)</h2></a>
+        <div class= "well small"> Sat 09 April 2016
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/ccpp.html">C/CPP</a>
+
+ 
+    Tags <a href="../tag/cpp.html">cpp</a> <a href="../tag/algorithm.html">algorithm</a> <a href="../tag/hihocoder.html">hihocoder</a>  </div>
+        <div class="summary"><blockquote>
+<p>If all you have is a hammer, everything looks like a nail.  ---Maslow</p>
+</blockquote>
+<h2>C. Demo Day</h2>
+<h3>Problem</h3>
+<p>时间限制:10000ms
+单点时限:1000ms
+内存限制:256MB</p>
+<h4>描述</h4>
+<p>You work as an intern at a robotics startup. Today is your company's demo day. During the demo your company's robot will be put ...</p> <a class="btn btn-info xsmall" href="../wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-san.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-er.html"><h2>微软2016校园招聘4月在线笔试题解(二)</h2></a>
         <div class= "well small"> Sat 09 April 2016
 
@@ -250,30 +279,31 @@ the default constructor is invoked. The following simple program speaks louder t
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
                 <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
                 <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
-                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
+                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="../tag/spfa.html">spfa</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-4"><a href="../tag/python.html">python</a></li>
+                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
                 <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/type.html">type</a></li>
             </ul>
             </div>
 

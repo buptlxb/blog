@@ -65,6 +65,34 @@
  
 
     <div class='article'>
+        <a href="../on-runtime-monitoring-tools.html"><h2>On Runtime Monitoring Tools</h2></a>
+        <div class= "well small"> Sun 21 September 2014
+
+by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="../category/security.html">Security</a>
+
+ 
+    Tags <a href="../tag/security.html">Security</a>  </div>
+        <div class="summary"><blockquote>
+<p>Runtime monitoring tools make use of runtime information to
+detect bugs that are difficult to detect statically. Existing
+dynamic monitoring schemes fall into three categories: programming-rule based
+(PRB), invariant-rule-based (IRB), and execution-statistics based (ESB).</p>
+</blockquote>
+<h2>Programming Rule Based (PRB)</h2>
+<p>PRB checks for violations of <strong>programming language specifications</strong>,
+<strong>programming paradigms</strong>, or <strong>software ...</strong></p> <a class="btn btn-info xsmall" href="../on-runtime-monitoring-tools.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="../basic-concept-on-security.html"><h2>Basic Concept on Security</h2></a>
         <div class= "well small"> Wed 17 September 2014
 
@@ -162,31 +190,6 @@ performace of the programs. Several experiments has been conducted on my
 computer. Source code and results will be listed as follow. Also, I will give a ...</p></blockquote> <a class="btn btn-info xsmall" href="../program-optimization-experiments.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../stack-switching-during-os-setup.html"><h2>Stack Switching During OS Setup</h2></a>
-        <div class= "well small"> Mon 14 April 2014
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/linux.html">Linux</a>
-
- 
-    Tags <a href="../tag/linxu.html">linxu</a> <a href="../tag/os.html">os</a> <a href="../tag/bochs.html">bochs</a>  </div>
-        <div class="summary"><blockquote>
-<p>Stack switching might be a frustrating problem during OS setup.In linux 0.11,
-It is easy to find that there are more than one stack defined during the time of OS setup.
-Here is a simple experiment, which indicates that the stacks are defined for different purposes.</p>
-</blockquote>
-<h2>1. Stack ...</h2> <a class="btn btn-info xsmall" href="../stack-switching-during-os-setup.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev"><a href="../author/ictlxb3.html">&larr; Previous</a></li>
@@ -197,6 +200,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
     <li class="active"><a href="../author/ictlxb4.html">4</a></li>
     <li class=""><a href="../author/ictlxb5.html">5</a></li>
     <li class=""><a href="../author/ictlxb6.html">6</a></li>
+    <li class=""><a href="../author/ictlxb7.html">7</a></li>
 
     <li class="next"><a href="../author/ictlxb5.html">Next &rarr;</a></li>
 
@@ -269,30 +273,31 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
                 <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
                 <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
-                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="../tag/array.html">array</a></li>
+                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
+                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="../tag/spfa.html">spfa</a></li>
+                <li class="tag-1"><a href="../tag/os.html">os</a></li>
+                <li class="tag-4"><a href="../tag/python.html">python</a></li>
+                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
+                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
+                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
                 <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
+                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
+                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="../tag/type.html">type</a></li>
             </ul>
             </div>
 

@@ -65,6 +65,31 @@
  
 
     <div class='article'>
+        <a href="./stack-switching-during-os-setup.html"><h2>Stack Switching During OS Setup</h2></a>
+        <div class= "well small"> Mon 14 April 2014
+
+by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
+ 
+
+Filed under <a href="./category/linux.html">Linux</a>
+
+ 
+    Tags <a href="./tag/linxu.html">linxu</a> <a href="./tag/os.html">os</a> <a href="./tag/bochs.html">bochs</a>  </div>
+        <div class="summary"><blockquote>
+<p>Stack switching might be a frustrating problem during OS setup.In linux 0.11,
+It is easy to find that there are more than one stack defined during the time of OS setup.
+Here is a simple experiment, which indicates that the stacks are defined for different purposes.</p>
+</blockquote>
+<h2>1. Stack ...</h2> <a class="btn btn-info xsmall" href="./stack-switching-during-os-setup.html">read more</a></div>
+    </div>	
+				
+
+ 
+        
+
+ 
+
+    <div class='article'>
         <a href="./several-problems-about-linux-kernel.html"><h2>Several Problems about Linux Kernel</h2></a>
         <div class= "well small"> Sun 13 April 2014
 
@@ -131,7 +156,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
  
     Tags <a href="./tag/linux.html">linux</a> <a href="./tag/bochs.html">bochs</a> <a href="./tag/os.html">os</a>  </div>
-        <div class="summary"><p><a href="/linux/2014/03/10/trace-linux-kernel-with-bochs3/">上一节</a>中我们使用AT&amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。</p>
+        <div class="summary"><p><a href="/trace-linux-kernel-with-bochs3.html">上一节</a>中我们使用AT&amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。</p>
 <h2>修改Makefile</h2>
 <p>在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出<code>Hello OS World!</code>。</p>
 <p>代码如下：</p>
@@ -179,33 +204,6 @@ Filed under <a href="./category/linux.html">Linux</a>
 <span class="nf">ENDSEG ...</span></pre></div> <a class="btn btn-info xsmall" href="./trace-linux-kernel-with-bochs3.html">read more</a></div>
     </div>	
 				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="./ubuntu-1204-ethernet-controller-problem.html"><h2>Ubuntu 12.04 Ethernet Controller Problem</h2></a>
-        <div class= "well small"> Sun 09 March 2014
-
-by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="./category/linux.html">Linux</a>
-
- 
-    Tags <a href="./tag/linux.html">Linux</a> <a href="./tag/network.html">Network</a> <a href="./tag/ubuntu.html">Ubuntu</a>  </div>
-        <div class="summary"><h2>Problem</h2>
-<p>Ethernet controller can not detect the cable.</p>
-<h2>Solution</h2>
-<div class="highlight"><pre>wget http://r8168.googlecode.com/files/r8168-8.037.00.tar.bz2
-tar xjf r8168-8.037.00.tar.bz2
-<span class="nb">cd </span>r8168-8.037.00
-./autorun.sh
-</pre></div> <a class="btn btn-info xsmall" href="./ubuntu-1204-ethernet-controller-problem.html">read more</a></div>
-    </div>	
-				
 <div class="pagination">
 <ul>
     <li class="prev"><a href="./index4.html">&larr; Previous</a></li>
@@ -216,6 +214,7 @@ tar xjf r8168-8.037.00.tar.bz2
     <li class=""><a href="./index4.html">4</a></li>
     <li class="active"><a href="./index5.html">5</a></li>
     <li class=""><a href="./index6.html">6</a></li>
+    <li class=""><a href="./index7.html">7</a></li>
 
     <li class="next"><a href="./index6.html">Next &rarr;</a></li>
 
@@ -288,30 +287,31 @@ tar xjf r8168-8.037.00.tar.bz2
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
                 <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
                 <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
+                <li class="tag-4"><a href="./tag/array.html">array</a></li>
+                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
+                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
+                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
+                <li class="tag-1"><a href="./tag/os.html">os</a></li>
+                <li class="tag-4"><a href="./tag/python.html">python</a></li>
+                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
+                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
+                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
+                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
+                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
                 <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
+                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
+                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
+                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
+                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
+                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
+                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
+                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
+                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
+                <li class="tag-4"><a href="./tag/type.html">type</a></li>
             </ul>
             </div>
 
