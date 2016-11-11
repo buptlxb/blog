@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>Connect to vpn with ppp</h1>
-Sat 01 March 2014
+六 01 三月 2014
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -71,7 +71,7 @@ Filed under <a href="./category/linux.html">Linux</a>
  
     Tags <a href="./tag/linux.html">linux</a> <a href="./tag/network.html">network</a> <a href="./tag/vpn.html">vpn</a>         </div>
 
-        <div><div class="highlight"><pre>很多时候，我们都需要用VPN，当然如果你问我：“那是什么，能吃吗？”，如果你喜欢卖萌，那你可以选择继续看下去，如果你是认真的，最后也认真；google一下VPN是什么。
+        <div><div class="highlight"><pre><span></span>很多时候，我们都需要用VPN，当然如果你问我：“那是什么，能吃吗？”，如果你喜欢卖萌，那你可以选择继续看下去，如果你是认真的，最后也认真；google一下VPN是什么。
 </pre></div>
 
 
@@ -80,14 +80,14 @@ Filed under <a href="./category/linux.html">Linux</a>
     <img alt="Network Manager VPN" src="/assets/images/network-manager-vpn.png" /></p>
 <h2>命令行版</h2>
 <p>使用pptp可以在linux下方便地连接到VPN,利用如下命令可以方便地创建VPN连接配置：</p>
-<div class="highlight"><pre>sudo pptpsetup --create VPN_NAME --server SERVER_IP --username NAME --password PASSWD --encrypt
+<div class="highlight"><pre><span></span>sudo pptpsetup --create VPN_NAME --server SERVER_IP --username NAME --password PASSWD --encrypt
 </pre></div>
 
 
 <p>然后使用命令<code>sudo pon VPN_NAME</code>或<code>sudo poff VPN_NAME</code>来开启或关闭vpn连接</p>
 <p>利用命令<code>plog -f</code>查看vpn连接情况</p>
 <p>vpn连接成功后，并不能直接使用，而是需要调整路由表，具体如下：</p>
-<div class="highlight"><pre>sudo route add -net NET_IP netmask NETMASK dev ppp0
+<div class="highlight"><pre><span></span>sudo route add -net NET_IP netmask NETMASK dev ppp0
 </pre></div>
 
 
@@ -178,32 +178,6 @@ Filed under <a href="./category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

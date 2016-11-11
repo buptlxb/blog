@@ -66,7 +66,7 @@
     <div class='article'>
         <div class="content-title">
             <a href="../stack-switching-during-os-setup.html"><h1>Stack Switching During OS Setup</h1></a>
-Mon 14 April 2014
+一 14 四月 2014
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -85,7 +85,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 <h2>1. Stack Definition</h2>
 <h4>1.1. The Definition of user_stack</h4>
 <p>The <code>user_stack</code> appears at <code>line 23</code> in <code>boot/head.s</code> as follow:</p>
-<div class="highlight"><pre><span class="na">.text</span>
+<div class="highlight"><pre><span></span><span class="na">.text</span>
 <span class="na">.globl</span> <span class="no">_idt</span><span class="p">,</span><span class="no">_gdt</span><span class="p">,</span><span class="no">_pg_dir</span><span class="p">,</span><span class="no">_tmp_floppy_area</span>
 <span class="nl">_pg_dir:</span>
 <span class="nl">startup_32:</span>
@@ -100,7 +100,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 
 
 <p>The definition of <code>stack_start</code> can be found at <code>line 69</code> in <code>kernel/sched.c</code> as follow:</p>
-<div class="highlight"><pre><span class="kt">long</span> <span class="n">user_stack</span> <span class="p">[</span> <span class="n">PAGE_SIZE</span><span class="o">&gt;&gt;</span><span class="mi">2</span> <span class="p">]</span> <span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="kt">long</span> <span class="n">user_stack</span> <span class="p">[</span> <span class="n">PAGE_SIZE</span><span class="o">&gt;&gt;</span><span class="mi">2</span> <span class="p">]</span> <span class="p">;</span>
 
 <span class="k">struct</span> <span class="p">{</span>
     <span class="kt">long</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span>
@@ -116,7 +116,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 </ul>
 <h4>1.2. The definition of Privilege 0 stack</h4>
 <p>The definition of <code>Privilege 0 stack</code> can be found at <code>line 53</code> in <code>kernel/sched.c</code> as follow:</p>
-<div class="highlight"><pre><span class="k">union</span> <span class="n">task_union</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="k">union</span> <span class="n">task_union</span> <span class="p">{</span>
     <span class="k">struct</span> <span class="n">task_struct</span> <span class="n">task</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">stack</span><span class="p">[</span><span class="n">PAGE_SIZE</span><span class="p">];</span>
 <span class="p">};</span>
@@ -126,7 +126,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 
 
 <p>The macro <code>INIT_TASK</code> can be found at <code>line 113</code> in <code>include/linux/sched.h</code> as follow:</p>
-<div class="highlight"><pre><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> *  INIT_TASK is used to set up the first task table, touch at</span>
 <span class="cm"> * your own risk!. Base=0, limit=0x9ffff (=640kB)</span>
 <span class="cm"> */</span>
@@ -156,7 +156,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 
 
 <p>The <code>tss_struct</code> is defined at <code>line 51</code> in <code>include/linux/sched.h</code> as follow:</p>
-<div class="highlight"><pre><span class="k">struct</span> <span class="n">tss_struct</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">tss_struct</span> <span class="p">{</span>
     <span class="kt">long</span>    <span class="n">back_link</span><span class="p">;</span>  <span class="cm">/* 16 high bits zero */</span>
     <span class="kt">long</span>    <span class="n">esp0</span><span class="p">;</span>
     <span class="kt">long</span>    <span class="n">ss0</span><span class="p">;</span>        <span class="cm">/* 16 high bits zero */</span>
@@ -188,7 +188,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 <p>It is not difficult to figure out the initializers of <code>esp0</code> and <code>ss0</code>, which describe the Privilege 0 stack.</p>
 <h2>2. Simple Experiment</h2>
 <p>System Info:</p>
-<div class="highlight"><pre>Linux ictlxb-Zhaoyang-E49 3.2.0-60-generic #91-Ubuntu SMP Wed Feb 19 03:54:44 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+<div class="highlight"><pre><span></span>Linux ictlxb-Zhaoyang-E49 3.2.0-60-generic #91-Ubuntu SMP Wed Feb 19 03:54:44 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
 </pre></div>
 
 
@@ -210,7 +210,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 <p><img alt="the current stack content" src="/assets/images/stack.png" /></p>
 <h4>2.4. The Stack Content Before Jumping to 'main'</h4>
 <p>The code follow is a part of <code>boot/head.s</code>.</p>
-<div class="highlight"><pre>    <span class="na">...</span>
+<div class="highlight"><pre><span></span>    <span class="na">...</span>
 
     <span class="nf">pushl</span> <span class="no">$0</span>        <span class="c"># These are the parameters to main :-)</span>
     <span class="nf">pushl</span> <span class="no">$0</span>
@@ -280,7 +280,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 
     <div class='article'>
         <a href="../trace-linux-kernel-with-bochs5.html"><h2>Trace Linux Kernel With Bochs(5)</h2></a>
-        <div class= "well small"> Sat 29 March 2014
+        <div class= "well small"> 六 29 三月 2014
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -289,7 +289,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 
  
     Tags <a href="../tag/linux.html">linux</a> <a href="../tag/bochs.html">bochs</a> <a href="../tag/os.html">os</a>  </div>
-        <div class="summary"><div class="highlight"><pre>当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
+        <div class="summary"><div class="highlight"><pre><span></span>当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
 </pre></div>
 
 
@@ -298,7 +298,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 <p>这些数据的获得大多来自由BIOS提供的中断，在关中断之前，我们必须将这些与机器硬件密切相关的数据保存起来，而保存的位置，就是从<code>0x90000</code>开始的一段内存，如果你看过前面的几篇博文，应该知道这里曾是bootsect.s的位置。</p>
 <h4>获取光标位置</h4>
 <p>我们首先获取光标的位置,将它存储在0x90000开始的２个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span>     <span class="c"># read cursor pos</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span>     <span class="c"># read cursor pos</span>
     <span class="nf">xor</span> <span class="nv">%bh</span><span class="p">,</span> <span class="nv">%bh</span>
     <span class="nf">int</span> <span class="no">$0x10</span>           <span class="c"># save it in known place, con_init fetches</span>
     <span class="nf">movw</span> <span class="nv">%dx</span><span class="p">,</span> <span class="mi">0 ...</span></pre></div> <a class="btn btn-info xsmall" href="../trace-linux-kernel-with-bochs5.html">read more</a></div>
@@ -312,7 +312,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 
     <div class='article'>
         <a href="../trace-linux-kernel-with-bochs4.html"><h2>Trace Linux Kernel With Bochs(4)</h2></a>
-        <div class= "well small"> Wed 12 March 2014
+        <div class= "well small"> 三 12 三月 2014
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -325,7 +325,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 <h2>修改Makefile</h2>
 <p>在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出<code>Hello OS World!</code>。</p>
 <p>代码如下：</p>
-<div class="highlight"><pre><span class="nv">CC</span> <span class="o">=</span> gcc
+<div class="highlight"><pre><span></span><span class="nv">CC</span> <span class="o">=</span> gcc
 <span class="nv">LD</span> <span class="o">=</span> ld
 <span class="nv">LDFILE</span> <span class="o">=</span> ld_script.ld
 <span class="nv">OBJCOPY</span> <span class="o">=</span> objcopy
@@ -343,7 +343,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 
     <div class='article'>
         <a href="../trace-linux-kernel-with-bochs3.html"><h2>Trace Linux Kernel With Bochs(3)</h2></a>
-        <div class= "well small"> Mon 10 March 2014
+        <div class= "well small"> 一 10 三月 2014
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -357,7 +357,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 </blockquote>
 <h2>bootsect.s</h2>
 <h4>内存规划</h4>
-<div class="highlight"><pre><span class="na">.code16</span> <span class="c">#use 16bit</span>
+<div class="highlight"><pre><span></span><span class="na">.code16</span> <span class="c">#use 16bit</span>
 <span class="na">.text</span> <span class="c">#code segment start</span>
 
 <span class="nf">SYSSIZE</span> <span class="err">=</span> <span class="mi">0x3000</span>
@@ -377,7 +377,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 
     <div class='article'>
         <a href="../trace-linux-kernel-with-bochs2.html"><h2>Trace Linux Kernel With Bochs(2)</h2></a>
-        <div class= "well small"> Fri 07 March 2014
+        <div class= "well small"> 五 07 三月 2014
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -386,7 +386,7 @@ Filed under <a href="../category/linux.html">Linux</a>
 
  
     Tags <a href="../tag/linux.html">linux</a> <a href="../tag/bochs.html">bochs</a> <a href="../tag/os.html">os</a>  </div>
-        <div class="summary"><div class="highlight"><pre>boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
+        <div class="summary"><div class="highlight"><pre><span></span>boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
 </pre></div>
 
 
@@ -475,32 +475,6 @@ Filed under <a href="../category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
-                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="../tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
             </ul>
             </div>
 

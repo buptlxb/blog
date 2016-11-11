@@ -8,20 +8,20 @@
 
     <meta property="wb:webmaster" content="35e06a32947da88a" />
 
-    <meta name="description" content="Programming and Life -- http://www.gotit.sinaapp.com">
-    <meta name="keywords" content="算法,软件开发,Algorithm,C++,Coding,Debug,Google,Linux,,OS,,Programmer,programming,language,Python,Ubuntu,Unix,vim">
+    <meta name="description" content="yet another attempt to learn compiler">
+    <meta name="keywords" content="engineering a compiler, compiler, regex, automaton">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="../theme/html5.js"></script>
+    <script src="./theme/html5.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="../theme/images/icons/favicon.ico"/>
-    <link rel="bookmark" href="../theme/images/icons/favicon.ico"/>
+    <link rel="shortcut icon" href="./theme/images/icons/favicon.ico"/>
+    <link rel="bookmark" href="./theme/images/icons/favicon.ico"/>
     <!-- Le styles -->
-    <link href="../theme/bootstrap.min.css" rel="stylesheet">
-    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="../theme/local.css" rel="stylesheet">
-    <link href="../theme/pygments.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
 
     <!-- So Firefox can bookmark->"abo this site" -->
         <link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="alternate" title="BLxG" type="application/atom+xml">
@@ -40,12 +40,12 @@
              <span class="icon-bar"></span>
          </a>
 
-        <a class="brand" href="..">BLxG</a>
+        <a class="brand" href=".">BLxG</a>
 
         <div class="nav-collapse">
         <ul class="nav">
             
-            <li><a href="../pages/about.html">About</a></li>
+            <li><a href="./pages/about.html">About</a></li>
         </ul>
         </div>
         
@@ -58,25 +58,19 @@
     <div class="row">
 
         <div class="span9">
-        
-
-        
-
-
     <div class='article'>
         <div class="content-title">
-            <a href="../yet-another-toy-compiler-compiler.html"><h1>Yet Another Toy Compiler Compiler</h1></a>
+            <h1>Yet Another Toy Compiler Compiler</h1>
 五 11 十一月 2016
 
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
+by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
 
-Filed under <a href="../category/ccpp.html">C/CPP</a>
+Filed under <a href="./category/ccpp.html">C/CPP</a>
 
  
-    Tags <a href="../tag/c.html">c</a> <a href="../tag/compiler.html">compiler</a> <a href="../tag/regular-expression.html">regular expression</a> <a href="../tag/automaton.html">automaton</a>  
-        </div>
-        
+    Tags <a href="./tag/c.html">c</a> <a href="./tag/compiler.html">compiler</a> <a href="./tag/regular-expression.html">regular expression</a> <a href="./tag/automaton.html">automaton</a>         </div>
+
         <div><blockquote>
 <p>If all you have is a hammer, everything looks like a nail.  ---Maslow </p>
 </blockquote>
@@ -472,151 +466,26 @@ s9--eplisoin--&gt;s1<span class="o">((</span>s1<span class="o">))</span>
 <p>借助mermaid可视化为：</p>
 <p><img alt="mermaid" src="/assets/images/nfa.png" /></p>
 <p>(期待我还能写一篇)</p></div>
-        <hr />
+	
+        <hr>
+
+    <wb:share-button xmlns:wb="http://open.weibo.com/wb" appkey="2571843260" addition="full" type="button" ralateUid="2421104062"
+    default_text="Yet Another Toy Compiler Compiler"></wb:share-button>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+        <h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'blxg'; 
+    var disqus_title = 'Yet Another Toy Compiler Compiler';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-		
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html"><h2>[Offer收割]编程练习赛4题解</h2></a>
-        <div class= "well small"> 一 08 八月 2016
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/ccpp.html">C/CPP</a>
-
- 
-    Tags <a href="../tag/cpp.html">cpp</a> <a href="../tag/algorithm.html">algorithm</a> <a href="../tag/hihocoder.html">hihocoder</a> <a href="../tag/spfa.html">spfa</a>  </div>
-        <div class="summary"><blockquote>
-<p>If all you have is a hammer, everything looks like a nail.  ---Maslow</p>
-</blockquote>
-<h2>A.满减优惠</h2>
-<h3>问题</h3>
-<p>时间限制:10000ms
-单点时限:1000ms
-内存限制:256MB</p>
-<h4>描述</h4>
-<p>最近天气炎热，小Ho天天宅在家里叫外卖。他常吃的一家餐馆一共有N道菜品，价格分别是A1, A2, ... AN元。并且如果消费总计满X元，还能享受优惠。小Ho是一个不薅羊毛不舒服斯基的人，他希望选择若干道不同的菜品，使得总价在不低于X元的同时尽量低。</p>
-<p>你能算出这一餐小Ho最少消费多少元吗？</p>
-<h4>输入</h4>
-<p>第一行包含两个整数N和X，(1 &lt;= N &lt;= 20, 1 &lt;= X &lt;= 100)</p>
-<p>第二行包含N个整数A1, A2, ...， AN。(1 &lt;= Ai &lt;= 100)</p>
-<h4>输出 ...</h4> <a class="btn btn-info xsmall" href="../offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../hihocodertai-ge-zui-xin-mian-jing-suan-fa-jing-sai-4.html"><h2>hihoCoder太阁最新面经算法竞赛4</h2></a>
-        <div class= "well small"> 三 15 六月 2016
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/ccpp.html">C/CPP</a>
-
- 
-    Tags <a href="../tag/cpp.html">cpp</a> <a href="../tag/algorithm.html">algorithm</a> <a href="../tag/hihocoder.html">hihocoder</a>  </div>
-        <div class="summary"><blockquote>
-<p>If all you have is a hammer, everything looks like a nail.  ---Maslow</p>
-</blockquote>
-<h2>树结构判定</h2>
-<h3>问题</h3>
-<p>时间限制:10000ms
-单点时限:1000ms
-内存限制:256MB</p>
-<h4>描述</h4>
-<p>给定一个包含 N 个顶点 M 条边的无向图 G ，判断 G 是不是一棵树。</p>
-<h4>输入</h4>
-<p>第一个是一个整数 T ，代表测试数据的组数。 (1 ≤ T ≤ 10)</p>
-<p>每组测试数据第一行包含两个整数 N 和 M 。(2 ≤ N ≤ 500, 1 ≤ M ≤ 100000)</p>
-<p>以下 M ...</p> <a class="btn btn-info xsmall" href="../hihocodertai-ge-zui-xin-mian-jing-suan-fa-jing-sai-4.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../xian-duan-shu.html"><h2>线段树</h2></a>
-        <div class= "well small"> 五 13 五月 2016
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/ccpp.html">C/CPP</a>
-
- 
-    Tags <a href="../tag/cpp.html">cpp</a> <a href="../tag/algorithm.html">algorithm</a> <a href="../tag/segment-tree.html">segment tree</a>  </div>
-        <div class="summary"><blockquote>
-<p>One thing I know is that I know nothing. ---Socrates</p>
-</blockquote>
-<h2>What is that?</h2>
-<p>线段树是一种二叉搜索树，它的每一个节点表示一段区间，节点[a, b]的左子树表示的区间是[a, (a+b)/2]，而其右节点表示的区间为[(a+b)/2+1, b]。利用数组可以很好的表示一棵线段树，对于表示区间[1, n]的线段树所需要的数组大小大概为<strong>4n</strong>。</p>
-<h2>Why should I care?</h2>
-<p>线段树对于解决一些区间更新、查询的问题非常有效。</p>
-<p>通常情况下，其具有O(logn)的更新和查询时间复杂度。
-线段树可以解决RMQ（Range Maximum/Minimum
-Query ...</p> <a class="btn btn-info xsmall" href="../xian-duan-shu.html">read more</a></div>
-    </div>	
-				
-
- 
-        
-
- 
-
-    <div class='article'>
-        <a href="../cheng-xu-yuan-de-mo-yun-suan.html"><h2>程序员的模运算</h2></a>
-        <div class= "well small"> 五 22 四月 2016
-
-by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
- 
-
-Filed under <a href="../category/ccpp.html">C/CPP</a>
-
- 
-    Tags <a href="../tag/cpp.html">cpp</a> <a href="../tag/algorithm.html">algorithm</a> <a href="../tag/hihocoder.html">hihocoder</a>  </div>
-        <div class="summary"><blockquote>
-<p>One thing I know is that I know nothing.  ---Socrates</p>
-</blockquote>
-<h2>What is that?</h2>
-<p>求模运算是程序员的常用操作，C/CPP中使用<code>%</code>进行运算。程序员的描述通常是对于整数<code>a</code>和<code>b</code>，<code>a %
-b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员，这是我的常用描述，小学水平。。。）</p>
-<p><code>3 % 2 = 1</code>, <code>6 % 10 = 6</code>这东西很难吗？</p>
-<h2>Why should I care?</h2>
-<p>有些时候还是有点麻烦的：</p>
-<ol>
-<li><span id='p1'> <code>-1 % 2 = ???</code> </span></li>
-<li><span id='p2'> <code>2 % -1 = ???</code> </span></li>
-<li><span id='p3'> <code>(a * b) % c =? (a%c ...</code></span></li></ol> <a class="btn btn-info xsmall" href="../cheng-xu-yuan-de-mo-yun-suan.html">read more</a></div>
-    </div>	
-				
-<div class="pagination">
-<ul>
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-    <li class="active"><a href="../category/ccpp.html">1</a></li>
-    <li class=""><a href="../category/ccpp2.html">2</a></li>
-    <li class=""><a href="../category/ccpp3.html">3</a></li>
-
-    <li class="next"><a href="../category/ccpp2.html">Next &rarr;</a></li>
-
-</ul>
-</div>
- 
-  
         </div>
         
         <div class="span3">
@@ -627,8 +496,8 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
                 Site
                 </li>
             
-                <li><a href="../archives.html">Archives</a>
-                <li><a href="../tags.html">Tags</a>
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
 
 
 
@@ -644,10 +513,10 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
                 Categories
                 </li>
                 
-                <li><a href="../category/ccpp.html">C/CPP</a></li>
-                <li><a href="../category/english.html">English</a></li>
-                <li><a href="../category/linux.html">Linux</a></li>
-                <li><a href="../category/security.html">Security</a></li>
+                <li><a href="./category/ccpp.html">C/CPP</a></li>
+                <li><a href="./category/english.html">English</a></li>
+                <li><a href="./category/linux.html">Linux</a></li>
+                <li><a href="./category/security.html">Security</a></li>
                    
             </ul>
             </div>
@@ -692,12 +561,12 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
     </div>     </div> 
 <footer>
 <br />
-<p><a href="..">BLxG</a> &copy; ictlxb 2016</p>
+<p><a href=".">BLxG</a> &copy; ictlxb 2016</p>
 </footer>
 
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="../theme/bootstrap-collapse.js"></script>
+<script src="./theme/bootstrap-collapse.js"></script>
 <script>
     $(document).ready(function () {
         $(".article table").addClass("table table-striped table-bordered");

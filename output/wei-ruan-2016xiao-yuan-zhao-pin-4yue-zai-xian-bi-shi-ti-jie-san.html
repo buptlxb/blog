@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>微软2016校园招聘4月在线笔试题解(三)</h1>
-Sat 09 April 2016
+六 09 四月 2016
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -83,7 +83,7 @@ Filed under <a href="./category/ccpp.html">C/CPP</a>
 <p>You work as an intern at a robotics startup. Today is your company's demo day. During the demo your company's robot will be put in a maze and without any information about the maze, it should be able to find a way out.</p>
 <p>The maze consists of N * M grids. Each grid is either empty(represented by '.') or blocked by an obstacle(represented by 'b'). The robot will be release at the top left corner and the exit is at the bottom right corner.</p>
 <p>Unfortunately some sensors on the robot go crazy just before the demo starts. As a result, the robot can only repeats two operations alternatively: keep moving to the right until it can't and keep moving to the bottom until it can't. At the beginning, the robot keeps moving to the right.</p>
-<div class="highlight"><pre>rrrrbb..            
+<div class="highlight"><pre><span></span>rrrrbb..            
 ...r....     ====&gt; The robot route with broken sensors is marked by &#39;r&#39;. 
 ...rrb..
 ...bb...
@@ -100,7 +100,7 @@ Filed under <a href="./category/ccpp.html">C/CPP</a>
 <h4>输出</h4>
 <p>The minimum number of grids to be changed.</p>
 <p>样例输入</p>
-<div class="highlight"><pre>4 8
+<div class="highlight"><pre><span></span>4 8
 ....bb..
 ........
 .....b..
@@ -109,7 +109,7 @@ Filed under <a href="./category/ccpp.html">C/CPP</a>
 
 
 <p>样例输出</p>
-<div class="highlight"><pre>1
+<div class="highlight"><pre><span></span>1
 </pre></div>
 
 
@@ -118,7 +118,7 @@ Filed under <a href="./category/ccpp.html">C/CPP</a>
 <p>我只会一点简单的DP，看到这个题也就是向DP靠，根本没考虑有没有重叠子问题，有没有最优子结构。（<a href="https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">这都是个啥？</a>）</p>
 <p>糙快猛，列方程：</p>
 <p><code>dp[i][j][k]</code>表示robot跑到<code>i</code>行<code>j</code>列目前移动方向为<code>k</code>时，所需要的最小的flip。其中<code>0 &lt;= i &lt;= N</code>，<code>0 &lt;= j &lt;= M</code>，<code>k = right/down</code></p>
-<div class="highlight"><pre><span class="c1">//           j-1    j</span>
+<div class="highlight"><pre><span></span><span class="c1">//           j-1    j</span>
 <span class="c1">//     i-1          r`  </span>
 <span class="c1">//                  |</span>
 <span class="c1">//       i    r``-- ?--&gt; right</span>
@@ -140,8 +140,8 @@ Filed under <a href="./category/ccpp.html">C/CPP</a>
 <p>有了这些结论，代码比较容易写出来了。</p>
 <h3>Solution</h3>
 <p>下面是C++实现的完整代码：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;vector&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
@@ -277,32 +277,6 @@ Filed under <a href="./category/ccpp.html">C/CPP</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

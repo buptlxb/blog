@@ -12,3 +12,9 @@ description: 开发常用技巧收集
 
     :::bash
     cpp -dM -E /usr/include/netinet/in.h | grep SOCKADDR_COMMON
+
+### Adjust the image to fixed width with ImageMagick
+
+    :::bash
+    convert -resize 800x a.png
+

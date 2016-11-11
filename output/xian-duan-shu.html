@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>线段树</h1>
-Fri 13 May 2016
+五 13 五月 2016
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -83,7 +83,7 @@ Filed under <a href="./category/ccpp.html">C/CPP</a>
 Query）问题，对于一些只关心区间的相交覆盖问题，还可以使用离散化的技巧缩小区间大小。</p>
 <h2>What should I do about it?</h2>
 <p>下面是一个常用的线段树模版：</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">SegmentTree</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SegmentTree</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tree</span><span class="p">;</span>
     <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="kt">int</span> <span class="n">root</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">);</span>
@@ -176,7 +176,7 @@ Query）问题，对于一些只关心区间的相交覆盖问题，还可以使
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre>线段树的核心问题是如何设计树中的节点，当更新时，可以快速的通过子区间的某些运算，得到父节点的新值，这就是常说的PushUp操作。
+<div class="highlight"><pre><span></span>线段树的核心问题是如何设计树中的节点，当更新时，可以快速的通过子区间的某些运算，得到父节点的新值，这就是常说的PushUp操作。
 另一方面，在使用Lazy tag时，在查询时，需要根据父节点的Lazy tag更新子区间，这就是常说的PushDown操作。
 一些复杂的情况下，这PushUp和PushDown是较难设计的，所以也是关键所在。
 </pre></div>
@@ -269,32 +269,6 @@ Query）问题，对于一些只关心区间的相交覆盖问题，还可以使
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

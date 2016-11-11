@@ -66,7 +66,7 @@
     <div class='article'>
         <div class="content-title">
             <a href="../program-optimization-experiments.html"><h1>Program Optimization Experiments</h1></a>
-Sat 03 May 2014
+六 03 五月 2014
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -87,14 +87,14 @@ Machine Information can be found <a href="/assets/misc/info.pdf">here</a></p>
 </blockquote>
 <h3>1 There Loops Resolution</h3>
 <h4>1.1 Source Code</h4>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;time.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
-<span class="cp">#include &lt;sys/time.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define DIM 4096</span>
-<span class="k">typedef</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="nf">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
 
 <span class="kt">void</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">MATRIX</span> <span class="n">z</span><span class="p">,</span> <span class="k">const</span> <span class="n">MATRIX</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="n">MATRIX</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dim</span><span class="p">)</span>
 <span class="p">{</span>
@@ -155,14 +155,14 @@ Machine Information can be found <a href="/assets/misc/info.pdf">here</a></p>
 
 <h4>1.2 Results</h4>
 <h5>1.2.1 No Optimization</h5>
-<div class="highlight"><pre>ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix
+<div class="highlight"><pre><span></span>ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix
 <span class="m">4096</span> matrix multiply
 <span class="nb">time</span> : 1038s    speed: 132.39 MFLOPS
 </pre></div>
 
 
 <h5>1.2.2 -O2 Optimization</h5>
-<div class="highlight"><pre>ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix_O2 
+<div class="highlight"><pre><span></span>ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix_O2 
 <span class="m">4096</span> matrix multiply
 <span class="nb">time</span> : 944s speed: 145.57 MFLOPS
 </pre></div>
@@ -176,14 +176,14 @@ instructions, which might cause bubble in the instruction parallel, and so
 on.</p>
 <h3>2 Three Loops Resulotion (4097X4097)</h3>
 <h4>2.1 Source Code</h4>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;time.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
-<span class="cp">#include &lt;sys/time.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define DIM 4097</span>
-<span class="k">typedef</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="nf">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
 
 <span class="kt">void</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">MATRIX</span> <span class="n">z</span><span class="p">,</span> <span class="k">const</span> <span class="n">MATRIX</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="n">MATRIX</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dim</span><span class="p">)</span>
 <span class="p">{</span>
@@ -245,7 +245,7 @@ on.</p>
 
 
 <h4>2.2 Results</h4>
-<div class="highlight"><pre><span class="n">ict</span><span class="o">-</span><span class="n">lxb</span><span class="err">@</span><span class="n">ictlxb</span><span class="o">-</span><span class="n">Zhaoyang</span><span class="o">-</span><span class="nl">E49</span><span class="p">:</span><span class="o">~/</span><span class="n">Workspace</span><span class="o">/</span><span class="n">test</span><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">matrix_4097</span> 
+<div class="highlight"><pre><span></span><span class="n">ict</span><span class="o">-</span><span class="n">lxb</span><span class="err">@</span><span class="n">ictlxb</span><span class="o">-</span><span class="n">Zhaoyang</span><span class="o">-</span><span class="nl">E49</span><span class="p">:</span><span class="o">~/</span><span class="n">Workspace</span><span class="o">/</span><span class="n">test</span><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">matrix_4097</span> 
 <span class="mi">4097</span> <span class="n">matrix</span> <span class="n">multiply</span>
 <span class="nl">time</span> <span class="p">:</span> <span class="mi">901</span><span class="n">s</span> <span class="nl">speed</span><span class="p">:</span> <span class="mf">152.52</span> <span class="n">MFLOPS</span>
 </pre></div>
@@ -257,14 +257,14 @@ due in large part to cache miss rate decreasing. 4097 matrix might decrease the
 collision of cache line becuase of its irregular layout.</p>
 <h3>3 Three Loops Resulotion With Transpose</h3>
 <h4>3.1 Source Code</h4>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;time.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
-<span class="cp">#include &lt;sys/time.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define DIM 4096</span>
-<span class="k">typedef</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="nf">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
 
 <span class="kt">void</span> <span class="nf">transpose</span><span class="p">(</span><span class="n">MATRIX</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dim</span><span class="p">)</span>
 <span class="p">{</span>
@@ -338,7 +338,7 @@ collision of cache line becuase of its irregular layout.</p>
 
 
 <h4>3.2 Results</h4>
-<div class="highlight"><pre>ct-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix_transpose 
+<div class="highlight"><pre><span></span>ct-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix_transpose 
 <span class="m">4096</span> matrix multiply
 <span class="nb">time</span> : 72s  speed: 1908.64 MFLOPS
 </pre></div>
@@ -351,15 +351,15 @@ row-major and that cache miss rate decreases due to the transpose. Temporal
 locality and spatial locality is the key point in this improvement.</p>
 <h3>4 Three Loops Resulotion With Partition</h3>
 <h4>4.1 Source Code</h4>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;time.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
-<span class="cp">#include &lt;sys/time.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define B 128</span>
 <span class="cp">#define DIM 4096</span>
-<span class="k">typedef</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="nf">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
 
 <span class="cp">#define MIN(x, y) ((x) &gt; (y) ? (y) : (x))</span>
 
@@ -454,12 +454,12 @@ spatial locality of data, the performance could be improved due to less cache
 misses.</p>
 <h3>6 Optimal Program With Pthread</h3>
 <h4>6.1 Source Code</h4>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;time.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
-<span class="cp">#include &lt;sys/time.h&gt;</span>
-<span class="cp">#include &lt;pthread.h&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define CORES 2</span>
 <span class="cp">#define THREADS 4</span>
@@ -468,14 +468,14 @@ misses.</p>
 
 <span class="cp">#define DIM 4096</span>
 <span class="cp">#define COL (DIM/WORKERS)</span>
-<span class="k">typedef</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="nf">double</span><span class="p">(</span><span class="o">*</span> <span class="n">MATRIX</span><span class="p">)[</span><span class="n">DIM</span><span class="p">];</span>
 
 <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
     <span class="n">MATRIX</span> <span class="n">x</span><span class="p">;</span>
     <span class="n">MATRIX</span> <span class="n">y</span><span class="p">;</span>
     <span class="n">MATRIX</span> <span class="n">z</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">row_start</span><span class="p">;</span>
-    <span class="kt">pthread_t</span> <span class="n">pid</span><span class="p">;</span>
+    <span class="n">pthread_t</span> <span class="n">pid</span><span class="p">;</span>
 <span class="p">}</span> <span class="n">Arguments</span><span class="p">;</span>
 
 <span class="n">Arguments</span> <span class="n">argument</span><span class="p">[</span><span class="n">WORKERS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="p">},</span> <span class="p">};</span>
@@ -568,25 +568,25 @@ misses.</p>
 
 
 <h4>6.2 Results</h4>
-<div class="highlight"><pre>ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix_pthread 
+<div class="highlight"><pre><span></span>ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix_pthread 
 <span class="m">4096</span> matrix multiply with <span class="m">2</span> workers
 <span class="nb">time</span> : 49s  speed: 2804.53 MFLOPS
 
-ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix_pthread 
+ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix_pthread 
 <span class="m">4096</span> matrix multiply with <span class="m">4</span> workers
 <span class="nb">time</span> : 31s  speed: 4432.97 MFLOPS
 
-ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix_pthread 
+ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix_pthread 
 <span class="m">4096</span> matrix multiply with <span class="m">8</span> workers
 <span class="nb">time</span> : 44s  speed: 3123.23 MFLOPS
 
-ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix_pthread 
+ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix_pthread 
 <span class="m">4096</span> matrix multiply with <span class="m">16</span> workers
 <span class="nb">time</span> : 43s  speed: 3195.86 MFLOPS
 
 ...
 
-ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test<span class="nv">$ </span>./matrix_pthread 
+ict-lxb@ictlxb-Zhaoyang-E49:~/Workspace/test$ ./matrix_pthread 
 <span class="m">4096</span> matrix multiply with <span class="m">4096</span> workers
 <span class="nb">time</span> : 42s  speed: 3271.96 MFLOPS
 </pre></div>
@@ -692,32 +692,6 @@ be ignored.</p>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
-                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="../tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
             </ul>
             </div>
 

@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>Trace Linux Kernel With Bochs(4)</h1>
-Wed 12 March 2014
+三 12 三月 2014
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -75,7 +75,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 <h2>修改Makefile</h2>
 <p>在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出<code>Hello OS World!</code>。</p>
 <p>代码如下：</p>
-<div class="highlight"><pre><span class="nv">CC</span> <span class="o">=</span> gcc
+<div class="highlight"><pre><span></span><span class="nv">CC</span> <span class="o">=</span> gcc
 <span class="nv">LD</span> <span class="o">=</span> ld
 <span class="nv">LDFILE</span> <span class="o">=</span> ld_script.ld
 <span class="nv">OBJCOPY</span> <span class="o">=</span> objcopy
@@ -101,17 +101,17 @@ Filed under <a href="./category/linux.html">Linux</a>
     @dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span><span class="nv">$@</span> <span class="nv">seek</span><span class="o">=</span><span class="m">2</span> <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span>2878
 
 <span class="nf">$(ASM_BIN)</span><span class="o">:</span> %.<span class="n">bin</span>: %.<span class="n">elf</span>
-    @<span class="k">$(</span>OBJCOPY<span class="k">)</span> -R .pdr -R .comment -R .note -S -O binary <span class="nv">$&lt;</span> <span class="nv">$@</span>
+    @<span class="k">$(</span>OBJCOPY<span class="k">)</span> -R .pdr -R .comment -R .note -S -O binary $&lt; <span class="nv">$@</span>
 
 <span class="nf">$(ASM_ELF)</span><span class="o">:</span> %.<span class="n">elf</span>: %.<span class="n">o</span>
-    <span class="k">$(</span>LD<span class="k">)</span> <span class="nv">$&lt;</span> -o <span class="nv">$@</span> -e c -T<span class="k">$(</span>LDFILE<span class="k">)</span>
+    <span class="k">$(</span>LD<span class="k">)</span> $&lt; -o <span class="nv">$@</span> -e c -T<span class="k">$(</span>LDFILE<span class="k">)</span>
 
 <span class="nf">$(ASM_OBJ)</span><span class="o">:</span> %.<span class="n">o</span>: %.<span class="n">s</span>
-    <span class="k">$(</span>CC<span class="k">)</span> -c <span class="nv">$&lt;</span> -o <span class="nv">$@</span>
+    <span class="k">$(</span>CC<span class="k">)</span> -c $&lt; -o <span class="nv">$@</span>
 
 
 <span class="nf">$(ASM_DMP)</span><span class="o">:</span> %.<span class="n">dmp</span>: %.<span class="n">bin</span>
-    <span class="k">$(</span>DUMP<span class="k">)</span>  <span class="k">$(</span>DUMP_FLAGS<span class="k">)</span> <span class="nv">$&lt;</span> &gt; <span class="nv">$@</span>
+    <span class="k">$(</span>DUMP<span class="k">)</span>  <span class="k">$(</span>DUMP_FLAGS<span class="k">)</span> $&lt; &gt; <span class="nv">$@</span>
 
 <span class="nf">clean</span><span class="o">:</span>
     @rm -rf <span class="k">$(</span>ASM_OBJ<span class="k">)</span> <span class="k">$(</span>ASM_ELF<span class="k">)</span> <span class="k">$(</span>ASM_BIN<span class="k">)</span> <span class="k">$(</span>ASM_DMP<span class="k">)</span> linux.img
@@ -233,32 +233,6 @@ Filed under <a href="./category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

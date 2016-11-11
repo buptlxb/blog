@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>Several Problems about Linux Kernel</h1>
-Sun 13 April 2014
+日 13 四月 2014
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -94,12 +94,12 @@ Good luck!</p>
 <p>The bootsect is moved to the address 0x90000 becuase of the memory layouts of linux kernel(version 0.11). You can give some details about the layouts.</p>
 <h4>4. How the bootsect, the setup and the head cooperate(connect) with each other? Give some evidences(code).</h4>
 <p>We can easily find the follow assembly code in <code>boot/bootsect.s</code>, which makes the execution turn to setup.</p>
-<div class="highlight"><pre>    <span class="nf">SETUPSEG</span> <span class="err">=</span> <span class="mi">0x9020</span>           <span class="err">!</span> <span class="no">setup</span> <span class="no">starts</span> <span class="no">here</span> 
+<div class="highlight"><pre><span></span>    <span class="nf">SETUPSEG</span> <span class="err">=</span> <span class="mi">0x9020</span>           <span class="p">!</span> <span class="no">setup</span> <span class="no">starts</span> <span class="no">here</span> 
 
     <span class="no">...</span>
 
 <span class="err">!</span> <span class="nf">after</span> <span class="no">that</span> <span class="p">(</span><span class="no">everyting</span> <span class="no">loaded</span><span class="p">),</span> <span class="no">we</span> <span class="no">jump</span> <span class="no">to</span>                                                                                                           
-<span class="err">!</span> <span class="no">the</span> <span class="no">setup-routine</span> <span class="no">loaded</span> <span class="no">directly</span> <span class="no">after</span>
+<span class="p">!</span> <span class="no">the</span> <span class="no">setup-routine</span> <span class="no">loaded</span> <span class="no">directly</span> <span class="no">after</span>
 <span class="err">!</span> <span class="nf">the</span> <span class="no">bootblock</span><span class="p">:</span>
 
     <span class="nf">jmpi</span>    <span class="mi">0</span><span class="p">,</span><span class="no">SETUPSEG</span>
@@ -107,14 +107,14 @@ Good luck!</p>
 
 
 <p>Similarly, the follow assembly code, which makes the execution turn to head, can be found in <code>boot/setup.s</code>.</p>
-<div class="highlight"><pre><span class="err">!</span> <span class="nf">Well</span><span class="p">,</span> <span class="no">now</span> <span class="no">is</span> <span class="no">the</span> <span class="no">time</span> <span class="no">to</span> <span class="no">actually</span> <span class="no">move</span> <span class="no">into</span> <span class="no">protected</span> <span class="no">mode.</span> <span class="no">To</span> <span class="no">make</span>
+<div class="highlight"><pre><span></span><span class="err">!</span> <span class="nf">Well</span><span class="p">,</span> <span class="no">now</span> <span class="no">is</span> <span class="no">the</span> <span class="no">time</span> <span class="no">to</span> <span class="no">actually</span> <span class="no">move</span> <span class="no">into</span> <span class="no">protected</span> <span class="no">mode.</span> <span class="no">To</span> <span class="no">make</span>
 <span class="err">!</span> <span class="nf">things</span> <span class="no">as</span> <span class="no">simple</span> <span class="no">as</span> <span class="no">possible</span><span class="p">,</span> <span class="no">we</span> <span class="no">do</span> <span class="no">no</span> <span class="no">register</span> <span class="no">set-up</span> <span class="no">or</span> <span class="no">anything</span><span class="p">,</span>
 <span class="err">!</span> <span class="nf">we</span> <span class="no">let</span> <span class="no">the</span> <span class="no">gnu-compiled</span> <span class="mi">32</span><span class="p">-</span><span class="no">bit</span> <span class="no">programs</span> <span class="no">do</span> <span class="no">that.</span> <span class="no">We</span> <span class="no">just</span> <span class="no">jump</span> <span class="no">to</span>
 <span class="err">!</span> <span class="nf">absolute</span> <span class="no">address</span> <span class="mi">0x00000</span><span class="p">,</span> <span class="no">in</span> <span class="mi">32</span><span class="p">-</span><span class="no">bit</span> <span class="no">protected</span> <span class="no">mode.</span>
 
     <span class="nf">mov</span> <span class="no">ax</span><span class="p">,</span><span class="c">#0x0001  ! protected mode (PE) bit</span>
-    <span class="nf">lmsw</span>    <span class="no">ax</span>      <span class="err">!</span> <span class="no">This</span> <span class="no">is</span> <span class="no">it</span><span class="err">!</span>
-    <span class="nf">jmpi</span>    <span class="mi">0</span><span class="p">,</span><span class="mi">8</span>     <span class="err">!</span> <span class="no">jmp</span> <span class="no">offset</span> <span class="mi">0</span> <span class="no">of</span> <span class="no">segment</span> <span class="mi">8</span> <span class="p">(</span><span class="no">cs</span><span class="p">)</span>
+    <span class="nf">lmsw</span>    <span class="no">ax</span>      <span class="p">!</span> <span class="no">This</span> <span class="no">is</span> <span class="no">it</span><span class="p">!</span>
+    <span class="nf">jmpi</span>    <span class="mi">0</span><span class="p">,</span><span class="mi">8</span>     <span class="p">!</span> <span class="no">jmp</span> <span class="no">offset</span> <span class="mi">0</span> <span class="no">of</span> <span class="no">segment</span> <span class="mi">8</span> <span class="p">(</span><span class="no">cs</span><span class="p">)</span>
 </pre></div>
 
 
@@ -153,7 +153,7 @@ Good luck!</p>
 <h4>8. Where is the task_struct of Process 0? What is the content of it?</h4>
 <p>I do <code>NOT</code> known where the task_struct of Process 0 is. But when I trace the linux kernel in my machine with bochs, I found it at the address 0x17280. Of course, it is meaningless.</p>
 <p>The content of it is as follow:</p>
-<div class="highlight"><pre><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> *  INIT_TASK is used to set up the first task table, touch at</span>
 <span class="cm"> * your own risk!. Base=0, limit=0x9ffff (=640kB)</span>
 <span class="cm"> */</span>
@@ -187,7 +187,7 @@ Good luck!</p>
 <p>The following picture comes from the book -- The Art of Linux Kernel Design.</p>
 <p><img alt="paging" src="/assets/images/paging.png" /></p>
 <p>Paging code is as follow:</p>
-<div class="highlight"><pre><span class="nl">setup_paging:</span>
+<div class="highlight"><pre><span></span><span class="nl">setup_paging:</span>
     <span class="nf">movl</span> <span class="no">$1024</span><span class="p">*</span><span class="mi">5</span><span class="p">,</span><span class="nv">%ecx</span>       <span class="err">/</span><span class="p">*</span> <span class="mi">5</span> <span class="no">pages</span> <span class="p">-</span> <span class="no">pg_dir</span><span class="err">+</span><span class="mi">4</span> <span class="no">page</span> <span class="no">tables</span> <span class="p">*</span><span class="err">/</span>
     <span class="nf">xorl</span> <span class="nv">%eax</span><span class="p">,</span><span class="nv">%eax</span>
     <span class="nf">xorl</span> <span class="nv">%edi</span><span class="p">,</span><span class="nv">%edi</span>          <span class="err">/</span><span class="p">*</span> <span class="no">pg_dir</span> <span class="no">is</span> <span class="no">at</span> <span class="mi">0x000</span> <span class="p">*</span><span class="err">/</span>
@@ -213,7 +213,7 @@ Good luck!</p>
 
 <h4>10. What is the content of 184 bytes just before IDT after head finish executing? Why the code is left?</h4>
 <p>The content is as follow:</p>
-<div class="highlight"><pre><span class="nl">after_page_tables:</span>
+<div class="highlight"><pre><span></span><span class="nl">after_page_tables:</span>
     <span class="nf">pushl</span> <span class="no">$0</span>        <span class="c"># These are the parameters to main :-)</span>
     <span class="nf">pushl</span> <span class="no">$0</span>
     <span class="nf">pushl</span> <span class="no">$0</span>
@@ -290,7 +290,7 @@ Good luck!</p>
 <h4>11. Why execution is turned to main by 'ret'? Why not turn the execution by call? Draw a picture to describe it and give some evidences.</h4>
 <p>It is a logical problem. If we use <code>call</code> here, we admin that something <code>call</code> to the OS. But there is nothing but the OS during the head execution. <code>ret</code> might solve the logical dilemma.</p>
 <p>The code evidence is as follow:</p>
-<div class="highlight"><pre><span class="nl">after_page_tables:</span>
+<div class="highlight"><pre><span></span><span class="nl">after_page_tables:</span>
     <span class="nf">pushl</span> <span class="no">$0</span>        <span class="c"># These are the parameters to main :-)</span>
     <span class="nf">pushl</span> <span class="no">$0</span>
     <span class="nf">pushl</span> <span class="no">$0</span>
@@ -312,7 +312,7 @@ Good luck!</p>
 
 <h4>12. Describe the initialization of Interrupt Descriptor Table. Give an example.</h4>
 <p>In the <code>main</code> function, <code>trap_init</code> is called.</p>
-<div class="highlight"><pre><span class="kt">void</span> <span class="nf">trap_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">trap_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
     <span class="n">set_trap_gate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">divide_error</span><span class="p">);</span>
@@ -326,8 +326,8 @@ Good luck!</p>
 
 
 <p><code>set_trap_gate</code> and <code>_set_gate</code> is as follow:</p>
-<div class="highlight"><pre><span class="c">#define set_trap_gate(n,addr) \                                                                                                 </span>
-<span class="nf">_set_gate</span><span class="p">(</span><span class="err">&amp;</span><span class="no">idt</span><span class="err">[</span><span class="no">n</span><span class="err">]</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="no">addr</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="c">#define set_trap_gate(n,addr) \                                                                                                 </span>
+<span class="nf">_set_gate</span><span class="p">(</span><span class="err">&amp;</span><span class="no">idt</span><span class="p">[</span><span class="no">n</span><span class="p">],</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="no">addr</span><span class="p">)</span>
 
 <span class="c">#define _set_gate(gate_addr,type,dpl,addr) \                                                                                   </span>
     <span class="nf">__asm__</span> <span class="p">(</span><span class="err">&quot;</span><span class="no">movw</span> <span class="err">%</span><span class="nv">%dx</span><span class="p">,</span><span class="err">%</span><span class="nv">%ax</span><span class="err">\</span><span class="no">n</span><span class="err">\</span><span class="no">t</span><span class="err">&quot;</span> <span class="err">\</span>
@@ -345,7 +345,7 @@ Good luck!</p>
 <h4>13. There are more than 20 instructions can be only executed in Privilege 0 in the IA-32 architectures. However, other instructions like 'cli' is not one of them. Why does the process with Priviledge 3 cannot execute it in linux 0.11?</h4>
 <p>The instructions <code>cli</code> and <code>sti</code> are under control of IOPL (Input/Output Privilege Level), which resdes in eflags. When the IOPL field is 0, the process with Privilege 3 cannnot execute them.</p>
 <p>The code evidence is as follow:</p>
-<div class="highlight"><pre><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> *  INIT_TASK is used to set up the first task table, touch at</span>
 <span class="cm"> * your own risk!. Base=0, limit=0x9ffff (=640kB)</span>
 <span class="cm"> */</span>
@@ -375,7 +375,7 @@ Good luck!</p>
 
 
 <p>The task sturct of process 0 is initialized with <code>INIT_TASK</code>. Obviously, the <code>eflags.IOPL</code> is 0. The task structs of other processes are copy of <code>INIT_TASK</code> with no changing <code>eflags.IOPL</code>.</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="nf">copy_process</span><span class="p">(</span><span class="kt">int</span> <span class="n">nr</span><span class="p">,</span><span class="kt">long</span> <span class="n">ebp</span><span class="p">,</span><span class="kt">long</span> <span class="n">edi</span><span class="p">,</span><span class="kt">long</span> <span class="n">esi</span><span class="p">,</span><span class="kt">long</span> <span class="n">gs</span><span class="p">,</span><span class="kt">long</span> <span class="n">none</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">copy_process</span><span class="p">(</span><span class="kt">int</span> <span class="n">nr</span><span class="p">,</span><span class="kt">long</span> <span class="n">ebp</span><span class="p">,</span><span class="kt">long</span> <span class="n">edi</span><span class="p">,</span><span class="kt">long</span> <span class="n">esi</span><span class="p">,</span><span class="kt">long</span> <span class="n">gs</span><span class="p">,</span><span class="kt">long</span> <span class="n">none</span><span class="p">,</span>
         <span class="kt">long</span> <span class="n">ebx</span><span class="p">,</span><span class="kt">long</span> <span class="n">ecx</span><span class="p">,</span><span class="kt">long</span> <span class="n">edx</span><span class="p">,</span>
         <span class="kt">long</span> <span class="n">fs</span><span class="p">,</span><span class="kt">long</span> <span class="n">es</span><span class="p">,</span><span class="kt">long</span> <span class="n">ds</span><span class="p">,</span> 
         <span class="kt">long</span> <span class="n">eip</span><span class="p">,</span><span class="kt">long</span> <span class="n">cs</span><span class="p">,</span><span class="kt">long</span> <span class="n">eflags</span><span class="p">,</span><span class="kt">long</span> <span class="n">esp</span><span class="p">,</span><span class="kt">long</span> <span class="n">ss</span><span class="p">)</span> 
@@ -418,7 +418,7 @@ In order to conform the standards, Process 0 should call <code>move_to_user_mode
 Firstly, <code>SS</code>, <code>ESP</code>, <code>EFLAGS</code>, <code>CS</code> and <code>EIP</code> will be pushed into the current stack.
 Then, the instruction <code>iret</code> will be executed.  The hardware will do what it does while returning from a call gate, such as poping the registers to corresponding one.</p>
 <p>The code is as follow:</p>
-<div class="highlight"><pre><span class="cp">#define move_to_user_mode() \                                                                                                                </span>
+<div class="highlight"><pre><span></span><span class="cp">#define move_to_user_mode() \                                                                                                                </span>
 <span class="n">__asm__</span> <span class="p">(</span><span class="s">&quot;movl %%esp,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span> \
         <span class="s">&quot;pushl $0x17</span><span class="se">\n\t</span><span class="s">&quot;</span> \
         <span class="s">&quot;pushl %%eax</span><span class="se">\n\t</span><span class="s">&quot;</span> \
@@ -443,7 +443,7 @@ The <code>0x0f</code> in the code above indicates Privilege 3, LDT and Code Segm
 <p>The five arguments are pushed into stack by hardware when it executes the instruction <code>int 80</code>.</p>
 <h4>19. Analyse the function 'get_free_page' and give an introduction.</h4>
 <p>The code is as follow:</p>
-<div class="highlight"><pre><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Get physical address of first (actually last :-) free page, and mark it</span>
 <span class="cm"> * used. If no free pages left, return 0.</span>
 <span class="cm"> */</span>
@@ -478,7 +478,7 @@ Finally, return the address of the free page.
 If no free pages left, return 0.</p>
 <h4>20. Analyse the function 'copy_page_tables' and give an introduction.</h4>
 <p>The code is as follow:</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="nf">copy_page_tables</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from</span><span class="p">,</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">to</span><span class="p">,</span><span class="kt">long</span> <span class="n">size</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">copy_page_tables</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from</span><span class="p">,</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">to</span><span class="p">,</span><span class="kt">long</span> <span class="n">size</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span> <span class="n">from_page_table</span><span class="p">;</span>
     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span> <span class="n">to_page_table</span><span class="p">;</span>
@@ -526,7 +526,7 @@ If no free pages left, return 0.</p>
 <p>The two pages reside in the linear address space of Kernel.</p>
 <p>The code evidence is as follow:</p>
 <p>Setup paging and allocate pages in linear address space of Kernel.</p>
-<div class="highlight"><pre><span class="nl">setup_paging:</span>
+<div class="highlight"><pre><span></span><span class="nl">setup_paging:</span>
     <span class="nf">movl</span> <span class="no">$1024</span><span class="p">*</span><span class="mi">5</span><span class="p">,</span><span class="nv">%ecx</span>       <span class="err">/</span><span class="p">*</span> <span class="mi">5</span> <span class="no">pages</span> <span class="p">-</span> <span class="no">pg_dir</span><span class="err">+</span><span class="mi">4</span> <span class="no">page</span> <span class="no">tables</span> <span class="p">*</span><span class="err">/</span>
     <span class="nf">xorl</span> <span class="nv">%eax</span><span class="p">,</span><span class="nv">%eax</span>
     <span class="nf">xorl</span> <span class="nv">%edi</span><span class="p">,</span><span class="nv">%edi</span>          <span class="err">/</span><span class="p">*</span> <span class="no">pg_dir</span> <span class="no">is</span> <span class="no">at</span> <span class="mi">0x000</span> <span class="p">*</span><span class="err">/</span>
@@ -551,7 +551,7 @@ If no free pages left, return 0.</p>
 
 
 <p>Allocate a page for task_struct and Privilege 0 stack</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="nf">copy_process</span><span class="p">(</span><span class="kt">int</span> <span class="n">nr</span><span class="p">,</span><span class="kt">long</span> <span class="n">ebp</span><span class="p">,</span><span class="kt">long</span> <span class="n">edi</span><span class="p">,</span><span class="kt">long</span> <span class="n">esi</span><span class="p">,</span><span class="kt">long</span> <span class="n">gs</span><span class="p">,</span><span class="kt">long</span> <span class="n">none</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">copy_process</span><span class="p">(</span><span class="kt">int</span> <span class="n">nr</span><span class="p">,</span><span class="kt">long</span> <span class="n">ebp</span><span class="p">,</span><span class="kt">long</span> <span class="n">edi</span><span class="p">,</span><span class="kt">long</span> <span class="n">esi</span><span class="p">,</span><span class="kt">long</span> <span class="n">gs</span><span class="p">,</span><span class="kt">long</span> <span class="n">none</span><span class="p">,</span>
         <span class="kt">long</span> <span class="n">ebx</span><span class="p">,</span><span class="kt">long</span> <span class="n">ecx</span><span class="p">,</span><span class="kt">long</span> <span class="n">edx</span><span class="p">,</span>
         <span class="kt">long</span> <span class="n">fs</span><span class="p">,</span><span class="kt">long</span> <span class="n">es</span><span class="p">,</span><span class="kt">long</span> <span class="n">ds</span><span class="p">,</span> 
         <span class="kt">long</span> <span class="n">eip</span><span class="p">,</span><span class="kt">long</span> <span class="n">cs</span><span class="p">,</span><span class="kt">long</span> <span class="n">eflags</span><span class="p">,</span><span class="kt">long</span> <span class="n">esp</span><span class="p">,</span><span class="kt">long</span> <span class="n">ss</span><span class="p">)</span> 
@@ -569,7 +569,7 @@ If no free pages left, return 0.</p>
 
 
 <p>Allocate pages for page tables</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="nf">copy_page_tables</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from</span><span class="p">,</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">to</span><span class="p">,</span><span class="kt">long</span> <span class="n">size</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">copy_page_tables</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from</span><span class="p">,</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">to</span><span class="p">,</span><span class="kt">long</span> <span class="n">size</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="p">...</span>
 
@@ -592,7 +592,7 @@ If no free pages left, return 0.</p>
 <h4>22. Similar to question 21.</h4>
 <h4>23. Explain the code 'ljmp %0' in the function 'switch_to'.</h4>
 <p>The code is as follow:</p>
-<div class="highlight"><pre><span class="cp">#define switch_to(n) {\</span>
+<div class="highlight"><pre><span></span><span class="cp">#define switch_to(n) {\</span>
 <span class="cp">    struct {long a,b;} __tmp; \</span>
 <span class="cp">        __asm__(&quot;cmpl %%ecx,_current\n\t&quot; \</span>
 <span class="cp">                &quot;je 1f\n\t&quot; \</span>
@@ -706,32 +706,6 @@ Therefore, the funtion <code>fork()</code> seems to be executed twice. In fact, 
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>Trace Linux Kernel With Bochs(5)</h1>
-Sat 29 March 2014
+六 29 三月 2014
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -71,7 +71,7 @@ Filed under <a href="./category/linux.html">Linux</a>
  
     Tags <a href="./tag/linux.html">linux</a> <a href="./tag/bochs.html">bochs</a> <a href="./tag/os.html">os</a>         </div>
 
-        <div><div class="highlight"><pre>当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
+        <div><div class="highlight"><pre><span></span>当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
 </pre></div>
 
 
@@ -80,7 +80,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 <p>这些数据的获得大多来自由BIOS提供的中断，在关中断之前，我们必须将这些与机器硬件密切相关的数据保存起来，而保存的位置，就是从<code>0x90000</code>开始的一段内存，如果你看过前面的几篇博文，应该知道这里曾是bootsect.s的位置。</p>
 <h4>获取光标位置</h4>
 <p>我们首先获取光标的位置,将它存储在0x90000开始的２个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span>     <span class="c"># read cursor pos</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span>     <span class="c"># read cursor pos</span>
     <span class="nf">xor</span> <span class="nv">%bh</span><span class="p">,</span> <span class="nv">%bh</span>
     <span class="nf">int</span> <span class="no">$0x10</span>           <span class="c"># save it in known place, con_init fetches</span>
     <span class="nf">movw</span> <span class="nv">%dx</span><span class="p">,</span> <span class="mi">0</span> <span class="c"># it from 0x90000</span>
@@ -89,7 +89,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h4>获取扩展内存的大小</h4>
 <p>扩展内存指的是1M 以上的物理内存大小，单位是kB。存储在0x90002开始的２个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x88</span><span class="p">,</span> <span class="nv">%ah</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movb</span> <span class="no">$0x88</span><span class="p">,</span> <span class="nv">%ah</span>
     <span class="nf">int</span> <span class="no">$0x15</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="mi">2</span>
 </pre></div>
@@ -97,7 +97,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h4>获取显示的相关信息</h4>
 <p>获取显示相关信息，如当前显示模式，窗口宽度等。存储在0x90004开始的４个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x0f</span><span class="p">,</span> <span class="nv">%ah</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movb</span> <span class="no">$0x0f</span><span class="p">,</span> <span class="nv">%ah</span>
     <span class="nf">int</span> <span class="no">$0x10</span>
     <span class="nf">movw</span> <span class="nv">%bx</span><span class="p">,</span> <span class="mi">4</span>     <span class="c"># BH = display page</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="mi">6</span>     <span class="c"># AL = video mode, AH = window width</span>
@@ -106,7 +106,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h4>获取EGA/VGA相关信息</h4>
 <p>存储在0x90008开始的６个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x12</span><span class="p">,</span> <span class="nv">%ah</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movb</span> <span class="no">$0x12</span><span class="p">,</span> <span class="nv">%ah</span>
     <span class="nf">movb</span> <span class="no">$0x10</span><span class="p">,</span> <span class="nv">%bl</span>
     <span class="nf">int</span> <span class="no">$0x10</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="mi">8</span>
@@ -117,7 +117,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h4>获取第一个硬盘的信息</h4>
 <p>存储在0x90080开始的16个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>
+<div class="highlight"><pre><span></span>    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span>
     <span class="nf">lds</span> <span class="mi">0x41</span><span class="p">*</span><span class="mi">4</span><span class="p">,</span> <span class="nv">%si</span> 
     <span class="no">movw</span> <span class="no">$INITSEG</span><span class="p">,</span> <span class="nv">%ax</span>
@@ -131,7 +131,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h4>获取第二个硬盘的信息</h4>
 <p>存储在0x90090开始的16个字节中。</p>
-<div class="highlight"><pre>    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>
+<div class="highlight"><pre><span></span>    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span>
     <span class="nf">lds</span> <span class="mi">0x46</span><span class="p">*</span><span class="mi">4</span><span class="p">,</span> <span class="nv">%si</span> <span class="c"># what is this? why is the address?</span>
     <span class="nf">movw</span> <span class="no">$INITSEG</span><span class="p">,</span> <span class="nv">%ax</span>
@@ -144,7 +144,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>检测是否存在第二个硬盘</h4>
-<div class="highlight"><pre>    <span class="nf">movw</span> <span class="no">$0x1500</span><span class="p">,</span> <span class="nv">%ax</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movw</span> <span class="no">$0x1500</span><span class="p">,</span> <span class="nv">%ax</span>
     <span class="nf">movb</span> <span class="no">$0x81</span><span class="p">,</span> <span class="nv">%dl</span>
     <span class="nf">int</span> <span class="no">$0x13</span>
     <span class="nf">jc</span> <span class="no">no_disk1</span>
@@ -164,13 +164,13 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <p>｀在前面无聊的取数存数后，我们将进行一项意义深远的举动，我们将不再依赖BIOS提供的中断，我们将开始为内核启动做最后的准备，时间貌似不多了，Let us roll`</p>
 <h2>关中断</h2>
-<div class="highlight"><pre><span class="nf">cli</span>
+<div class="highlight"><pre><span></span><span class="nf">cli</span>
 </pre></div>
 
 
 <h2>搬内核</h2>
 <p>我们将系统代码从0x10000的位置，搬到0x00000开始的位置，在这个过程中，我们废弃了BIOS在内存低1k位置准备的中断向量表，当然也废弃了BIOS准备的中断服务程序。</p>
-<div class="highlight"><pre>    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>
+<div class="highlight"><pre><span></span>    <span class="nf">xor</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ax</span>
     <span class="nf">cld</span>     <span class="c"># &#39;direction&#39; = 0, &#39;movs&#39; moves forward</span>
 
 <span class="nl">do_move:</span>
@@ -190,7 +190,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h2>启用新的中断描述符表</h2>
 <p>设置中断描述符表和全局描述符表。在x86体系结构中，开启保护模式后，中断向量表将不再必须放在内存低１k的位置，而是采用了寄存器<code>idtr</code>来指向中断描述符表在内存中的位置。同时我们也设置了<code>gdtr</code>，稍后我们会解释它的作用。</p>
-<div class="highlight"><pre><span class="nl">end_move:</span>
+<div class="highlight"><pre><span></span><span class="nl">end_move:</span>
     <span class="nf">movw</span> <span class="no">$SETUPSEG</span><span class="p">,</span> <span class="nv">%ax</span> 
     <span class="no">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span>
     <span class="nf">lidt</span> <span class="no">idt_48</span>     <span class="c"># load idt with 0,0</span>
@@ -200,7 +200,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h2>进入32位的世界</h2>
 <p>从这开始，我们打开A20,使用32位地址总线，进入32位的世界。</p>
-<div class="highlight"><pre>    <span class="nf">call</span> <span class="no">empty_8042</span>
+<div class="highlight"><pre><span></span>    <span class="nf">call</span> <span class="no">empty_8042</span>
     <span class="nf">movb</span> <span class="no">$0xD1</span><span class="p">,</span> <span class="nv">%al</span>     <span class="c"># command write</span>
     <span class="nf">outb</span> <span class="nv">%al</span><span class="p">,</span> <span class="no">$0x64</span>
     <span class="nf">call</span> <span class="no">empty_8042</span>
@@ -212,7 +212,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h2>重新设置8259A</h2>
 <p>8259A芯片是中断控制器，之所以说是重新设置，是因为在此之前，它已经被BIOS设置过一次，为了使用BIOS的中断。而现在，重新设置只是因为要符合Intel的要求。</p>
-<div class="highlight"><pre>    <span class="nf">movb</span> <span class="no">$0x11</span><span class="p">,</span> <span class="nv">%al</span>     <span class="c"># initialization sequence</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movb</span> <span class="no">$0x11</span><span class="p">,</span> <span class="nv">%al</span>     <span class="c"># initialization sequence</span>
     <span class="nf">out</span> <span class="nv">%al</span><span class="p">,</span> <span class="no">$0x20</span>      <span class="c"># send it to 8259A-1</span>
     <span class="na">.word</span>   <span class="mi">0x00eb</span><span class="p">,</span><span class="mi">0x00eb</span>       <span class="c"># jmp $+2, jmp $+2</span>
     <span class="nf">out</span> <span class="nv">%al</span><span class="p">,</span> <span class="no">$0xA0</span>      <span class="c"># and to 8259A-2</span>
@@ -243,7 +243,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 <h2>开启保护模式</h2>
 <p>经过一系列的准备工作之后，我们打开保护模式，这是一个与实模式相对的概念。</p>
-<div class="highlight"><pre>    <span class="nf">mov</span> <span class="no">$0x0001</span><span class="p">,</span> <span class="nv">%ax</span>    <span class="c"># protected mode (PE) bit</span>
+<div class="highlight"><pre><span></span>    <span class="nf">mov</span> <span class="no">$0x0001</span><span class="p">,</span> <span class="nv">%ax</span>    <span class="c"># protected mode (PE) bit</span>
     <span class="nf">lmsw</span>    <span class="nv">%ax</span>         <span class="c"># This is it!</span>
     <span class="nf">ljmp</span>    <span class="no">$8</span><span class="p">,</span> <span class="no">$0</span>          <span class="c"># jmp offset 0 of segment 8 (cs)</span>
 </pre></div>
@@ -265,7 +265,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 <p>而在32位保护模式时，显然无法将32位的地址保存在16位的寄存器中，又由于要保持良好的兼容性，段寄存器中改为保存16位的段选择子，用来选取gdt或ldt中的某一个段描述符。</p>
 <p>这里$8的低２位是RPL(Request Privilege Level)，第三位是使用gdt还是ldt，高13位是gdt或ldt数组的index。</p>
 <h2>数据和辅助函数</h2>
-<div class="highlight"><pre><span class="nf">INITSEG</span>  <span class="err">=</span> <span class="mi">0x9000</span>   <span class="c"># we move boot here - out of the way</span>
+<div class="highlight"><pre><span></span><span class="nf">INITSEG</span>  <span class="err">=</span> <span class="mi">0x9000</span>   <span class="c"># we move boot here - out of the way</span>
 <span class="nf">SYSSEG</span>   <span class="err">=</span> <span class="mi">0x1000</span>   <span class="c"># system loaded at 0x10000 (65536).</span>
 <span class="nf">SETUPSEG</span> <span class="err">=</span> <span class="mi">0x9020</span>   <span class="c"># this is the current segment</span>
 
@@ -384,32 +384,6 @@ Filed under <a href="./category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

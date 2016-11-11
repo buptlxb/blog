@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>程序员的模运算</h1>
-Fri 22 April 2016
+五 22 四月 2016
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -88,7 +88,7 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
 <li>...</li>
 </ol>
 <p>程序员要关心这些?那看这个：</p>
-<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_odd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">is_odd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -179,14 +179,14 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
 <h4>Multiplication</h4>
 <p>对于<a href="#p3">问题3</a>，显然不对，<code>(2 * 2) % 3 != (2 % 3) * (2 % 3)</code>，然而：</p>
 <p>有下面的等式</p>
-<div class="highlight"><pre>(a * b) % c == ((a % c) * (b % c)) % c
+<div class="highlight"><pre><span></span>(a * b) % c == ((a % c) * (b % c)) % c
 </pre></div>
 
 
 <p><strong>证明</strong>:</p>
 <p>令<code>a%c == x</code>, <code>b%c == y</code>，则<code>a == n*c + x</code>, <code>b == m*c + y</code>。</p>
 <p>易知:</p>
-<div class="highlight"><pre>(a * b) % c
+<div class="highlight"><pre><span></span>(a * b) % c
 = ((n*c + x) * (m*c + y)) % c 
 = (x*y + (x*m + n*y + n*m*c)*c) % c
 = (x * y) % c
@@ -198,14 +198,14 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
 <h4>Addition</h4>
 <p>对于<a href="#p4">问题4</a>，显然不对，<code>(1 + 1) % 2 != 1 % 2 + 1 % 2</code>，然而：</p>
 <p>有下面的等式</p>
-<div class="highlight"><pre>(a + b) % c == (a%c + b%c) % c
+<div class="highlight"><pre><span></span>(a + b) % c == (a%c + b%c) % c
 </pre></div>
 
 
 <p><strong>证明</strong>：</p>
 <p>令<code>a%c == x</code>, <code>b%c == y</code>，则<code>a == n*c + x</code>, <code>b == m*c + y</code>。</p>
 <p>易知:</p>
-<div class="highlight"><pre>(a + b) % c
+<div class="highlight"><pre><span></span>(a + b) % c
 = (n*c + x + m*c + y) % c 
 = (x + y) % c 
 = (a%c + b%c) % c
@@ -216,14 +216,14 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
 <h2>Useful Implementation</h2>
 <p>一些常见的应用：</p>
 <h3>正确的奇偶实现：</h3>
-<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_odd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">is_odd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <h3>大数的乘模运算：</h3>
-<div class="highlight"><pre><span class="kr">inline</span> <span class="kt">uint64_t</span> <span class="nf">mul_mod</span><span class="p">(</span><span class="kt">uint64_t</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">n</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kr">inline</span> <span class="kt">uint64_t</span> <span class="nf">mul_mod</span><span class="p">(</span><span class="kt">uint64_t</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span>   
     <span class="n">a</span> <span class="o">%=</span> <span class="n">n</span><span class="p">;</span>
     <span class="n">b</span> <span class="o">%=</span> <span class="n">n</span><span class="p">;</span>
@@ -329,32 +329,6 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

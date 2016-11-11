@@ -61,7 +61,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>Trace Linux Kernel With Bochs(3)</h1>
-Mon 10 March 2014
+一 10 三月 2014
 
 by <a class="url fn" href="./author/ictlxb.html">ictlxb</a>
  
@@ -76,7 +76,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 </blockquote>
 <h2>bootsect.s</h2>
 <h4>内存规划</h4>
-<div class="highlight"><pre><span class="na">.code16</span> <span class="c">#use 16bit</span>
+<div class="highlight"><pre><span></span><span class="na">.code16</span> <span class="c">#use 16bit</span>
 <span class="na">.text</span> <span class="c">#code segment start</span>
 
 <span class="nf">SYSSIZE</span> <span class="err">=</span> <span class="mi">0x3000</span>
@@ -94,7 +94,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>bootsect将自己复制到0x90000处</h4>
-<div class="highlight"><pre>    <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">,</span> <span class="nv">%ax</span> <span class="c">#cs:ip was initialized by BOIS instruction &#39;jmpi 0, 0x07c0&#39;</span>
+<div class="highlight"><pre><span></span>    <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">,</span> <span class="nv">%ax</span> <span class="c">#cs:ip was initialized by BOIS instruction &#39;jmpi 0, 0x07c0&#39;</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span> <span class="c">#initialize ds, es and ss with cs</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%es</span>
 
@@ -111,7 +111,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>跳到复制后的地方<em>继续</em>执行</h4>
-<div class="highlight"><pre>    <span class="nf">ljmp</span> <span class="no">$INITSEG</span><span class="p">,</span> <span class="no">$go</span>
+<div class="highlight"><pre><span></span>    <span class="nf">ljmp</span> <span class="no">$INITSEG</span><span class="p">,</span> <span class="no">$go</span>
 <span class="nl">go:</span>
     <span class="nf">movw</span> <span class="nv">%cs</span><span class="p">,</span> <span class="nv">%ax</span>
     <span class="nf">movw</span> <span class="nv">%ax</span><span class="p">,</span> <span class="nv">%ds</span>
@@ -123,7 +123,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>将setup section加载至内存</h4>
-<div class="highlight"><pre><span class="nl">load_setup:</span>
+<div class="highlight"><pre><span></span><span class="nl">load_setup:</span>
     <span class="nf">movw</span> <span class="no">$0x0000</span><span class="p">,</span> <span class="nv">%dx</span>   <span class="c"># DL = drive 0, DH = head 0</span>
     <span class="nf">movw</span> <span class="no">$0x0002</span><span class="p">,</span> <span class="nv">%cx</span>   <span class="c"># CL = sector 2, CH = track 0</span>
     <span class="nf">movw</span> <span class="no">$0x0200</span><span class="p">,</span> <span class="nv">%bx</span>   <span class="c"># address = 512, in INITSEG</span>
@@ -138,7 +138,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>获得每磁道的扇区数</h4>
-<div class="highlight"><pre><span class="nl">ok_load_setup:</span>
+<div class="highlight"><pre><span></span><span class="nl">ok_load_setup:</span>
 
 <span class="c"># Get disk drive parameters, specificlly nr of sectors/track</span>
 
@@ -156,7 +156,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>打印提示信息</h4>
-<div class="highlight"><pre><span class="c"># Print some inane message</span>
+<div class="highlight"><pre><span></span><span class="c"># Print some inane message</span>
 
     <span class="nf">movb</span> <span class="no">$0x03</span><span class="p">,</span> <span class="nv">%ah</span> <span class="c"># read cursor pos (AH = function number)</span>
     <span class="nf">xor</span> <span class="nv">%bh</span><span class="p">,</span> <span class="nv">%bh</span>    <span class="c"># BH = page number</span>
@@ -176,7 +176,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>将system section加载至内存</h4>
-<div class="highlight"><pre><span class="c"># ok, we have written the message, now</span>
+<div class="highlight"><pre><span></span><span class="c"># ok, we have written the message, now</span>
 <span class="c"># we want to load the system (at 0x10000)</span>
 
     <span class="nf">movw</span> <span class="no">$SYSSEG</span><span class="p">,</span> <span class="nv">%ax</span>
@@ -187,7 +187,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>检查根设备</h4>
-<div class="highlight"><pre><span class="c"># After that we check which root-device to use. if the device is</span>
+<div class="highlight"><pre><span></span><span class="c"># After that we check which root-device to use. if the device is</span>
 <span class="c"># defined (!= 0), nothing is done and the given device is used.</span>
 <span class="c"># Otherwise, either /dev/PS0 (2,28) or /dev/at0 (2,8), depending</span>
 <span class="c"># on the number of sectors that the BIOS reports currently.</span>
@@ -210,7 +210,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>开始执行setup.s</h4>
-<div class="highlight"><pre><span class="c"># after that (everything loaded), we jump to </span>
+<div class="highlight"><pre><span></span><span class="c"># after that (everything loaded), we jump to </span>
 <span class="c"># the setup-routine loaded directly after</span>
 <span class="c"># the bootblock:</span>
 
@@ -219,7 +219,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>读取system section子程序</h4>
-<div class="highlight"><pre><span class="c"># This routine loads the system at address 0x10000, making sure</span>
+<div class="highlight"><pre><span></span><span class="c"># This routine loads the system at address 0x10000, making sure</span>
 <span class="c"># no 64kB boundaries are crossed. We try to load it as fast as</span>
 <span class="c"># possible, loading whole tracks whenever we can.</span>
 <span class="c">#</span>
@@ -316,7 +316,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>关闭马达</h4>
-<div class="highlight"><pre><span class="nl">kill_motor:</span>
+<div class="highlight"><pre><span></span><span class="nl">kill_motor:</span>
     <span class="nf">push</span> <span class="nv">%dx</span>
     <span class="nf">movw</span> <span class="no">$0x3f2</span><span class="p">,</span> <span class="nv">%dx</span>
     <span class="nf">movb</span> <span class="no">$0</span><span class="p">,</span> <span class="nv">%al</span>
@@ -327,7 +327,7 @@ Filed under <a href="./category/linux.html">Linux</a>
 
 
 <h4>用到的一些变量</h4>
-<div class="highlight"><pre><span class="nl">sectors:</span>
+<div class="highlight"><pre><span></span><span class="nl">sectors:</span>
     <span class="na">.word</span> <span class="mi">0</span>
 
 <span class="nl">msg1:</span>
@@ -433,32 +433,6 @@ Filed under <a href="./category/linux.html">Linux</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="./tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="./tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="./tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="./tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="./tag/os.html">os</a></li>
-                <li class="tag-4"><a href="./tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="./tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="./tag/python.html">python</a></li>
-                <li class="tag-1"><a href="./tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="./tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="./tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="./tag/type.html">type</a></li>
-                <li class="tag-1"><a href="./tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="./tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="./tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="./tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="./tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="./tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="./tag/array.html">array</a></li>
-                <li class="tag-4"><a href="./tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="./tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="./tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="./tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="./tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="./tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="./tag/security.html">Security</a></li>
             </ul>
             </div>
 

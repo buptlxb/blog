@@ -66,7 +66,7 @@
     <div class='article'>
         <div class="content-title">
             <a href="../offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html"><h1>[Offer收割]编程练习赛4题解</h1></a>
-Mon 08 August 2016
+一 08 八月 2016
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -94,13 +94,13 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
 <h4>输出</h4>
 <p>输出最少的消费。如果小Ho把N道菜都买了还不能达到X元的优惠标准，输出-1。</p>
 <p>样例输入</p>
-<div class="highlight"><pre>10 50
+<div class="highlight"><pre><span></span>10 50
 9 9 9 9 9 9 9 9 9 8
 </pre></div>
 
 
 <p>样例输出</p>
-<div class="highlight"><pre>53
+<div class="highlight"><pre><span></span>53
 </pre></div>
 
 
@@ -110,8 +110,8 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
 <p>暴力应该可以搞定：枚举数的所有数的组合情况，使用int32_t表示每个数的选择情况，int32_t的第i位表示数组中下标为i的数是否选中。</p>
 <h3>AC程序</h3>
 <p>下面是C++实现的完整代码：</p>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;vector&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
@@ -172,7 +172,7 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
 <h4>输出</h4>
 <p>对于每组询问，输出最短路的长度。如果小Ho不能到达目的地，输出-1。</p>
 <p>样例输入</p>
-<div class="highlight"><pre>4 5  
+<div class="highlight"><pre><span></span>4 5  
 2 4 1  
 3 3 3 2  
 3  
@@ -185,7 +185,7 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
 
 
 <p>样例输出</p>
-<div class="highlight"><pre>24
+<div class="highlight"><pre><span></span>24
 </pre></div>
 
 
@@ -194,11 +194,11 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
 也就是在BFS的基础上，记录源点到其它每个点的距离，当新探索出的路径长度更小时，更新记录，并将当前状态入栈。
 当遇到“积水”的路口时，直接丢弃该状态即可表示不能通过本路口。</p>
 <h3>AC程序</h3>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;cstring&gt;</span>
-<span class="cp">#include &lt;set&gt;</span>
-<span class="cp">#include &lt;queue&gt;</span>
-<span class="cp">#include &lt;utility&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
 
 <span class="cp">#define N 501</span>
 <span class="cp">#define M 501</span>
@@ -287,7 +287,7 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
 <h4>描述</h4>
 <p>小Ho忘了做英语作业，被老师罚抄某段文本N遍。抄写用的作业纸每行包含M个格子，每个格子恰好能填写一个字符或者空格。抄写过程中单词不能跨行，如果某行剩余的格子不足以写完一个单词，那么这个单词需要写在下一行。单词间的空格不能省略。</p>
 <p>例如在M=9的作业纸上写2遍"Good good study day day up"：</p>
-<div class="highlight"><pre>123456789
+<div class="highlight"><pre><span></span>123456789
 Good good
 study   
 day day   
@@ -307,13 +307,13 @@ day up
 <h4>输出</h4>
 <p>最后一个字符的行号和列号。</p>
 <p>样例输入</p>
-<div class="highlight"><pre>2 9
+<div class="highlight"><pre><span></span>2 9
 Good good study day day up
 </pre></div>
 
 
 <p>样例输出</p>
-<div class="highlight"><pre>7 7
+<div class="highlight"><pre><span></span>7 7
 </pre></div>
 
 
@@ -325,9 +325,9 @@ j，使得第i次抄写和第j次抄写开始的列数相同。寻找循环节�
 <p>当我们利用Hash表找到循环节后，即可以跳过中间重复的模拟过程。</p>
 <p>此外，要小心行数x溢出int32_t表示范围。</p>
 <h3>AC程序</h3>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;unordered_map&gt;</span>
-<span class="cp">#include &lt;vector&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
@@ -396,13 +396,13 @@ j，使得第i次抄写和第j次抄写开始的列数相同。寻找循环节�
 <h4>输出</h4>
 <p>输出字典序最小的重排数组。如果这样的数组不存在，输出-1。</p>
 <p>样例输入</p>
-<div class="highlight"><pre>4  
+<div class="highlight"><pre><span></span>4  
 2 1 3 3
 </pre></div>
 
 
 <p>样例输出</p>
-<div class="highlight"><pre>1 3 2 3
+<div class="highlight"><pre><span></span>1 3 2 3
 </pre></div>
 
 
@@ -418,13 +418,13 @@ j，使得第i次抄写和第j次抄写开始的列数相同。寻找循环节�
 此处，不使用大根堆的原因是，当输出的数字不是次数最多的数字，即输出的数字不是大根堆的堆顶元素，
 此时，更新相应元素的次数后，需要调整堆，以满足大根堆的性质，这个操作比较麻烦。</p>
 <h3>AC程序</h3>
-<div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;algorithm&gt;</span>
-<span class="cp">#include &lt;map&gt;</span>
-<span class="cp">#include &lt;set&gt;</span>
-<span class="cp">#include &lt;vector&gt;</span>
-<span class="cp">#include &lt;queue&gt;</span>
-<span class="cp">#include &lt;cassert&gt;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
@@ -500,7 +500,7 @@ j，使得第i次抄写和第j次抄写开始的列数相同。寻找循环节�
 
     <div class='article'>
         <a href="../hihocodertai-ge-zui-xin-mian-jing-suan-fa-jing-sai-4.html"><h2>hihoCoder太阁最新面经算法竞赛4</h2></a>
-        <div class= "well small"> Wed 15 June 2016
+        <div class= "well small"> 三 15 六月 2016
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -533,7 +533,7 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
 
     <div class='article'>
         <a href="../xian-duan-shu.html"><h2>线段树</h2></a>
-        <div class= "well small"> Fri 13 May 2016
+        <div class= "well small"> 五 13 五月 2016
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -562,7 +562,7 @@ Query ...</p> <a class="btn btn-info xsmall" href="../xian-duan-shu.html">read m
 
     <div class='article'>
         <a href="../cheng-xu-yuan-de-mo-yun-suan.html"><h2>程序员的模运算</h2></a>
-        <div class= "well small"> Fri 22 April 2016
+        <div class= "well small"> 五 22 四月 2016
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -594,7 +594,7 @@ b</code>表示a除以b后，除不尽的那部分。（好吧，不是程序员�
 
     <div class='article'>
         <a href="../wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html"><h2>微软2016校园招聘4月在线笔试题解(四)</h2></a>
-        <div class= "well small"> Sat 09 April 2016
+        <div class= "well small"> 六 09 四月 2016
 
 by <a class="url fn" href="../author/ictlxb.html">ictlxb</a>
  
@@ -693,32 +693,6 @@ Filed under <a href="../category/ccpp.html">C/CPP</a>
             <div class="tagcloud">
             <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
             <ul class="tagcloud">
-                <li class="tag-4"><a href="../tag/cache-miss.html">cache miss</a></li>
-                <li class="tag-4"><a href="../tag/ccpp.html">C/CPP</a></li>
-                <li class="tag-4"><a href="../tag/voa-special-english.html">VOA Special English</a></li>
-                <li class="tag-4"><a href="../tag/inheritance.html">inheritance</a></li>
-                <li class="tag-1"><a href="../tag/os.html">os</a></li>
-                <li class="tag-4"><a href="../tag/linxu.html">linxu</a></li>
-                <li class="tag-3"><a href="../tag/ubuntu.html">Ubuntu</a></li>
-                <li class="tag-4"><a href="../tag/python.html">python</a></li>
-                <li class="tag-1"><a href="../tag/hihocoder.html">hihocoder</a></li>
-                <li class="tag-4"><a href="../tag/contructor.html">contructor</a></li>
-                <li class="tag-4"><a href="../tag/spfa.html">spfa</a></li>
-                <li class="tag-4"><a href="../tag/type.html">type</a></li>
-                <li class="tag-1"><a href="../tag/linux.html">linux</a></li>
-                <li class="tag-4"><a href="../tag/optimization.html">optimization</a></li>
-                <li class="tag-3"><a href="../tag/constructor.html">constructor</a></li>
-                <li class="tag-4"><a href="../tag/row-major.html">row-major</a></li>
-                <li class="tag-4"><a href="../tag/shell.html">shell</a></li>
-                <li class="tag-1"><a href="../tag/bochs.html">bochs</a></li>
-                <li class="tag-4"><a href="../tag/array.html">array</a></li>
-                <li class="tag-4"><a href="../tag/vpn.html">vpn</a></li>
-                <li class="tag-1"><a href="../tag/algorithm.html">algorithm</a></li>
-                <li class="tag-1"><a href="../tag/cpp.html">cpp</a></li>
-                <li class="tag-3"><a href="../tag/network.html">Network</a></li>
-                <li class="tag-4"><a href="../tag/segment-tree.html">segment tree</a></li>
-                <li class="tag-3"><a href="../tag/vocabulary.html">vocabulary</a></li>
-                <li class="tag-2"><a href="../tag/security.html">Security</a></li>
             </ul>
             </div>
 

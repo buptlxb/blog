@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/linux.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2016-08-09T17:08:39+08:00</updated><entry><title>linux tricks</title><link href="http://www.gotit.sinaapp.com/linux-tricks.html" rel="alternate"></link><updated>2016-08-09T17:08:39+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-08-09:linux-tricks.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/linux.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2016-08-09T17:08:39+08:00</updated><entry><title>linux tricks</title><link href="http://www.gotit.sinaapp.com/linux-tricks.html" rel="alternate"></link><published>2016-08-09T17:08:39+08:00</published><updated>2016-08-09T17:08:39+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-08-09:linux-tricks.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;If all you have is a hammer, everything looks like a nail.  ---Maslow &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;Find MACRO definition in header file&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cpp -dM -E /usr/include/netinet/in.h &lt;span class="p"&gt;|&lt;/span&gt; grep SOCKADDR_COMMON
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="cpp"></category><category term="linux"></category><category term="shell"></category></entry><entry><title>Stack Switching During OS Setup</title><link href="http://www.gotit.sinaapp.com/stack-switching-during-os-setup.html" rel="alternate"></link><updated>2014-04-14T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-04-14:stack-switching-during-os-setup.html</id><summary type="html">&lt;blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cpp -dM -E /usr/include/netinet/in.h &lt;span class="p"&gt;|&lt;/span&gt; grep SOCKADDR_COMMON
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Adjust the image to fixed width with ImageMagick&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;convert -resize 800x a.png
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="cpp"></category><category term="linux"></category><category term="shell"></category></entry><entry><title>Stack Switching During OS Setup</title><link href="http://www.gotit.sinaapp.com/stack-switching-during-os-setup.html" rel="alternate"></link><published>2014-04-14T00:00:00+08:00</published><updated>2014-04-14T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-04-14:stack-switching-during-os-setup.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;Stack switching might be a frustrating problem during OS setup.In linux 0.11,
 It is easy to find that there are more than one stack defined during the time of OS setup.
 Here is a simple experiment, which indicates that the stacks are defined for different purposes.&lt;/p&gt;
@@ -12,7 +17,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 &lt;h2&gt;1. Stack Definition&lt;/h2&gt;
 &lt;h4&gt;1.1. The Definition of user_stack&lt;/h4&gt;
 &lt;p&gt;The &lt;code&gt;user_stack&lt;/code&gt; appears at &lt;code&gt;line 23&lt;/code&gt; in &lt;code&gt;boot/head.s&lt;/code&gt; as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="na"&gt;.text&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="na"&gt;.text&lt;/span&gt;
 &lt;span class="na"&gt;.globl&lt;/span&gt; &lt;span class="no"&gt;_idt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;_gdt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;_pg_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;_tmp_floppy_area&lt;/span&gt;
 &lt;span class="nl"&gt;_pg_dir:&lt;/span&gt;
 &lt;span class="nl"&gt;startup_32:&lt;/span&gt;
@@ -27,7 +32,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 
 
 &lt;p&gt;The definition of &lt;code&gt;stack_start&lt;/code&gt; can be found at &lt;code&gt;line 69&lt;/code&gt; in &lt;code&gt;kernel/sched.c&lt;/code&gt; as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;user_stack&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;PAGE_SIZE&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;user_stack&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;PAGE_SIZE&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -43,7 +48,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 &lt;/ul&gt;
 &lt;h4&gt;1.2. The definition of Privilege 0 stack&lt;/h4&gt;
 &lt;p&gt;The definition of &lt;code&gt;Privilege 0 stack&lt;/code&gt; can be found at &lt;code&gt;line 53&lt;/code&gt; in &lt;code&gt;kernel/sched.c&lt;/code&gt; as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;union&lt;/span&gt; &lt;span class="n"&gt;task_union&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;union&lt;/span&gt; &lt;span class="n"&gt;task_union&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;task_struct&lt;/span&gt; &lt;span class="n"&gt;task&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;stack&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;PAGE_SIZE&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;
@@ -53,7 +58,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 
 
 &lt;p&gt;The macro &lt;code&gt;INIT_TASK&lt;/code&gt; can be found at &lt;code&gt;line 113&lt;/code&gt; in &lt;code&gt;include/linux/sched.h&lt;/code&gt; as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
 &lt;span class="cm"&gt; *  INIT_TASK is used to set up the first task table, touch at&lt;/span&gt;
 &lt;span class="cm"&gt; * your own risk!. Base=0, limit=0x9ffff (=640kB)&lt;/span&gt;
 &lt;span class="cm"&gt; */&lt;/span&gt;
@@ -83,7 +88,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 
 
 &lt;p&gt;The &lt;code&gt;tss_struct&lt;/code&gt; is defined at &lt;code&gt;line 51&lt;/code&gt; in &lt;code&gt;include/linux/sched.h&lt;/code&gt; as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;tss_struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;tss_struct&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kt"&gt;long&lt;/span&gt;    &lt;span class="n"&gt;back_link&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="cm"&gt;/* 16 high bits zero */&lt;/span&gt;
     &lt;span class="kt"&gt;long&lt;/span&gt;    &lt;span class="n"&gt;esp0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="kt"&gt;long&lt;/span&gt;    &lt;span class="n"&gt;ss0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;        &lt;span class="cm"&gt;/* 16 high bits zero */&lt;/span&gt;
@@ -115,7 +120,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 &lt;p&gt;It is not difficult to figure out the initializers of &lt;code&gt;esp0&lt;/code&gt; and &lt;code&gt;ss0&lt;/code&gt;, which describe the Privilege 0 stack.&lt;/p&gt;
 &lt;h2&gt;2. Simple Experiment&lt;/h2&gt;
 &lt;p&gt;System Info:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Linux ictlxb-Zhaoyang-E49 3.2.0-60-generic #91-Ubuntu SMP Wed Feb 19 03:54:44 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Linux ictlxb-Zhaoyang-E49 3.2.0-60-generic #91-Ubuntu SMP Wed Feb 19 03:54:44 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -137,7 +142,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 &lt;p&gt;&lt;img alt="the current stack content" src="/assets/images/stack.png" /&gt;&lt;/p&gt;
 &lt;h4&gt;2.4. The Stack Content Before Jumping to 'main'&lt;/h4&gt;
 &lt;p&gt;The code follow is a part of &lt;code&gt;boot/head.s&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="na"&gt;...&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="na"&gt;...&lt;/span&gt;
 
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;        &lt;span class="c"&gt;# These are the parameters to main :-)&lt;/span&gt;
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;
@@ -195,7 +200,7 @@ Here is a simple experiment, which indicates that the stacks are defined for dif
 &lt;li&gt;
 &lt;p&gt;The Process 0 and Process 1 share the &lt;code&gt;user_stack&lt;/code&gt; as their &lt;code&gt;user stack&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</summary><category term="linxu"></category><category term="os"></category><category term="bochs"></category></entry><entry><title>Several Problems about Linux Kernel</title><link href="http://www.gotit.sinaapp.com/several-problems-about-linux-kernel.html" rel="alternate"></link><updated>2014-04-13T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-04-13:several-problems-about-linux-kernel.html</id><summary type="html">&lt;blockquote&gt;
+&lt;/ol&gt;</summary><category term="linxu"></category><category term="os"></category><category term="bochs"></category></entry><entry><title>Several Problems about Linux Kernel</title><link href="http://www.gotit.sinaapp.com/several-problems-about-linux-kernel.html" rel="alternate"></link><published>2014-04-13T00:00:00+08:00</published><updated>2014-04-13T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-04-13:several-problems-about-linux-kernel.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;There are several problems, which deserve being thought carefully, about linux kernel(version 0.11).
 I will not give detail answers to the following questions, but give a brief outline for each question.
 I do NOT promise the answers is exactly correct. 
@@ -218,12 +223,12 @@ Good luck!&lt;/p&gt;
 &lt;p&gt;The bootsect is moved to the address 0x90000 becuase of the memory layouts of linux kernel(version 0.11). You can give some details about the layouts.&lt;/p&gt;
 &lt;h4&gt;4. How the bootsect, the setup and the head cooperate(connect) with each other? Give some evidences(code).&lt;/h4&gt;
 &lt;p&gt;We can easily find the follow assembly code in &lt;code&gt;boot/bootsect.s&lt;/code&gt;, which makes the execution turn to setup.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;SETUPSEG&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0x9020&lt;/span&gt;           &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="no"&gt;setup&lt;/span&gt; &lt;span class="no"&gt;starts&lt;/span&gt; &lt;span class="no"&gt;here&lt;/span&gt; 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;SETUPSEG&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0x9020&lt;/span&gt;           &lt;span class="p"&gt;!&lt;/span&gt; &lt;span class="no"&gt;setup&lt;/span&gt; &lt;span class="no"&gt;starts&lt;/span&gt; &lt;span class="no"&gt;here&lt;/span&gt; 
 
     &lt;span class="no"&gt;...&lt;/span&gt;
 
 &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="nf"&gt;after&lt;/span&gt; &lt;span class="no"&gt;that&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;everyting&lt;/span&gt; &lt;span class="no"&gt;loaded&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="no"&gt;we&lt;/span&gt; &lt;span class="no"&gt;jump&lt;/span&gt; &lt;span class="no"&gt;to&lt;/span&gt;                                                                                                           
-&lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="no"&gt;the&lt;/span&gt; &lt;span class="no"&gt;setup-routine&lt;/span&gt; &lt;span class="no"&gt;loaded&lt;/span&gt; &lt;span class="no"&gt;directly&lt;/span&gt; &lt;span class="no"&gt;after&lt;/span&gt;
+&lt;span class="p"&gt;!&lt;/span&gt; &lt;span class="no"&gt;the&lt;/span&gt; &lt;span class="no"&gt;setup-routine&lt;/span&gt; &lt;span class="no"&gt;loaded&lt;/span&gt; &lt;span class="no"&gt;directly&lt;/span&gt; &lt;span class="no"&gt;after&lt;/span&gt;
 &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="nf"&gt;the&lt;/span&gt; &lt;span class="no"&gt;bootblock&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
     &lt;span class="nf"&gt;jmpi&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;SETUPSEG&lt;/span&gt;
@@ -231,14 +236,14 @@ Good luck!&lt;/p&gt;
 
 
 &lt;p&gt;Similarly, the follow assembly code, which makes the execution turn to head, can be found in &lt;code&gt;boot/setup.s&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="nf"&gt;Well&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;now&lt;/span&gt; &lt;span class="no"&gt;is&lt;/span&gt; &lt;span class="no"&gt;the&lt;/span&gt; &lt;span class="no"&gt;time&lt;/span&gt; &lt;span class="no"&gt;to&lt;/span&gt; &lt;span class="no"&gt;actually&lt;/span&gt; &lt;span class="no"&gt;move&lt;/span&gt; &lt;span class="no"&gt;into&lt;/span&gt; &lt;span class="no"&gt;protected&lt;/span&gt; &lt;span class="no"&gt;mode.&lt;/span&gt; &lt;span class="no"&gt;To&lt;/span&gt; &lt;span class="no"&gt;make&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="nf"&gt;Well&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;now&lt;/span&gt; &lt;span class="no"&gt;is&lt;/span&gt; &lt;span class="no"&gt;the&lt;/span&gt; &lt;span class="no"&gt;time&lt;/span&gt; &lt;span class="no"&gt;to&lt;/span&gt; &lt;span class="no"&gt;actually&lt;/span&gt; &lt;span class="no"&gt;move&lt;/span&gt; &lt;span class="no"&gt;into&lt;/span&gt; &lt;span class="no"&gt;protected&lt;/span&gt; &lt;span class="no"&gt;mode.&lt;/span&gt; &lt;span class="no"&gt;To&lt;/span&gt; &lt;span class="no"&gt;make&lt;/span&gt;
 &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="nf"&gt;things&lt;/span&gt; &lt;span class="no"&gt;as&lt;/span&gt; &lt;span class="no"&gt;simple&lt;/span&gt; &lt;span class="no"&gt;as&lt;/span&gt; &lt;span class="no"&gt;possible&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;we&lt;/span&gt; &lt;span class="no"&gt;do&lt;/span&gt; &lt;span class="no"&gt;no&lt;/span&gt; &lt;span class="no"&gt;register&lt;/span&gt; &lt;span class="no"&gt;set-up&lt;/span&gt; &lt;span class="no"&gt;or&lt;/span&gt; &lt;span class="no"&gt;anything&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="nf"&gt;we&lt;/span&gt; &lt;span class="no"&gt;let&lt;/span&gt; &lt;span class="no"&gt;the&lt;/span&gt; &lt;span class="no"&gt;gnu-compiled&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="no"&gt;bit&lt;/span&gt; &lt;span class="no"&gt;programs&lt;/span&gt; &lt;span class="no"&gt;do&lt;/span&gt; &lt;span class="no"&gt;that.&lt;/span&gt; &lt;span class="no"&gt;We&lt;/span&gt; &lt;span class="no"&gt;just&lt;/span&gt; &lt;span class="no"&gt;jump&lt;/span&gt; &lt;span class="no"&gt;to&lt;/span&gt;
 &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="nf"&gt;absolute&lt;/span&gt; &lt;span class="no"&gt;address&lt;/span&gt; &lt;span class="mi"&gt;0x00000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="no"&gt;bit&lt;/span&gt; &lt;span class="no"&gt;protected&lt;/span&gt; &lt;span class="no"&gt;mode.&lt;/span&gt;
 
     &lt;span class="nf"&gt;mov&lt;/span&gt; &lt;span class="no"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="c"&gt;#0x0001  ! protected mode (PE) bit&lt;/span&gt;
-    &lt;span class="nf"&gt;lmsw&lt;/span&gt;    &lt;span class="no"&gt;ax&lt;/span&gt;      &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="no"&gt;This&lt;/span&gt; &lt;span class="no"&gt;is&lt;/span&gt; &lt;span class="no"&gt;it&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;
-    &lt;span class="nf"&gt;jmpi&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;     &lt;span class="err"&gt;!&lt;/span&gt; &lt;span class="no"&gt;jmp&lt;/span&gt; &lt;span class="no"&gt;offset&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="no"&gt;of&lt;/span&gt; &lt;span class="no"&gt;segment&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;cs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nf"&gt;lmsw&lt;/span&gt;    &lt;span class="no"&gt;ax&lt;/span&gt;      &lt;span class="p"&gt;!&lt;/span&gt; &lt;span class="no"&gt;This&lt;/span&gt; &lt;span class="no"&gt;is&lt;/span&gt; &lt;span class="no"&gt;it&lt;/span&gt;&lt;span class="p"&gt;!&lt;/span&gt;
+    &lt;span class="nf"&gt;jmpi&lt;/span&gt;    &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;     &lt;span class="p"&gt;!&lt;/span&gt; &lt;span class="no"&gt;jmp&lt;/span&gt; &lt;span class="no"&gt;offset&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="no"&gt;of&lt;/span&gt; &lt;span class="no"&gt;segment&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;cs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -277,7 +282,7 @@ Good luck!&lt;/p&gt;
 &lt;h4&gt;8. Where is the task_struct of Process 0? What is the content of it?&lt;/h4&gt;
 &lt;p&gt;I do &lt;code&gt;NOT&lt;/code&gt; known where the task_struct of Process 0 is. But when I trace the linux kernel in my machine with bochs, I found it at the address 0x17280. Of course, it is meaningless.&lt;/p&gt;
 &lt;p&gt;The content of it is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
 &lt;span class="cm"&gt; *  INIT_TASK is used to set up the first task table, touch at&lt;/span&gt;
 &lt;span class="cm"&gt; * your own risk!. Base=0, limit=0x9ffff (=640kB)&lt;/span&gt;
 &lt;span class="cm"&gt; */&lt;/span&gt;
@@ -311,7 +316,7 @@ Good luck!&lt;/p&gt;
 &lt;p&gt;The following picture comes from the book -- The Art of Linux Kernel Design.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="paging" src="/assets/images/paging.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Paging code is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;setup_paging:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;setup_paging:&lt;/span&gt;
     &lt;span class="nf"&gt;movl&lt;/span&gt; &lt;span class="no"&gt;$1024&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;%ecx&lt;/span&gt;       &lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="no"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt; &lt;span class="no"&gt;pg_dir&lt;/span&gt;&lt;span class="err"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="no"&gt;page&lt;/span&gt; &lt;span class="no"&gt;tables&lt;/span&gt; &lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;
     &lt;span class="nf"&gt;xorl&lt;/span&gt; &lt;span class="nv"&gt;%eax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;%eax&lt;/span&gt;
     &lt;span class="nf"&gt;xorl&lt;/span&gt; &lt;span class="nv"&gt;%edi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;%edi&lt;/span&gt;          &lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt; &lt;span class="no"&gt;pg_dir&lt;/span&gt; &lt;span class="no"&gt;is&lt;/span&gt; &lt;span class="no"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0x000&lt;/span&gt; &lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;
@@ -337,7 +342,7 @@ Good luck!&lt;/p&gt;
 
 &lt;h4&gt;10. What is the content of 184 bytes just before IDT after head finish executing? Why the code is left?&lt;/h4&gt;
 &lt;p&gt;The content is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;after_page_tables:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;after_page_tables:&lt;/span&gt;
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;        &lt;span class="c"&gt;# These are the parameters to main :-)&lt;/span&gt;
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;
@@ -414,7 +419,7 @@ Good luck!&lt;/p&gt;
 &lt;h4&gt;11. Why execution is turned to main by 'ret'? Why not turn the execution by call? Draw a picture to describe it and give some evidences.&lt;/h4&gt;
 &lt;p&gt;It is a logical problem. If we use &lt;code&gt;call&lt;/code&gt; here, we admin that something &lt;code&gt;call&lt;/code&gt; to the OS. But there is nothing but the OS during the head execution. &lt;code&gt;ret&lt;/code&gt; might solve the logical dilemma.&lt;/p&gt;
 &lt;p&gt;The code evidence is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;after_page_tables:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;after_page_tables:&lt;/span&gt;
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;        &lt;span class="c"&gt;# These are the parameters to main :-)&lt;/span&gt;
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;
     &lt;span class="nf"&gt;pushl&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;
@@ -436,7 +441,7 @@ Good luck!&lt;/p&gt;
 
 &lt;h4&gt;12. Describe the initialization of Interrupt Descriptor Table. Give an example.&lt;/h4&gt;
 &lt;p&gt;In the &lt;code&gt;main&lt;/code&gt; function, &lt;code&gt;trap_init&lt;/code&gt; is called.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;trap_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;trap_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="n"&gt;set_trap_gate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;divide_error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -450,8 +455,8 @@ Good luck!&lt;/p&gt;
 
 
 &lt;p&gt;&lt;code&gt;set_trap_gate&lt;/code&gt; and &lt;code&gt;_set_gate&lt;/code&gt; is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#define set_trap_gate(n,addr) \                                                                                                 &lt;/span&gt;
-&lt;span class="nf"&gt;_set_gate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;&lt;span class="no"&gt;idt&lt;/span&gt;&lt;span class="err"&gt;[&lt;/span&gt;&lt;span class="no"&gt;n&lt;/span&gt;&lt;span class="err"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;#define set_trap_gate(n,addr) \                                                                                                 &lt;/span&gt;
+&lt;span class="nf"&gt;_set_gate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;&lt;span class="no"&gt;idt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="no"&gt;n&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="no"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="c"&gt;#define _set_gate(gate_addr,type,dpl,addr) \                                                                                   &lt;/span&gt;
     &lt;span class="nf"&gt;__asm__&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;&lt;/span&gt;&lt;span class="no"&gt;movw&lt;/span&gt; &lt;span class="err"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;%dx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;%&lt;/span&gt;&lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="no"&gt;n&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="no"&gt;t&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;
@@ -469,7 +474,7 @@ Good luck!&lt;/p&gt;
 &lt;h4&gt;13. There are more than 20 instructions can be only executed in Privilege 0 in the IA-32 architectures. However, other instructions like 'cli' is not one of them. Why does the process with Priviledge 3 cannot execute it in linux 0.11?&lt;/h4&gt;
 &lt;p&gt;The instructions &lt;code&gt;cli&lt;/code&gt; and &lt;code&gt;sti&lt;/code&gt; are under control of IOPL (Input/Output Privilege Level), which resdes in eflags. When the IOPL field is 0, the process with Privilege 3 cannnot execute them.&lt;/p&gt;
 &lt;p&gt;The code evidence is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
 &lt;span class="cm"&gt; *  INIT_TASK is used to set up the first task table, touch at&lt;/span&gt;
 &lt;span class="cm"&gt; * your own risk!. Base=0, limit=0x9ffff (=640kB)&lt;/span&gt;
 &lt;span class="cm"&gt; */&lt;/span&gt;
@@ -499,7 +504,7 @@ Good luck!&lt;/p&gt;
 
 
 &lt;p&gt;The task sturct of process 0 is initialized with &lt;code&gt;INIT_TASK&lt;/code&gt;. Obviously, the &lt;code&gt;eflags.IOPL&lt;/code&gt; is 0. The task structs of other processes are copy of &lt;code&gt;INIT_TASK&lt;/code&gt; with no changing &lt;code&gt;eflags.IOPL&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;nr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ebp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;edi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;esi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;gs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;none&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;nr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ebp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;edi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;esi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;gs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;none&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ebx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ecx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;edx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;es&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ds&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
         &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;eip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;cs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;eflags&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
@@ -542,7 +547,7 @@ In order to conform the standards, Process 0 should call &lt;code&gt;move_to_use
 Firstly, &lt;code&gt;SS&lt;/code&gt;, &lt;code&gt;ESP&lt;/code&gt;, &lt;code&gt;EFLAGS&lt;/code&gt;, &lt;code&gt;CS&lt;/code&gt; and &lt;code&gt;EIP&lt;/code&gt; will be pushed into the current stack.
 Then, the instruction &lt;code&gt;iret&lt;/code&gt; will be executed.  The hardware will do what it does while returning from a call gate, such as poping the registers to corresponding one.&lt;/p&gt;
 &lt;p&gt;The code is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#define move_to_user_mode() \                                                                                                                &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define move_to_user_mode() \                                                                                                                &lt;/span&gt;
 &lt;span class="n"&gt;__asm__&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;movl %%esp,%%eax&lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; \
         &lt;span class="s"&gt;&amp;quot;pushl $0x17&lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; \
         &lt;span class="s"&gt;&amp;quot;pushl %%eax&lt;/span&gt;&lt;span class="se"&gt;\n\t&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; \
@@ -567,7 +572,7 @@ The &lt;code&gt;0x0f&lt;/code&gt; in the code above indicates Privilege 3, LDT a
 &lt;p&gt;The five arguments are pushed into stack by hardware when it executes the instruction &lt;code&gt;int 80&lt;/code&gt;.&lt;/p&gt;
 &lt;h4&gt;19. Analyse the function 'get_free_page' and give an introduction.&lt;/h4&gt;
 &lt;p&gt;The code is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
 &lt;span class="cm"&gt; * Get physical address of first (actually last :-) free page, and mark it&lt;/span&gt;
 &lt;span class="cm"&gt; * used. If no free pages left, return 0.&lt;/span&gt;
 &lt;span class="cm"&gt; */&lt;/span&gt;
@@ -602,7 +607,7 @@ Finally, return the address of the free page.
 If no free pages left, return 0.&lt;/p&gt;
 &lt;h4&gt;20. Analyse the function 'copy_page_tables' and give an introduction.&lt;/h4&gt;
 &lt;p&gt;The code is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_page_tables&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_page_tables&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;from_page_table&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;to_page_table&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -650,7 +655,7 @@ If no free pages left, return 0.&lt;/p&gt;
 &lt;p&gt;The two pages reside in the linear address space of Kernel.&lt;/p&gt;
 &lt;p&gt;The code evidence is as follow:&lt;/p&gt;
 &lt;p&gt;Setup paging and allocate pages in linear address space of Kernel.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;setup_paging:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;setup_paging:&lt;/span&gt;
     &lt;span class="nf"&gt;movl&lt;/span&gt; &lt;span class="no"&gt;$1024&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;%ecx&lt;/span&gt;       &lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="no"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt; &lt;span class="no"&gt;pg_dir&lt;/span&gt;&lt;span class="err"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="no"&gt;page&lt;/span&gt; &lt;span class="no"&gt;tables&lt;/span&gt; &lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;
     &lt;span class="nf"&gt;xorl&lt;/span&gt; &lt;span class="nv"&gt;%eax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;%eax&lt;/span&gt;
     &lt;span class="nf"&gt;xorl&lt;/span&gt; &lt;span class="nv"&gt;%edi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;%edi&lt;/span&gt;          &lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt; &lt;span class="no"&gt;pg_dir&lt;/span&gt; &lt;span class="no"&gt;is&lt;/span&gt; &lt;span class="no"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0x000&lt;/span&gt; &lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;
@@ -675,7 +680,7 @@ If no free pages left, return 0.&lt;/p&gt;
 
 
 &lt;p&gt;Allocate a page for task_struct and Privilege 0 stack&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;nr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ebp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;edi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;esi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;gs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;none&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_process&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;nr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ebp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;edi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;esi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;gs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;none&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ebx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ecx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;edx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;es&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ds&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
         &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;eip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;cs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;eflags&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
@@ -693,7 +698,7 @@ If no free pages left, return 0.&lt;/p&gt;
 
 
 &lt;p&gt;Allocate pages for page tables&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_page_tables&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;copy_page_tables&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="p"&gt;...&lt;/span&gt;
 
@@ -716,7 +721,7 @@ If no free pages left, return 0.&lt;/p&gt;
 &lt;h4&gt;22. Similar to question 21.&lt;/h4&gt;
 &lt;h4&gt;23. Explain the code 'ljmp %0' in the function 'switch_to'.&lt;/h4&gt;
 &lt;p&gt;The code is as follow:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#define switch_to(n) {\&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define switch_to(n) {\&lt;/span&gt;
 &lt;span class="cp"&gt;    struct {long a,b;} __tmp; \&lt;/span&gt;
 &lt;span class="cp"&gt;        __asm__(&amp;quot;cmpl %%ecx,_current\n\t&amp;quot; \&lt;/span&gt;
 &lt;span class="cp"&gt;                &amp;quot;je 1f\n\t&amp;quot; \&lt;/span&gt;
@@ -744,7 +749,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;p&gt;[1] The Art of Linux Kernel Design, Second Edition.&lt;/p&gt;
 &lt;p&gt;[2] &lt;a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html?iid=tech_vt_tech+64-32_manuals"&gt;IA-32 Architectures Software Developer vol-3a-part-1 Manual&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[3] &lt;a href="https://www.wikipedia.org/"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;[4] &lt;a href="http://docs.oracle.com/cd/E19455-01/806-3773/instructionset-73/index.html"&gt;IA-32 Assembly Language Reference Manual&lt;/a&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(5)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs5.html" rel="alternate"></link><updated>2014-03-29T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-29:trace-linux-kernel-with-bochs5.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
+&lt;p&gt;[4] &lt;a href="http://docs.oracle.com/cd/E19455-01/806-3773/instructionset-73/index.html"&gt;IA-32 Assembly Language Reference Manual&lt;/a&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(5)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs5.html" rel="alternate"></link><published>2014-03-29T00:00:00+08:00</published><updated>2014-03-29T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-29:trace-linux-kernel-with-bochs5.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;当bootsect.s成功执行完成时，它已经将setup.s加载到了内存中(0x90200)的位置上，也将内核代码加载到了内存中(0x10000)。它的生命就随着setup.s的执行走到了尽头，但我们知道它曾来过。
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -753,7 +758,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;p&gt;这些数据的获得大多来自由BIOS提供的中断，在关中断之前，我们必须将这些与机器硬件密切相关的数据保存起来，而保存的位置，就是从&lt;code&gt;0x90000&lt;/code&gt;开始的一段内存，如果你看过前面的几篇博文，应该知道这里曾是bootsect.s的位置。&lt;/p&gt;
 &lt;h4&gt;获取光标位置&lt;/h4&gt;
 &lt;p&gt;我们首先获取光标的位置,将它存储在0x90000开始的２个字节中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x03&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;     &lt;span class="c"&gt;# read cursor pos&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x03&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;     &lt;span class="c"&gt;# read cursor pos&lt;/span&gt;
     &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%bh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%bh&lt;/span&gt;
     &lt;span class="nf"&gt;int&lt;/span&gt; &lt;span class="no"&gt;$0x10&lt;/span&gt;           &lt;span class="c"&gt;# save it in known place, con_init fetches&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%dx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="c"&gt;# it from 0x90000&lt;/span&gt;
@@ -762,7 +767,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h4&gt;获取扩展内存的大小&lt;/h4&gt;
 &lt;p&gt;扩展内存指的是1M 以上的物理内存大小，单位是kB。存储在0x90002开始的２个字节中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x88&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x88&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;
     &lt;span class="nf"&gt;int&lt;/span&gt; &lt;span class="no"&gt;$0x15&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -770,7 +775,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h4&gt;获取显示的相关信息&lt;/h4&gt;
 &lt;p&gt;获取显示相关信息，如当前显示模式，窗口宽度等。存储在0x90004开始的４个字节中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x0f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x0f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;
     &lt;span class="nf"&gt;int&lt;/span&gt; &lt;span class="no"&gt;$0x10&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%bx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;     &lt;span class="c"&gt;# BH = display page&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;     &lt;span class="c"&gt;# AL = video mode, AH = window width&lt;/span&gt;
@@ -779,7 +784,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h4&gt;获取EGA/VGA相关信息&lt;/h4&gt;
 &lt;p&gt;存储在0x90008开始的６个字节中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt;
     &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%bl&lt;/span&gt;
     &lt;span class="nf"&gt;int&lt;/span&gt; &lt;span class="no"&gt;$0x10&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;
@@ -790,7 +795,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h4&gt;获取第一个硬盘的信息&lt;/h4&gt;
 &lt;p&gt;存储在0x90080开始的16个字节中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ds&lt;/span&gt;
     &lt;span class="nf"&gt;lds&lt;/span&gt; &lt;span class="mi"&gt;0x41&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%si&lt;/span&gt; 
     &lt;span class="no"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$INITSEG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
@@ -804,7 +809,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h4&gt;获取第二个硬盘的信息&lt;/h4&gt;
 &lt;p&gt;存储在0x90090开始的16个字节中。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ds&lt;/span&gt;
     &lt;span class="nf"&gt;lds&lt;/span&gt; &lt;span class="mi"&gt;0x46&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%si&lt;/span&gt; &lt;span class="c"&gt;# what is this? why is the address?&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$INITSEG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
@@ -817,7 +822,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;检测是否存在第二个硬盘&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$0x1500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$0x1500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
     &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x81&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%dl&lt;/span&gt;
     &lt;span class="nf"&gt;int&lt;/span&gt; &lt;span class="no"&gt;$0x13&lt;/span&gt;
     &lt;span class="nf"&gt;jc&lt;/span&gt; &lt;span class="no"&gt;no_disk1&lt;/span&gt;
@@ -837,13 +842,13 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;p&gt;｀在前面无聊的取数存数后，我们将进行一项意义深远的举动，我们将不再依赖BIOS提供的中断，我们将开始为内核启动做最后的准备，时间貌似不多了，Let us roll`&lt;/p&gt;
 &lt;h2&gt;关中断&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;cli&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;cli&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;搬内核&lt;/h2&gt;
 &lt;p&gt;我们将系统代码从0x10000的位置，搬到0x00000开始的位置，在这个过程中，我们废弃了BIOS在内存低1k位置准备的中断向量表，当然也废弃了BIOS准备的中断服务程序。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
     &lt;span class="nf"&gt;cld&lt;/span&gt;     &lt;span class="c"&gt;# &amp;#39;direction&amp;#39; = 0, &amp;#39;movs&amp;#39; moves forward&lt;/span&gt;
 
 &lt;span class="nl"&gt;do_move:&lt;/span&gt;
@@ -863,7 +868,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h2&gt;启用新的中断描述符表&lt;/h2&gt;
 &lt;p&gt;设置中断描述符表和全局描述符表。在x86体系结构中，开启保护模式后，中断向量表将不再必须放在内存低１k的位置，而是采用了寄存器&lt;code&gt;idtr&lt;/code&gt;来指向中断描述符表在内存中的位置。同时我们也设置了&lt;code&gt;gdtr&lt;/code&gt;，稍后我们会解释它的作用。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;end_move:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;end_move:&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$SETUPSEG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt; 
     &lt;span class="no"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ds&lt;/span&gt;
     &lt;span class="nf"&gt;lidt&lt;/span&gt; &lt;span class="no"&gt;idt_48&lt;/span&gt;     &lt;span class="c"&gt;# load idt with 0,0&lt;/span&gt;
@@ -873,7 +878,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h2&gt;进入32位的世界&lt;/h2&gt;
 &lt;p&gt;从这开始，我们打开A20,使用32位地址总线，进入32位的世界。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;call&lt;/span&gt; &lt;span class="no"&gt;empty_8042&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;call&lt;/span&gt; &lt;span class="no"&gt;empty_8042&lt;/span&gt;
     &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0xD1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%al&lt;/span&gt;     &lt;span class="c"&gt;# command write&lt;/span&gt;
     &lt;span class="nf"&gt;outb&lt;/span&gt; &lt;span class="nv"&gt;%al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;$0x64&lt;/span&gt;
     &lt;span class="nf"&gt;call&lt;/span&gt; &lt;span class="no"&gt;empty_8042&lt;/span&gt;
@@ -885,7 +890,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h2&gt;重新设置8259A&lt;/h2&gt;
 &lt;p&gt;8259A芯片是中断控制器，之所以说是重新设置，是因为在此之前，它已经被BIOS设置过一次，为了使用BIOS的中断。而现在，重新设置只是因为要符合Intel的要求。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%al&lt;/span&gt;     &lt;span class="c"&gt;# initialization sequence&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%al&lt;/span&gt;     &lt;span class="c"&gt;# initialization sequence&lt;/span&gt;
     &lt;span class="nf"&gt;out&lt;/span&gt; &lt;span class="nv"&gt;%al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;$0x20&lt;/span&gt;      &lt;span class="c"&gt;# send it to 8259A-1&lt;/span&gt;
     &lt;span class="na"&gt;.word&lt;/span&gt;   &lt;span class="mi"&gt;0x00eb&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0x00eb&lt;/span&gt;       &lt;span class="c"&gt;# jmp $+2, jmp $+2&lt;/span&gt;
     &lt;span class="nf"&gt;out&lt;/span&gt; &lt;span class="nv"&gt;%al&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;$0xA0&lt;/span&gt;      &lt;span class="c"&gt;# and to 8259A-2&lt;/span&gt;
@@ -916,7 +921,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 &lt;h2&gt;开启保护模式&lt;/h2&gt;
 &lt;p&gt;经过一系列的准备工作之后，我们打开保护模式，这是一个与实模式相对的概念。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;mov&lt;/span&gt; &lt;span class="no"&gt;$0x0001&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;    &lt;span class="c"&gt;# protected mode (PE) bit&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;mov&lt;/span&gt; &lt;span class="no"&gt;$0x0001&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;    &lt;span class="c"&gt;# protected mode (PE) bit&lt;/span&gt;
     &lt;span class="nf"&gt;lmsw&lt;/span&gt;    &lt;span class="nv"&gt;%ax&lt;/span&gt;         &lt;span class="c"&gt;# This is it!&lt;/span&gt;
     &lt;span class="nf"&gt;ljmp&lt;/span&gt;    &lt;span class="no"&gt;$8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;          &lt;span class="c"&gt;# jmp offset 0 of segment 8 (cs)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -938,7 +943,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;p&gt;而在32位保护模式时，显然无法将32位的地址保存在16位的寄存器中，又由于要保持良好的兼容性，段寄存器中改为保存16位的段选择子，用来选取gdt或ldt中的某一个段描述符。&lt;/p&gt;
 &lt;p&gt;这里$8的低２位是RPL(Request Privilege Level)，第三位是使用gdt还是ldt，高13位是gdt或ldt数组的index。&lt;/p&gt;
 &lt;h2&gt;数据和辅助函数&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;INITSEG&lt;/span&gt;  &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0x9000&lt;/span&gt;   &lt;span class="c"&gt;# we move boot here - out of the way&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;INITSEG&lt;/span&gt;  &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0x9000&lt;/span&gt;   &lt;span class="c"&gt;# we move boot here - out of the way&lt;/span&gt;
 &lt;span class="nf"&gt;SYSSEG&lt;/span&gt;   &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0x1000&lt;/span&gt;   &lt;span class="c"&gt;# system loaded at 0x10000 (65536).&lt;/span&gt;
 &lt;span class="nf"&gt;SETUPSEG&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0x9020&lt;/span&gt;   &lt;span class="c"&gt;# this is the current segment&lt;/span&gt;
 
@@ -971,11 +976,11 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
     &lt;span class="na"&gt;.word&lt;/span&gt;   &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="err"&gt;+&lt;/span&gt;&lt;span class="no"&gt;gdt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0x9&lt;/span&gt; &lt;span class="c"&gt;# gdt base = 0X9xxxx&lt;/span&gt;
 
 &lt;span class="na"&gt;.org&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(4)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs4.html" rel="alternate"></link><updated>2014-03-12T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-12:trace-linux-kernel-with-bochs4.html</id><summary type="html">&lt;p&gt;&lt;a href="/trace-linux-kernel-with-bochs3.html"&gt;上一节&lt;/a&gt;中我们使用AT&amp;amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(4)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs4.html" rel="alternate"></link><published>2014-03-12T00:00:00+08:00</published><updated>2014-03-12T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-12:trace-linux-kernel-with-bochs4.html</id><summary type="html">&lt;p&gt;&lt;a href="/trace-linux-kernel-with-bochs3.html"&gt;上一节&lt;/a&gt;中我们使用AT&amp;amp;T汇编重写了bootsect.s，这里我们利用bochs来跟踪我们的程序，加深对一些关键操作的认识和理解。&lt;/p&gt;
 &lt;h2&gt;修改Makefile&lt;/h2&gt;
 &lt;p&gt;在原来Makefile的基础上，我们简单地修改一下，将我们重写的bootsect.s放在软盘的第一个扇区，然后将之前打印Hello OS World!的程序(称之为hellosect.s)放在第二个扇区，这样当我们执行完bootsect的代码，跳转到setup section时，就会跳转到hellosect，在屏幕上打印出&lt;code&gt;Hello OS World!&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;代码如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;CC&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; gcc
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;CC&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; gcc
 &lt;span class="nv"&gt;LD&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ld
 &lt;span class="nv"&gt;LDFILE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ld_script.ld
 &lt;span class="nv"&gt;OBJCOPY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; objcopy
@@ -1001,17 +1006,17 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
     @dd &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/zero &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt; &lt;span class="nv"&gt;seek&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;512&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2878
 
 &lt;span class="nf"&gt;$(ASM_BIN)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; %.&lt;span class="n"&gt;bin&lt;/span&gt;: %.&lt;span class="n"&gt;elf&lt;/span&gt;
-    @&lt;span class="k"&gt;$(&lt;/span&gt;OBJCOPY&lt;span class="k"&gt;)&lt;/span&gt; -R .pdr -R .comment -R .note -S -O binary &lt;span class="nv"&gt;$&amp;lt;&lt;/span&gt; &lt;span class="nv"&gt;$@&lt;/span&gt;
+    @&lt;span class="k"&gt;$(&lt;/span&gt;OBJCOPY&lt;span class="k"&gt;)&lt;/span&gt; -R .pdr -R .comment -R .note -S -O binary $&amp;lt; &lt;span class="nv"&gt;$@&lt;/span&gt;
 
 &lt;span class="nf"&gt;$(ASM_ELF)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; %.&lt;span class="n"&gt;elf&lt;/span&gt;: %.&lt;span class="n"&gt;o&lt;/span&gt;
-    &lt;span class="k"&gt;$(&lt;/span&gt;LD&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$&amp;lt;&lt;/span&gt; -o &lt;span class="nv"&gt;$@&lt;/span&gt; -e c -T&lt;span class="k"&gt;$(&lt;/span&gt;LDFILE&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;$(&lt;/span&gt;LD&lt;span class="k"&gt;)&lt;/span&gt; $&amp;lt; -o &lt;span class="nv"&gt;$@&lt;/span&gt; -e c -T&lt;span class="k"&gt;$(&lt;/span&gt;LDFILE&lt;span class="k"&gt;)&lt;/span&gt;
 
 &lt;span class="nf"&gt;$(ASM_OBJ)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; %.&lt;span class="n"&gt;o&lt;/span&gt;: %.&lt;span class="n"&gt;s&lt;/span&gt;
-    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; -c &lt;span class="nv"&gt;$&amp;lt;&lt;/span&gt; -o &lt;span class="nv"&gt;$@&lt;/span&gt;
+    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; -c $&amp;lt; -o &lt;span class="nv"&gt;$@&lt;/span&gt;
 
 
 &lt;span class="nf"&gt;$(ASM_DMP)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; %.&lt;span class="n"&gt;dmp&lt;/span&gt;: %.&lt;span class="n"&gt;bin&lt;/span&gt;
-    &lt;span class="k"&gt;$(&lt;/span&gt;DUMP&lt;span class="k"&gt;)&lt;/span&gt;  &lt;span class="k"&gt;$(&lt;/span&gt;DUMP_FLAGS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$&amp;lt;&lt;/span&gt; &amp;gt; &lt;span class="nv"&gt;$@&lt;/span&gt;
+    &lt;span class="k"&gt;$(&lt;/span&gt;DUMP&lt;span class="k"&gt;)&lt;/span&gt;  &lt;span class="k"&gt;$(&lt;/span&gt;DUMP_FLAGS&lt;span class="k"&gt;)&lt;/span&gt; $&amp;lt; &amp;gt; &lt;span class="nv"&gt;$@&lt;/span&gt;
 
 &lt;span class="nf"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
     @rm -rf &lt;span class="k"&gt;$(&lt;/span&gt;ASM_OBJ&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;ASM_ELF&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;ASM_BIN&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;ASM_DMP&lt;span class="k"&gt;)&lt;/span&gt; linux.img
@@ -1047,12 +1052,12 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;p&gt;&lt;img alt="bochs-root-dev" src="/assets/images/bochs-root-dev.png" /&gt;&lt;/p&gt;
 &lt;h4&gt;11.执行hellosect&lt;/h4&gt;
 &lt;p&gt;&lt;img alt="bochs-hello-world" src="/assets/images/bochs-hello-world.png" /&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;/h4&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(3)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs3.html" rel="alternate"></link><updated>2014-03-10T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-10:trace-linux-kernel-with-bochs3.html</id><summary type="html">&lt;blockquote&gt;
+&lt;h4&gt;&lt;/h4&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(3)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs3.html" rel="alternate"></link><published>2014-03-10T00:00:00+08:00</published><updated>2014-03-10T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-10:trace-linux-kernel-with-bochs3.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;这里我们将重写bootsect.s完成其真正的功能，重写使用AT&amp;amp;T汇编。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;bootsect.s&lt;/h2&gt;
 &lt;h4&gt;内存规划&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="na"&gt;.code16&lt;/span&gt; &lt;span class="c"&gt;#use 16bit&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="na"&gt;.code16&lt;/span&gt; &lt;span class="c"&gt;#use 16bit&lt;/span&gt;
 &lt;span class="na"&gt;.text&lt;/span&gt; &lt;span class="c"&gt;#code segment start&lt;/span&gt;
 
 &lt;span class="nf"&gt;SYSSIZE&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0x3000&lt;/span&gt;
@@ -1070,7 +1075,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;bootsect将自己复制到0x90000处&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%cs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt; &lt;span class="c"&gt;#cs:ip was initialized by BOIS instruction &amp;#39;jmpi 0, 0x07c0&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%cs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt; &lt;span class="c"&gt;#cs:ip was initialized by BOIS instruction &amp;#39;jmpi 0, 0x07c0&amp;#39;&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ds&lt;/span&gt; &lt;span class="c"&gt;#initialize ds, es and ss with cs&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%es&lt;/span&gt;
 
@@ -1087,7 +1092,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;跳到复制后的地方&lt;em&gt;继续&lt;/em&gt;执行&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nf"&gt;ljmp&lt;/span&gt; &lt;span class="no"&gt;$INITSEG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;$go&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nf"&gt;ljmp&lt;/span&gt; &lt;span class="no"&gt;$INITSEG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;$go&lt;/span&gt;
 &lt;span class="nl"&gt;go:&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%cs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ds&lt;/span&gt;
@@ -1099,7 +1104,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;将setup section加载至内存&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;load_setup:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;load_setup:&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$0x0000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%dx&lt;/span&gt;   &lt;span class="c"&gt;# DL = drive 0, DH = head 0&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$0x0002&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%cx&lt;/span&gt;   &lt;span class="c"&gt;# CL = sector 2, CH = track 0&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$0x0200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%bx&lt;/span&gt;   &lt;span class="c"&gt;# address = 512, in INITSEG&lt;/span&gt;
@@ -1114,7 +1119,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;获得每磁道的扇区数&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;ok_load_setup:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;ok_load_setup:&lt;/span&gt;
 
 &lt;span class="c"&gt;# Get disk drive parameters, specificlly nr of sectors/track&lt;/span&gt;
 
@@ -1132,7 +1137,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;打印提示信息&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Print some inane message&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# Print some inane message&lt;/span&gt;
 
     &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0x03&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ah&lt;/span&gt; &lt;span class="c"&gt;# read cursor pos (AH = function number)&lt;/span&gt;
     &lt;span class="nf"&gt;xor&lt;/span&gt; &lt;span class="nv"&gt;%bh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%bh&lt;/span&gt;    &lt;span class="c"&gt;# BH = page number&lt;/span&gt;
@@ -1152,7 +1157,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;将system section加载至内存&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# ok, we have written the message, now&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# ok, we have written the message, now&lt;/span&gt;
 &lt;span class="c"&gt;# we want to load the system (at 0x10000)&lt;/span&gt;
 
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$SYSSEG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%ax&lt;/span&gt;
@@ -1163,7 +1168,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;检查根设备&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# After that we check which root-device to use. if the device is&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# After that we check which root-device to use. if the device is&lt;/span&gt;
 &lt;span class="c"&gt;# defined (!= 0), nothing is done and the given device is used.&lt;/span&gt;
 &lt;span class="c"&gt;# Otherwise, either /dev/PS0 (2,28) or /dev/at0 (2,8), depending&lt;/span&gt;
 &lt;span class="c"&gt;# on the number of sectors that the BIOS reports currently.&lt;/span&gt;
@@ -1186,7 +1191,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;开始执行setup.s&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# after that (everything loaded), we jump to &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# after that (everything loaded), we jump to &lt;/span&gt;
 &lt;span class="c"&gt;# the setup-routine loaded directly after&lt;/span&gt;
 &lt;span class="c"&gt;# the bootblock:&lt;/span&gt;
 
@@ -1195,7 +1200,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;读取system section子程序&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# This routine loads the system at address 0x10000, making sure&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;# This routine loads the system at address 0x10000, making sure&lt;/span&gt;
 &lt;span class="c"&gt;# no 64kB boundaries are crossed. We try to load it as fast as&lt;/span&gt;
 &lt;span class="c"&gt;# possible, loading whole tracks whenever we can.&lt;/span&gt;
 &lt;span class="c"&gt;#&lt;/span&gt;
@@ -1292,7 +1297,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;关闭马达&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;kill_motor:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;kill_motor:&lt;/span&gt;
     &lt;span class="nf"&gt;push&lt;/span&gt; &lt;span class="nv"&gt;%dx&lt;/span&gt;
     &lt;span class="nf"&gt;movw&lt;/span&gt; &lt;span class="no"&gt;$0x3f2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%dx&lt;/span&gt;
     &lt;span class="nf"&gt;movb&lt;/span&gt; &lt;span class="no"&gt;$0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;%al&lt;/span&gt;
@@ -1303,7 +1308,7 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 
 
 &lt;h4&gt;用到的一些变量&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;sectors:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;sectors:&lt;/span&gt;
     &lt;span class="na"&gt;.word&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 
 &lt;span class="nl"&gt;msg1:&lt;/span&gt;
@@ -1323,14 +1328,14 @@ Therefore, the funtion &lt;code&gt;fork()&lt;/code&gt; seems to be executed twic
 &lt;h2&gt;存在的问题&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;这里在读取完setup section(4个sectors)，并不是像很多书上说的读240个扇区，而是读了0x30000个字节，也就是384个扇区？&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Ubuntu 12.04 Ethernet Controller Problem</title><link href="http://www.gotit.sinaapp.com/ubuntu-1204-ethernet-controller-problem.html" rel="alternate"></link><updated>2014-03-09T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-09:ubuntu-1204-ethernet-controller-problem.html</id><summary type="html">&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;/ol&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Ubuntu 12.04 Ethernet Controller Problem</title><link href="http://www.gotit.sinaapp.com/ubuntu-1204-ethernet-controller-problem.html" rel="alternate"></link><published>2014-03-09T00:00:00+08:00</published><updated>2014-03-09T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-09:ubuntu-1204-ethernet-controller-problem.html</id><summary type="html">&lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;Ethernet controller can not detect the cable.&lt;/p&gt;
 &lt;h2&gt;Solution&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;wget http://r8168.googlecode.com/files/r8168-8.037.00.tar.bz2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget http://r8168.googlecode.com/files/r8168-8.037.00.tar.bz2
 tar xjf r8168-8.037.00.tar.bz2
-&lt;span class="nb"&gt;cd &lt;/span&gt;r8168-8.037.00
+&lt;span class="nb"&gt;cd&lt;/span&gt; r8168-8.037.00
 ./autorun.sh
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Network"></category><category term="Ubuntu"></category></entry><entry><title>Trace Linux Kernel With Bochs(2)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs2.html" rel="alternate"></link><updated>2014-03-07T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-07:trace-linux-kernel-with-bochs2.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="Network"></category><category term="Ubuntu"></category></entry><entry><title>Trace Linux Kernel With Bochs(2)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs2.html" rel="alternate"></link><published>2014-03-07T00:00:00+08:00</published><updated>2014-03-07T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-07:trace-linux-kernel-with-bochs2.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boot section是被BIOS加载至内存的第一段OS代码，它的寿命不长，却意义深远：初步归化内存，加载OS的剩余部分进入内存。
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1339,12 +1344,12 @@ tar xjf r8168-8.037.00.tar.bz2
 &lt;p&gt;从&lt;a href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs1.html"&gt;上一篇文章&lt;/a&gt;中，我们知道了BIOS通过&lt;code&gt;INT 0x19&lt;/code&gt;将硬盘(软盘)的&lt;code&gt;0&lt;/code&gt;号磁头(head)，&lt;code&gt;0&lt;/code&gt;号磁道(track),&lt;code&gt;第一个&lt;/code&gt;扇区(sector)读入到&lt;code&gt;0x07c00&lt;/code&gt;的内存位置上。这个扇区就称作&lt;code&gt;boot section&lt;/code&gt;。BIOS跳转到这里开始执行，boot section的代码。&lt;/p&gt;
 &lt;h4&gt;规划&lt;/h4&gt;
 &lt;p&gt;boot section的代码 首先将自己从内存&lt;code&gt;0x07c00&lt;/code&gt;复制到&lt;code&gt;0x90000&lt;/code&gt;，然后将它后续的&lt;code&gt;4&lt;/code&gt;个扇区(&lt;code&gt;setup section&lt;/code&gt;)读入内存&lt;code&gt;0x90200&lt;/code&gt;开始的位置。这个操作是通过&lt;code&gt;INT 0x13&lt;/code&gt;完成的。同样的方式，也就可以把剩余的240个扇区读入到内存中&lt;code&gt;0x10000&lt;/code&gt;的位置。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;通常，一个扇区是512Bytes，512转换成16进制就是0x200，由此可见，boot section 后续的4个扇区被它放在了内存中与自己紧挨着的位置。
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;通常，一个扇区是512Bytes，512转换成16进制就是0x200，由此可见，boot section 后续的4个扇区被它放在了内存中与自己紧挨着的位置。
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;其它的一些工作就不过多叙述了，有兴趣的读者可以阅读一下&lt;a href="/assets/src/linux-0.11/boot/bootsect.S"&gt;bootsect.S源码&lt;/a&gt;。最后，boot section通过&lt;code&gt;jmpi 0, 0x9020&lt;/code&gt;跳转到setup section的第一条指令处开始执行。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;实模式下的cpu通过两个16Bits的寄存器: 段基址寄存器CS(Code Segment)和段偏移寄存器IP(Instruction Pointer)，来指示执行指令的位置。
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;实模式下的cpu通过两个16Bits的寄存器: 段基址寄存器CS(Code Segment)和段偏移寄存器IP(Instruction Pointer)，来指示执行指令的位置。
 
 早期的8086 cpu字长是16位，地址总线宽度为20，因此其寻址方式采用CS:IP的方式。
 
@@ -1358,7 +1363,7 @@ jmpi 0, 0x9020通过将CS置成0x9020，将IP置成0，来执行CS:IP处的代�
 &lt;h4&gt;写源码&lt;/h4&gt;
 &lt;p&gt;因为工具的原因，你可能需要了解&lt;a href="http://www.ibm.com/developerworks/cn/linux/l-gas-nasm.html"&gt;GAS和NASM的区别&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;代码如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Filename: boot.S&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;#Filename: boot.S&lt;/span&gt;
 
 &lt;span class="na"&gt;.code16&lt;/span&gt; &lt;span class="c"&gt;#use 16bit&lt;/span&gt;
 &lt;span class="na"&gt;.text&lt;/span&gt;   &lt;span class="c"&gt;#code segment start&lt;/span&gt;
@@ -1394,7 +1399,7 @@ jmpi 0, 0x9020通过将CS置成0x9020，将IP置成0，来执行CS:IP处的代�
 &lt;p&gt;注：通过&lt;code&gt;INT 0x10&lt;/code&gt;将字符串输出的显示设备上。&lt;/p&gt;
 &lt;h4&gt;编写Makefile&lt;/h4&gt;
 &lt;p&gt;Makefile是linux下常用的组织工程和自动化编译的方式。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;CC&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; gcc
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;CC&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; gcc
 &lt;span class="nv"&gt;LD&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ld
 &lt;span class="nv"&gt;LDFILE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; ld_script.ld
 &lt;span class="nv"&gt;OBJCOPY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; objcopy
@@ -1426,7 +1431,7 @@ jmpi 0, 0x9020通过将CS置成0x9020，将IP置成0，来执行CS:IP处的代�
 &lt;p&gt;因此还需要关键的一步，利用objcopy去掉ELF中多余的东西(如comment 段，note 段，符号表)，进而生成boot.bin，Raw Binary文件。&lt;/p&gt;
 &lt;p&gt;最后，利用&lt;code&gt;dd&lt;/code&gt;命令生成软盘镜像(实际就是个块文件？)&lt;/p&gt;
 &lt;h4&gt;链接脚本&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;SECTIONS
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SECTIONS
 &lt;span class="o"&gt;{&lt;/span&gt;
     . &lt;span class="o"&gt;=&lt;/span&gt; 0x0&lt;span class="p"&gt;;&lt;/span&gt;
     .text :
@@ -1440,22 +1445,22 @@ jmpi 0, 0x9020通过将CS置成0x9020，将IP置成0，来执行CS:IP处的代�
 &lt;p&gt;所有的东西都准备好之后，轻轻敲下&lt;code&gt;make&lt;/code&gt;，得到下面的结果：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="make" src="/assets/images/make.png" /&gt;&lt;/p&gt;
 &lt;h4&gt;编写bochs配置文件&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;megs: 32
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;megs: 32
 mouse: &lt;span class="nv"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0
 
 floppya: &lt;span class="nv"&gt;1_44&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;./boot.img, &lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;inserted
-&lt;span class="c"&gt;# ata0-master: type=disk, path=&amp;quot;./c.img&amp;quot;, mode=flat, cylinders=20, heads=16, spt=63&lt;/span&gt;
+&lt;span class="c1"&gt;# ata0-master: type=disk, path=&amp;quot;./c.img&amp;quot;, mode=flat, cylinders=20, heads=16, spt=63&lt;/span&gt;
 
 log: bochsout.log
 
 boot:floppy
 
-&lt;span class="c"&gt;#display_library: sdl&lt;/span&gt;
+&lt;span class="c1"&gt;#display_library: sdl&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;运行命令&lt;code&gt;bochs -f bochsrc&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Hello OS World" src="/assets/images/hello_os_world.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(1)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs1.html" rel="alternate"></link><updated>2014-03-03T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-03:trace-linux-kernel-with-bochs1.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;操作系统是一个神秘的东西，希望我和你都能因为这个博客对它有个一知半解。以下所写均是针对IA32进行的叙述,内核版本为0.11，如有错误，敬请指正。
+&lt;p&gt;&lt;img alt="Hello OS World" src="/assets/images/hello_os_world.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>Trace Linux Kernel With Bochs(1)</title><link href="http://www.gotit.sinaapp.com/trace-linux-kernel-with-bochs1.html" rel="alternate"></link><published>2014-03-03T00:00:00+08:00</published><updated>2014-03-03T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-03:trace-linux-kernel-with-bochs1.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;操作系统是一个神秘的东西，希望我和你都能因为这个博客对它有个一知半解。以下所写均是针对IA32进行的叙述,内核版本为0.11，如有错误，敬请指正。
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1503,20 +1508,20 @@ boot:floppy
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;若出现如下内容说明安装成功：
-    &lt;img alt="bochs运行" src="/assets/images/bochs-test.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>apt-get error</title><link href="http://www.gotit.sinaapp.com/apt-get-error.html" rel="alternate"></link><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-01:apt-get-error.html</id><summary type="html">&lt;p&gt;今天在安装软件时遇到了apt-get发生的一些问题，导致无法安装成功，错误如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Encountered&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;section&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt; 
+    &lt;img alt="bochs运行" src="/assets/images/bochs-test.png" /&gt;&lt;/p&gt;</summary><category term="linux"></category><category term="bochs"></category><category term="os"></category></entry><entry><title>apt-get error</title><link href="http://www.gotit.sinaapp.com/apt-get-error.html" rel="alternate"></link><published>2014-03-01T00:00:00+08:00</published><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-01:apt-get-error.html</id><summary type="html">&lt;p&gt;今天在安装软件时遇到了apt-get发生的一些问题，导致无法安装成功，错误如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Encountered&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;section&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt; &lt;span class="n"&gt;Package&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt; 
 &lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Problem&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;MergeList&lt;/span&gt; &lt;span class="sr"&gt;/var/lib/apt/lists/&lt;/span&gt;&lt;span class="n"&gt;cn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;archive&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;com_ubuntu_dists_natty_main_binary&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i386_Packages&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;解决方法如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo rm /var/lib/apt/lists/* -vf
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo rm /var/lib/apt/lists/* -vf
 sudo apt-get update
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;最后耐心等待即可。&lt;/p&gt;</summary><category term="ubuntu"></category><category term="linux"></category></entry><entry><title>Connect to vpn with ppp</title><link href="http://www.gotit.sinaapp.com/connect-to-vpn-with-ppp.html" rel="alternate"></link><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-01:connect-to-vpn-with-ppp.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;很多时候，我们都需要用VPN，当然如果你问我：“那是什么，能吃吗？”，如果你喜欢卖萌，那你可以选择继续看下去，如果你是认真的，最后也认真；google一下VPN是什么。
+&lt;p&gt;最后耐心等待即可。&lt;/p&gt;</summary><category term="ubuntu"></category><category term="linux"></category></entry><entry><title>Connect to vpn with ppp</title><link href="http://www.gotit.sinaapp.com/connect-to-vpn-with-ppp.html" rel="alternate"></link><published>2014-03-01T00:00:00+08:00</published><updated>2014-03-01T00:00:00+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2014-03-01:connect-to-vpn-with-ppp.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;很多时候，我们都需要用VPN，当然如果你问我：“那是什么，能吃吗？”，如果你喜欢卖萌，那你可以选择继续看下去，如果你是认真的，最后也认真；google一下VPN是什么。
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1525,14 +1530,14 @@ sudo apt-get update
     &lt;img alt="Network Manager VPN" src="/assets/images/network-manager-vpn.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;命令行版&lt;/h2&gt;
 &lt;p&gt;使用pptp可以在linux下方便地连接到VPN,利用如下命令可以方便地创建VPN连接配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo pptpsetup --create VPN_NAME --server SERVER_IP --username NAME --password PASSWD --encrypt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pptpsetup --create VPN_NAME --server SERVER_IP --username NAME --password PASSWD --encrypt
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;然后使用命令&lt;code&gt;sudo pon VPN_NAME&lt;/code&gt;或&lt;code&gt;sudo poff VPN_NAME&lt;/code&gt;来开启或关闭vpn连接&lt;/p&gt;
 &lt;p&gt;利用命令&lt;code&gt;plog -f&lt;/code&gt;查看vpn连接情况&lt;/p&gt;
 &lt;p&gt;vpn连接成功后，并不能直接使用，而是需要调整路由表，具体如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo route add -net NET_IP netmask NETMASK dev ppp0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo route add -net NET_IP netmask NETMASK dev ppp0
 &lt;/pre&gt;&lt;/div&gt;
 
 
