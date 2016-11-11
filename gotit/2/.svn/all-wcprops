@@ -13,85 +13,85 @@ connect-to-vpn-with-ppp.html
 K 25
 svn:wc:ra_dav:version-url
 V 49
-/gotit/!svn/ver/76/2/connect-to-vpn-with-ppp.html
+/gotit/!svn/ver/77/2/connect-to-vpn-with-ppp.html
 END
 categories.html
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/gotit/!svn/ver/76/2/categories.html
+/gotit/!svn/ver/77/2/categories.html
 END
 words-2015-05-12.html
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/gotit/!svn/ver/76/2/words-2015-05-12.html
+/gotit/!svn/ver/77/2/words-2015-05-12.html
 END
 type-conversions.html
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/gotit/!svn/ver/76/2/type-conversions.html
+/gotit/!svn/ver/77/2/type-conversions.html
 END
 basic-concept-on-security.html
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/gotit/!svn/ver/76/2/basic-concept-on-security.html
+/gotit/!svn/ver/77/2/basic-concept-on-security.html
 END
 index3.html
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/gotit/!svn/ver/76/2/index3.html
+/gotit/!svn/ver/77/2/index3.html
 END
 index5.html
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/gotit/!svn/ver/76/2/index5.html
+/gotit/!svn/ver/77/2/index5.html
 END
 wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/gotit/!svn/ver/76/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html
+/gotit/!svn/ver/77/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-si.html
 END
 index7.html
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/gotit/!svn/ver/76/2/index7.html
+/gotit/!svn/ver/77/2/index7.html
 END
 offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/gotit/!svn/ver/76/2/offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html
+/gotit/!svn/ver/77/2/offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html
 END
 trace-linux-kernel-with-bochs2.html
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/gotit/!svn/ver/76/2/trace-linux-kernel-with-bochs2.html
+/gotit/!svn/ver/77/2/trace-linux-kernel-with-bochs2.html
 END
 trace-linux-kernel-with-bochs4.html
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/gotit/!svn/ver/76/2/trace-linux-kernel-with-bochs4.html
+/gotit/!svn/ver/77/2/trace-linux-kernel-with-bochs4.html
 END
 derived-class-constructor-initializer-list.html
 K 25
 svn:wc:ra_dav:version-url
 V 68
-/gotit/!svn/ver/76/2/derived-class-constructor-initializer-list.html
+/gotit/!svn/ver/77/2/derived-class-constructor-initializer-list.html
 END
 words-and-their-stroies-number-one.html
 K 25
 svn:wc:ra_dav:version-url
 V 60
-/gotit/!svn/ver/76/2/words-and-their-stroies-number-one.html
+/gotit/!svn/ver/77/2/words-and-their-stroies-number-one.html
 END
 config.yaml
 K 25
@@ -99,53 +99,53 @@ svn:wc:ra_dav:version-url
 V 32
 /gotit/!svn/ver/43/2/config.yaml
 END
-cheng-xu-yuan-de-mo-yun-suan.html
+wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-yi.html
 K 25
 svn:wc:ra_dav:version-url
-V 54
-/gotit/!svn/ver/76/2/cheng-xu-yuan-de-mo-yun-suan.html
+V 88
+/gotit/!svn/ver/77/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-yi.html
 END
 wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-san.html
 K 25
 svn:wc:ra_dav:version-url
 V 89
-/gotit/!svn/ver/76/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-san.html
+/gotit/!svn/ver/77/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-san.html
 END
-wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-yi.html
+cheng-xu-yuan-de-mo-yun-suan.html
 K 25
 svn:wc:ra_dav:version-url
-V 88
-/gotit/!svn/ver/76/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-yi.html
-END
-stack-switching-during-os-setup.html
-K 25
-svn:wc:ra_dav:version-url
-V 57
-/gotit/!svn/ver/76/2/stack-switching-during-os-setup.html
+V 54
+/gotit/!svn/ver/77/2/cheng-xu-yuan-de-mo-yun-suan.html
 END
 several-problems-about-linux-kernel.html
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/gotit/!svn/ver/76/2/several-problems-about-linux-kernel.html
+/gotit/!svn/ver/77/2/several-problems-about-linux-kernel.html
+END
+stack-switching-during-os-setup.html
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/gotit/!svn/ver/77/2/stack-switching-during-os-setup.html
 END
 worlds-2015-05-19.html
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/gotit/!svn/ver/76/2/worlds-2015-05-19.html
+/gotit/!svn/ver/77/2/worlds-2015-05-19.html
 END
 on-runtime-monitoring-tools.html
 K 25
 svn:wc:ra_dav:version-url
 V 53
-/gotit/!svn/ver/76/2/on-runtime-monitoring-tools.html
+/gotit/!svn/ver/77/2/on-runtime-monitoring-tools.html
 END
 xian-duan-shu.html
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/gotit/!svn/ver/76/2/xian-duan-shu.html
+/gotit/!svn/ver/77/2/xian-duan-shu.html
 END
 robots.txt
 K 25
@@ -157,31 +157,31 @@ authors.html
 K 25
 svn:wc:ra_dav:version-url
 V 33
-/gotit/!svn/ver/76/2/authors.html
-END
-hello-world.html
-K 25
-svn:wc:ra_dav:version-url
-V 37
-/gotit/!svn/ver/76/2/hello-world.html
+/gotit/!svn/ver/77/2/authors.html
 END
 apt-get-error.html
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/gotit/!svn/ver/76/2/apt-get-error.html
+/gotit/!svn/ver/77/2/apt-get-error.html
 END
-wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-er.html
+hello-world.html
 K 25
 svn:wc:ra_dav:version-url
-V 88
-/gotit/!svn/ver/76/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-er.html
+V 37
+/gotit/!svn/ver/77/2/hello-world.html
 END
 index2.html
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/gotit/!svn/ver/76/2/index2.html
+/gotit/!svn/ver/77/2/index2.html
+END
+wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-er.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/gotit/!svn/ver/77/2/wei-ruan-2016xiao-yuan-zhao-pin-4yue-zai-xian-bi-shi-ti-jie-er.html
 END
 index.php
 K 25
@@ -193,95 +193,95 @@ index4.html
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/gotit/!svn/ver/76/2/index4.html
+/gotit/!svn/ver/77/2/index4.html
 END
 some-common-weakness-enumeration.html
 K 25
 svn:wc:ra_dav:version-url
 V 58
-/gotit/!svn/ver/76/2/some-common-weakness-enumeration.html
+/gotit/!svn/ver/77/2/some-common-weakness-enumeration.html
 END
 hihocodertai-ge-zui-xin-mian-jing-suan-fa-jing-sai-4.html
 K 25
 svn:wc:ra_dav:version-url
 V 78
-/gotit/!svn/ver/76/2/hihocodertai-ge-zui-xin-mian-jing-suan-fa-jing-sai-4.html
+/gotit/!svn/ver/77/2/hihocodertai-ge-zui-xin-mian-jing-suan-fa-jing-sai-4.html
 END
 program-optimization-experiments.html
 K 25
 svn:wc:ra_dav:version-url
 V 58
-/gotit/!svn/ver/76/2/program-optimization-experiments.html
+/gotit/!svn/ver/77/2/program-optimization-experiments.html
 END
 on-object-array.html
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/gotit/!svn/ver/76/2/on-object-array.html
+/gotit/!svn/ver/77/2/on-object-array.html
 END
 index6.html
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/gotit/!svn/ver/76/2/index6.html
+/gotit/!svn/ver/77/2/index6.html
 END
 sitemap.xml
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/gotit/!svn/ver/76/2/sitemap.xml
+/gotit/!svn/ver/77/2/sitemap.xml
 END
 tags.html
 K 25
 svn:wc:ra_dav:version-url
 V 30
-/gotit/!svn/ver/76/2/tags.html
+/gotit/!svn/ver/77/2/tags.html
 END
 trace-linux-kernel-with-bochs1.html
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/gotit/!svn/ver/76/2/trace-linux-kernel-with-bochs1.html
+/gotit/!svn/ver/77/2/trace-linux-kernel-with-bochs1.html
 END
 ubuntu-1204-ethernet-controller-problem.html
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/gotit/!svn/ver/76/2/ubuntu-1204-ethernet-controller-problem.html
+/gotit/!svn/ver/77/2/ubuntu-1204-ethernet-controller-problem.html
 END
 trace-linux-kernel-with-bochs3.html
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/gotit/!svn/ver/76/2/trace-linux-kernel-with-bochs3.html
+/gotit/!svn/ver/77/2/trace-linux-kernel-with-bochs3.html
 END
 trace-linux-kernel-with-bochs5.html
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/gotit/!svn/ver/76/2/trace-linux-kernel-with-bochs5.html
+/gotit/!svn/ver/77/2/trace-linux-kernel-with-bochs5.html
 END
 archives.html
 K 25
 svn:wc:ra_dav:version-url
 V 34
-/gotit/!svn/ver/76/2/archives.html
+/gotit/!svn/ver/77/2/archives.html
 END
 web-vulnerability.html
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/gotit/!svn/ver/76/2/web-vulnerability.html
+/gotit/!svn/ver/77/2/web-vulnerability.html
 END
 uniform-initialization.html
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/gotit/!svn/ver/76/2/uniform-initialization.html
+/gotit/!svn/ver/77/2/uniform-initialization.html
 END
 index.html
 K 25
 svn:wc:ra_dav:version-url
 V 31
-/gotit/!svn/ver/76/2/index.html
+/gotit/!svn/ver/77/2/index.html
 END

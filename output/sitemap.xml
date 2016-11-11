@@ -5,37 +5,44 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/</loc>
-<lastmod>2016-08-08T22:47:58-00:00</lastmod>
+<lastmod>2016-08-09T17:14:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/archives.html</loc>
-<lastmod>2016-08-08T22:47:58-00:00</lastmod>
+<lastmod>2016-08-09T17:14:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/tags.html</loc>
-<lastmod>2016-08-08T22:47:58-00:00</lastmod>
+<lastmod>2016-08-09T17:14:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/categories.html</loc>
-<lastmod>2016-08-08T22:47:58-00:00</lastmod>
+<lastmod>2016-08-09T17:14:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.gotit.sinaapp.com/pages/about.html</loc>
-<lastmod>2016-08-08T22:47:58-00:00</lastmod>
+<lastmod>2016-08-09T17:14:43-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
+</url>
+
+<url>
+<loc>http://www.gotit.sinaapp.com/linux-tricks.html</loc>
+<lastmod>2016-08-09T17:08:39+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -271,7 +278,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/category/linux.html</loc>
-<lastmod>2014-04-14T00:00:00+08:06</lastmod>
+<lastmod>2016-08-09T17:08:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -299,7 +306,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/tag/linux.html</loc>
-<lastmod>2014-04-13T00:00:00+08:06</lastmod>
+<lastmod>2016-08-09T17:08:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -342,6 +349,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.gotit.sinaapp.com/tag/ccpp.html</loc>
 <lastmod>2014-01-20T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.gotit.sinaapp.com/tag/shell.html</loc>
+<lastmod>2016-08-09T17:08:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -432,7 +446,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/tag/cpp.html</loc>
-<lastmod>2016-08-08T20:19:32+08:06</lastmod>
+<lastmod>2016-08-09T17:08:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -460,7 +474,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.gotit.sinaapp.com/author/ictlxb.html</loc>
-<lastmod>2016-08-08T20:19:32+08:06</lastmod>
+<lastmod>2016-08-09T17:08:39+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

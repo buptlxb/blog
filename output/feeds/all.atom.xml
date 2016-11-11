@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2016-08-08T20:19:32+08:00</updated><entry><title>[Offer收割]编程练习赛4题解</title><link href="http://www.gotit.sinaapp.com/offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html" rel="alternate"></link><updated>2016-08-08T20:19:32+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-08-08:offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BLxG</title><link href="http://www.gotit.sinaapp.com/" rel="alternate"></link><link href="http://gotit.applinzi.com/feeds/all.atom.xml" rel="self"></link><id>http://www.gotit.sinaapp.com/</id><updated>2016-08-09T17:08:39+08:00</updated><entry><title>linux tricks</title><link href="http://www.gotit.sinaapp.com/linux-tricks.html" rel="alternate"></link><updated>2016-08-09T17:08:39+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-08-09:linux-tricks.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;If all you have is a hammer, everything looks like a nail.  ---Maslow &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Find MACRO definition in header file&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cpp -dM -E /usr/include/netinet/in.h &lt;span class="p"&gt;|&lt;/span&gt; grep SOCKADDR_COMMON
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="cpp"></category><category term="linux"></category><category term="shell"></category></entry><entry><title>[Offer收割]编程练习赛4题解</title><link href="http://www.gotit.sinaapp.com/offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html" rel="alternate"></link><updated>2016-08-08T20:19:32+08:00</updated><author><name>ictlxb</name></author><id>tag:www.gotit.sinaapp.com,2016-08-08:offershou-ge-bian-cheng-lian-xi-sai-4ti-jie.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;If all you have is a hammer, everything looks like a nail.  ---Maslow&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;A.满减优惠&lt;/h2&gt;

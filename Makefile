@@ -38,6 +38,12 @@ ifeq ($(RELATIVE), 1)
 	PELICANOPTS += --relative-urls
 endif
 
+EDITOR := vim
+DATE := $(shell date +'%Y-%m-%d %H:%M:%S')
+SLUG := $(shell echo '${NAME}' | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z)
+EXT ?= md
+
+
 help:
 	@echo 'Makefile for a pelican Web site                                           '
 	@echo '                                                                          '
@@ -58,6 +64,8 @@ help:
 	@echo '   make cf_upload                      upload the web site via Cloud Files'
 	@echo '   make github                         upload the web site via gh-pages   '
 	@echo '   make svn                            copy the web site to gotit         '
+	@echo '   make newpost NAME=""                new a post                         '
+	@echo '   make editpost NAME=""               edit a post                        '
 	@echo '                                                                          '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
@@ -127,4 +135,31 @@ github: publish
 svn: publish
 	rsync -Prvc $(OUTPUTDIR)/* $(SINADIR)
 
-.PHONY: html help clean regenerate serve serve-global devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
+newpost:
+ifdef NAME
+	echo "title: $(NAME)" >  $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "slug: $(SLUG)" >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "date: $(DATE)" >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "category: "    >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "tags: "        >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "keywords: "    >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "description: " >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo ""              >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "> If all you have is a hammer, everything looks like a nail.  ---Maslow " >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo ""              >> $(INPUTDIR)/$(SLUG).$(EXT)
+	${EDITOR} ${INPUTDIR}/${SLUG}.${EXT}
+else
+	@echo 'Variable NAME is not defined.'
+	@echo 'Do make newpost NAME='"'"'Post Name'"'"
+endif
+
+editpost:
+ifdef NAME
+	${EDITOR} ${INPUTDIR}/${SLUG}.${EXT}
+else
+	@echo 'Variable NAME is not defined.'
+	@echo 'Do make editpost NAME='"'"'Post Name'"'"
+endif
+
+
+.PHONY: svn newpost editpost html help clean regenerate serve serve-global devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
