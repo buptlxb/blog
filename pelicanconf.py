@@ -8,7 +8,7 @@ SITENAME = u'BLxG'
 DESCRIPTION = u'Programming and Life -- http://www.gotit.sinaapp.com'
 KEYWORDS = u'算法,软件开发,Algorithm,C++,Coding,Debug,Google,Linux,,OS,,Programmer,programming,language,Python,Ubuntu,Unix,vim'
 # THEME = 'tuxlite_tbs'
-THEME = '/home/lxb/blog/themes/tuxlite_tbs'
+THEME = './themes/tuxlite_tbs'
 
 
 PATH = 'content'
